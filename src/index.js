@@ -85,7 +85,7 @@ function getGameNames(versions) {
   }
 
   for (let eachPokeGame of pokeGames) {
-    pokeGameList += `<div class="pokeGameName">${eachPokeGame}</div>`
+    pokeGameList += `<div class="pokeGameName">${ALL_GAMES[eachPokeGame]}</div>`
   }
 
   return pokeGameList
