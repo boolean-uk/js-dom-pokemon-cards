@@ -1,33 +1,4 @@
-const GENERATIONS = [
-  "generation-i",
-  "generation-ii",
-  "generation-iii",
-  "generation-iv",
-  "generation-v",
-  "generation-vi",
-  "generation-vii",
-  "generation-viii"
-]
-
-const ALL_GAMES = {
-  'red-blue': 'Red and Blue',
-  'yellow': 'Yellow',
-  'crystal': 'Crystal',
-  'gold': 'Gold',
-  'silver': 'Silver',
-  'emerald': 'Emerald',
-  'firered-leafgreen': 'Fire Red and Leaf Green',
-  'ruby-sapphire': 'Ruby and Sapphire',
-  'diamond-pearl': 'Diamond and Pearl',
-  'heartgold-soulsilver': 'Heart Gold and Soul Silver',
-  'platinum': 'Platinum',
-  'black-white': 'Black and White',
-  'omegaruby-alphasapphire': 'Omega Ruby and Alpha Sapphire',
-  'x-y': 'X and Y',
-  'icons': 'Icons',
-  'ultra-sun-ultra-moon': 'Ultra Sun and Ultra Moon',
-}
-
+let allPokeIDs = []
 const POKE_LIST = document.querySelector('ul')
 
 for (let pokeMon of data) {
@@ -35,6 +6,7 @@ for (let pokeMon of data) {
   LIST_ITEM.setAttribute("class", "card");
 
   const POKE_NAME = capitalizeFirstLetter(pokeMon.name)
+  allPokeIDs.push(`pokeId-${pokeMon.id}`)
 
   const THIS_POKEMON_CARD = `
       <h2 class="card--title">${POKE_NAME}</h2>
@@ -42,7 +14,9 @@ for (let pokeMon of data) {
         width="256"
         class="card--img"
         src="${pokeMon.sprites.other['official-artwork'].front_default}"
+        id="pokeId-${pokeMon.id}"
       />
+      <p align="center">Click on image to change view</p>
       <ul class="card--text">
         <li><strong>HP:</strong> <span class="stat-value-indented">${pokeMon.stats[0].base_stat}</span></li>
         <li><strong>ATTACK:</strong> <span class="stat-value-indented">${pokeMon.stats[1].base_stat}</span></li>
@@ -53,7 +27,7 @@ for (let pokeMon of data) {
       </ul>
       <hr>
       <h2 class="card--title">Games</h2>
-      <div class="gamesGrid">${getGameNames(pokeMon.sprites.versions)}</div>
+      <div class="gamesGrid">${getGameNames(pokeMon.game_indices)}</div>
   `
 
   LIST_ITEM.innerHTML = THIS_POKEMON_CARD
@@ -65,29 +39,33 @@ function capitalizeFirstLetter(pokeName) {
   return pokeName
 }
 
-function separatePokeGames(pokeGames) {
-  return pokeGames.toString()
-}
-
-function getGameNames(versions) {
-
-  const POKE_VERSIONS = [] 
-  let pokeGames = []
+function getGameNames(indices) {
   let pokeGameList = ''
 
-  for (let generation of GENERATIONS) {
-    POKE_VERSIONS.push(versions[generation])
-  }
-
-  for (let eachPokeVersion of POKE_VERSIONS) {
-    const gamesFromThisPokeVersion = Object.keys(eachPokeVersion);
-    pokeGames = pokeGames.concat(gamesFromThisPokeVersion)
-  }
-
-  for (let eachPokeGame of pokeGames) {
-    pokeGameList += `<div class="pokeGameName">${ALL_GAMES[eachPokeGame]}</div>`
+  for (let eachIndex of indices) {
+    pokeGameList += `<div class="pokeGameName">${capitalizeFirstLetter(eachIndex.version.name)}</div>`
   }
 
   return pokeGameList
 }
 
+for (let pokeID of allPokeIDs) {
+  document.getElementById(pokeID).addEventListener("click", testFunction)
+}
+
+function testFunction() {
+  let newImageSource = this.src
+  let fileExtension = newImageSource.substr(newImageSource.length - 3)
+
+  if (fileExtension === 'png') {
+    newImageSource = newImageSource.replaceAll('.png', '.svg')
+    newImageSource = newImageSource.replaceAll('official-artwork', 'dream-world')
+    this.src = newImageSource
+  }
+
+  if (fileExtension === 'svg') {
+    newImageSource = newImageSource.replaceAll('.svg', '.png')
+    newImageSource = newImageSource.replaceAll('dream-world', 'official-artwork')
+    this.src = newImageSource
+  }
+}
