@@ -82,10 +82,9 @@ h2 {
 
 .gamesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 160px);
-  gap: 10px;
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
   justify-content: center;
-  justify-items: center;
   padding-bottom: 2rem;
 }
 
