@@ -10,8 +10,10 @@ let pokeList = document.querySelector('ul')
 let pokeCards = []
 
 for (let pokeMon of data) {
+    let li = document.createElement("li");
+    li.setAttribute("class", "card");
+
     const thisPokeMonCard = `
-<li class="card">
   <h2 class="card--title">${pokeMon.name}</h2>
   <img
     width="256"
@@ -26,10 +28,8 @@ for (let pokeMon of data) {
     <li>SPECIAL-DEFENSE: ${pokeMon.stats[4].base_stat}</li>
     <li>SPEED: ${pokeMon.stats[5].base_stat}</li>
   </ul>
-</li>
     `
-
-pokeCards.push(thisPokeMonCard)
+li.innerHTML = thisPokeMonCard
+pokeList.appendChild(li);
 }
 
-pokeList.innerHTML = pokeCards
