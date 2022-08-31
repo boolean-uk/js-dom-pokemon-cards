@@ -2,60 +2,24 @@
 const ALL_POKE_IDS = []
 const POKE_LIST = document.querySelector('ul')
 
-generateElements();
+generateEachCard();
 addClickEventListenersToImages();
 
-function generateElements() {
+function generateEachCard() {
 
   for (const POKEMON of data) {
-
     ALL_POKE_IDS.push(`pokeId-${POKEMON.id}`)
 
-    const LIST_ITEM = document.createElement("li");
-    LIST_ITEM.setAttribute("class", "card");
+    const LIST_ITEM = document.createElement("li")
+    LIST_ITEM.setAttribute("class", "card")
 
-    const CARD_TITLE = document.createElement("h2");
-    CARD_TITLE.setAttribute("class", "card--title");
-    CARD_TITLE.innerText = capitalizeFirstLetter(POKEMON.name)
+    LIST_ITEM.appendChild(generateCardTitle(POKEMON.name))
+    LIST_ITEM.appendChild(generateCardImage(`pokeId-${POKEMON.id}`, POKEMON.sprites.other['official-artwork'].front_default))
+    LIST_ITEM.appendChild(generateInstructionLine('Click on image to change view'))
 
-    const CARD_IMAGE = document.createElement("img");
-    CARD_IMAGE.setAttribute("class", "card--img");
-    CARD_IMAGE.setAttribute("id", `pokeId-${POKEMON.id}`);
-    CARD_IMAGE.setAttribute("src", POKEMON.sprites.other['official-artwork'].front_default);
-
-    const INSTRUCTION_LINE = document.createElement("p");
-    INSTRUCTION_LINE.innerText = 'Click on image to change view'
-    INSTRUCTION_LINE.setAttribute("class", "centered-instructions");
-
-    const POKE_STATS = document.createElement("ul");
-    POKE_STATS.setAttribute("class", "card--text");
-
-    for (const POKE_STAT of POKEMON.stats) {
-      const THIS_LIST_ITEM = document.createElement("li");
-      THIS_LIST_ITEM.innerText = `${POKE_STAT.stat.name.toUpperCase()}: ${POKE_STAT.base_stat}`;
-      POKE_STATS.appendChild(THIS_LIST_ITEM)
-    }
-
-    const GAMES_TITLE = document.createElement("h2");
-    GAMES_TITLE.setAttribute("class", "card--title");
-    GAMES_TITLE.innerText = "Games";
-
-    const GAMES_GRID = document.createElement("div")
-    GAMES_GRID.setAttribute("class", "gamesGrid");
-
-    const ALL_GAMES_FOUND = getGameNames(POKEMON.game_indices);
-
-    for (const GAME of ALL_GAMES_FOUND) {
-      GAMES_GRID.appendChild(GAME)
-    }
-
-    LIST_ITEM.appendChild(CARD_TITLE);
-    LIST_ITEM.appendChild(CARD_IMAGE);
-    LIST_ITEM.appendChild(INSTRUCTION_LINE);
-
-    LIST_ITEM.appendChild(POKE_STATS);
-    LIST_ITEM.appendChild(GAMES_TITLE);
-    LIST_ITEM.appendChild(GAMES_GRID);
+    LIST_ITEM.appendChild(generateStatsList(POKEMON.stats))
+    LIST_ITEM.appendChild(generateGamesGridTitle('Games'))
+    LIST_ITEM.appendChild(generateGamesGrid(POKEMON.game_indices))
 
     POKE_LIST.appendChild(LIST_ITEM);
   }
@@ -71,6 +35,66 @@ function addClickEventListenersToImages() {
 function capitalizeFirstLetter(pokeName) {
   pokeName = pokeName.charAt(0).toUpperCase() + pokeName.slice(1);
   return pokeName
+}
+
+function generateCardTitle(pokemonCharacterName) {
+  const CARD_TITLE = document.createElement("h2")
+  CARD_TITLE.setAttribute("class", "card--title")
+  CARD_TITLE.innerText = capitalizeFirstLetter(pokemonCharacterName)
+
+  return CARD_TITLE
+}
+
+function generateCardImage(imgID, imgPath) {
+  const CARD_IMAGE = document.createElement("img")
+  CARD_IMAGE.setAttribute("class", "card--img")
+  CARD_IMAGE.setAttribute("id", imgID)
+  CARD_IMAGE.setAttribute("src", imgPath)
+
+  return CARD_IMAGE
+}
+
+function generateInstructionLine(instructionText) {
+  const INSTRUCTION_LINE = document.createElement("p");
+  INSTRUCTION_LINE.innerText = instructionText
+  INSTRUCTION_LINE.setAttribute("class", "centered-instructions");
+
+  return INSTRUCTION_LINE
+}
+
+function generateStatsList(allStatsOfThisPokemon) {
+  const POKE_STATS = document.createElement("ul");
+  POKE_STATS.setAttribute("class", "card--text");
+
+  for (const POKE_STAT of allStatsOfThisPokemon) {
+    const THIS_LIST_ITEM = document.createElement("li");
+    THIS_LIST_ITEM.innerText = `${POKE_STAT.stat.name.toUpperCase()}: ${POKE_STAT.base_stat}`;
+    POKE_STATS.appendChild(THIS_LIST_ITEM)
+  }
+
+  return POKE_STATS
+}
+
+function generateGamesGridTitle(titleText) {
+  const GAMES_TITLE = document.createElement("h2");
+  GAMES_TITLE.setAttribute("class", "card--title");
+  GAMES_TITLE.innerText = titleText;
+
+  return GAMES_TITLE
+}
+
+function generateGamesGrid(allGameIndices) {
+
+  const GAMES_GRID = document.createElement("div")
+  GAMES_GRID.setAttribute("class", "gamesGrid");
+
+  const ALL_GAMES_FOUND = getGameNames(allGameIndices);
+
+  for (const GAME of ALL_GAMES_FOUND) {
+    GAMES_GRID.appendChild(GAME)
+  }
+
+  return GAMES_GRID
 }
 
 function getGameNames(indices) {
