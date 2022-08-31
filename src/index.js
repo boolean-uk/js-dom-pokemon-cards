@@ -76,7 +76,7 @@ function capitalizeFirstLetter(pokeName) {
 function getGameNames(indices) {
   const POKE_GAME_LIST = []
 
-  for (let EACH_GAME_INDEX of indices) {
+  for (const EACH_GAME_INDEX of indices) {
     const GAME_ITEM = document.createElement("div");
     GAME_ITEM.setAttribute("class", "pokeGameName");
     GAME_ITEM.innerText = capitalizeFirstLetter(EACH_GAME_INDEX.version.name)
