@@ -100,3 +100,7 @@ h2 {
   background-color: lightgray;
   color: gray;
 }
+
+.centered-instructions {
+  text-align: center;
+}

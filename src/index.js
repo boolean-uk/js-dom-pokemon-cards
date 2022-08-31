@@ -1,37 +1,91 @@
-let allPokeIDs = []
+
+const ALL_POKE_IDS = []
 const POKE_LIST = document.querySelector('ul')
 
-for (let pokeMon of data) {
-  const LIST_ITEM = document.createElement("li");
-  LIST_ITEM.setAttribute("class", "card");
+generateElements();
+addClickEventListenersToImages();
 
-  const POKE_NAME = capitalizeFirstLetter(pokeMon.name)
-  allPokeIDs.push(`pokeId-${pokeMon.id}`)
+function generateElements() {
 
-  const THIS_POKEMON_CARD = `
-      <h2 class="card--title">${POKE_NAME}</h2>
-      <img
-        width="256"
-        class="card--img"
-        src="${pokeMon.sprites.other['official-artwork'].front_default}"
-        id="pokeId-${pokeMon.id}"
-      />
-      <p align="center">Click on image to change view</p>
-      <ul class="card--text">
-        <li><strong>HP:</strong> <span class="stat-value-indented">${pokeMon.stats[0].base_stat}</span></li>
-        <li><strong>ATTACK:</strong> <span class="stat-value-indented">${pokeMon.stats[1].base_stat}</span></li>
-        <li><strong>DEFENSE:</strong> <span class="stat-value-indented">${pokeMon.stats[2].base_stat}</span></li>
-        <li><strong>SPECIAL-ATTACK:</strong> <span class="stat-value-indented">${pokeMon.stats[3].base_stat}</span></li>
-        <li><strong>SPECIAL-DEFENSE:</strong> <span class="stat-value-indented">${pokeMon.stats[4].base_stat}</span></li>
-        <li><strong>SPEED:</strong> <span class="stat-value-indented">${pokeMon.stats[5].base_stat}</span></li>
-      </ul>
-      <hr>
-      <h2 class="card--title">Games</h2>
-      <div class="gamesGrid">${getGameNames(pokeMon.game_indices)}</div>
-  `
+  for (const POKEMON of data) {
+    const CAPITALIZED_POKE_NAME = capitalizeFirstLetter(POKEMON.name)
+    ALL_POKE_IDS.push(`pokeId-${POKEMON.id}`)
 
-  LIST_ITEM.innerHTML = THIS_POKEMON_CARD
-  POKE_LIST.appendChild(LIST_ITEM);
+    const LIST_ITEM = document.createElement("li");
+    LIST_ITEM.setAttribute("class", "card");
+
+    const CARD_TITLE = document.createElement("h2");
+    CARD_TITLE.setAttribute("class", "card--title");
+    CARD_TITLE.innerText = CAPITALIZED_POKE_NAME
+
+    const CARD_IMAGE = document.createElement("img");
+    CARD_IMAGE.setAttribute("class", "card--img");
+    CARD_IMAGE.setAttribute("id", `pokeId-${POKEMON.id}`);
+    CARD_IMAGE.setAttribute("src", POKEMON.sprites.other['official-artwork'].front_default);
+
+    const INSTRUCTION_LINE = document.createElement("p");
+    INSTRUCTION_LINE.innerText = 'Click on image to change view'
+    INSTRUCTION_LINE.setAttribute("class", "centered-instructions");
+
+    const POKE_STATS = document.createElement("ul");
+    POKE_STATS.setAttribute("class", "card--text");
+
+
+    let HP_STAT = document.createElement("li");
+    HP_STAT.innerText = `HP: ${POKEMON.stats[0].base_stat}`;
+
+    const ATTACK_STAT = document.createElement("li");
+    ATTACK_STAT.innerText = `ATTACK: ${POKEMON.stats[1].base_stat}`;
+
+    const DEFENSE_STAT = document.createElement("li");
+    DEFENSE_STAT.innerText = `DEFENSE: ${POKEMON.stats[2].base_stat}`;
+
+    const SPECIAL_ATTACK_STAT = document.createElement("li");
+    SPECIAL_ATTACK_STAT.innerText = `SPECIAL-ATTACK: ${POKEMON.stats[3].base_stat}`;
+
+    const SPECIAL_DEFENSE_STAT = document.createElement("li");
+    SPECIAL_DEFENSE_STAT.innerText = `SPECIAL-DEFENSE: ${POKEMON.stats[4].base_stat}`;
+
+    const SPEED_STAT = document.createElement("li");
+    SPEED_STAT.innerText = `SPEED: ${POKEMON.stats[5].base_stat}`;
+
+    const GAMES_TITLE = document.createElement("h2");
+    GAMES_TITLE.setAttribute("class", "card--title");
+    GAMES_TITLE.innerText = "Games";
+
+    const GAMES_GRID = document.createElement("div")
+    GAMES_GRID.setAttribute("class", "gamesGrid");
+
+    const ALL_GAMES_FOUND = getGameNames(POKEMON.game_indices);
+
+    for (const GAME of ALL_GAMES_FOUND) {
+      GAMES_GRID.appendChild(GAME)
+    }
+
+    LIST_ITEM.appendChild(CARD_TITLE);
+    LIST_ITEM.appendChild(CARD_IMAGE);
+    LIST_ITEM.appendChild(INSTRUCTION_LINE);
+
+    POKE_STATS.appendChild(HP_STAT);
+    POKE_STATS.appendChild(ATTACK_STAT);
+    POKE_STATS.appendChild(DEFENSE_STAT);
+    POKE_STATS.appendChild(SPECIAL_ATTACK_STAT);
+    POKE_STATS.appendChild(SPECIAL_DEFENSE_STAT);
+    POKE_STATS.appendChild(SPEED_STAT);
+
+    LIST_ITEM.appendChild(POKE_STATS);
+    LIST_ITEM.appendChild(GAMES_TITLE);
+    LIST_ITEM.appendChild(GAMES_GRID);
+
+    POKE_LIST.appendChild(LIST_ITEM);
+  }
+
+}
+
+function addClickEventListenersToImages() {
+  for (const POKE_ID of ALL_POKE_IDS) {
+    document.getElementById(POKE_ID).addEventListener("click", swapImage)
+  }
 }
 
 function capitalizeFirstLetter(pokeName) {
@@ -40,20 +94,19 @@ function capitalizeFirstLetter(pokeName) {
 }
 
 function getGameNames(indices) {
-  let pokeGameList = ''
+  const POKE_GAME_LIST = []
 
-  for (let eachIndex of indices) {
-    pokeGameList += `<div class="pokeGameName">${capitalizeFirstLetter(eachIndex.version.name)}</div>`
+  for (let EACH_GAME_INDEX of indices) {
+    const GAME_ITEM = document.createElement("div");
+    GAME_ITEM.setAttribute("class", "pokeGameName");
+    GAME_ITEM.innerText = capitalizeFirstLetter(EACH_GAME_INDEX.version.name)
+    POKE_GAME_LIST.push(GAME_ITEM)
   }
 
-  return pokeGameList
+  return POKE_GAME_LIST
 }
 
-for (let pokeID of allPokeIDs) {
-  document.getElementById(pokeID).addEventListener("click", testFunction)
-}
-
-function testFunction() {
+function swapImage() {
   let newImageSource = this.src
   let fileExtension = newImageSource.substr(newImageSource.length - 3)
 
