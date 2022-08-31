@@ -6,7 +6,6 @@ generateEachCard();
 addClickEventListenersToImages();
 
 function generateEachCard() {
-
   for (const POKEMON of data) {
     ALL_POKE_IDS.push(`pokeId-${POKEMON.id}`)
 
@@ -23,7 +22,6 @@ function generateEachCard() {
 
     POKE_LIST.appendChild(LIST_ITEM);
   }
-
 }
 
 function addClickEventListenersToImages() {
@@ -84,10 +82,8 @@ function generateGamesGridTitle(titleText) {
 }
 
 function generateGamesGrid(allGameIndices) {
-
   const GAMES_GRID = document.createElement("div")
   GAMES_GRID.setAttribute("class", "gamesGrid");
-
   const ALL_GAMES_FOUND = getGameNames(allGameIndices);
 
   for (const GAME of ALL_GAMES_FOUND) {
