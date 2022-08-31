@@ -8,7 +8,7 @@ addClickEventListenersToImages();
 function generateElements() {
 
   for (const POKEMON of data) {
-    const CAPITALIZED_POKE_NAME = capitalizeFirstLetter(POKEMON.name)
+
     ALL_POKE_IDS.push(`pokeId-${POKEMON.id}`)
 
     const LIST_ITEM = document.createElement("li");
@@ -16,7 +16,7 @@ function generateElements() {
 
     const CARD_TITLE = document.createElement("h2");
     CARD_TITLE.setAttribute("class", "card--title");
-    CARD_TITLE.innerText = CAPITALIZED_POKE_NAME
+    CARD_TITLE.innerText = capitalizeFirstLetter(POKEMON.name)
 
     const CARD_IMAGE = document.createElement("img");
     CARD_IMAGE.setAttribute("class", "card--img");
@@ -30,24 +30,11 @@ function generateElements() {
     const POKE_STATS = document.createElement("ul");
     POKE_STATS.setAttribute("class", "card--text");
 
-
-    let HP_STAT = document.createElement("li");
-    HP_STAT.innerText = `HP: ${POKEMON.stats[0].base_stat}`;
-
-    const ATTACK_STAT = document.createElement("li");
-    ATTACK_STAT.innerText = `ATTACK: ${POKEMON.stats[1].base_stat}`;
-
-    const DEFENSE_STAT = document.createElement("li");
-    DEFENSE_STAT.innerText = `DEFENSE: ${POKEMON.stats[2].base_stat}`;
-
-    const SPECIAL_ATTACK_STAT = document.createElement("li");
-    SPECIAL_ATTACK_STAT.innerText = `SPECIAL-ATTACK: ${POKEMON.stats[3].base_stat}`;
-
-    const SPECIAL_DEFENSE_STAT = document.createElement("li");
-    SPECIAL_DEFENSE_STAT.innerText = `SPECIAL-DEFENSE: ${POKEMON.stats[4].base_stat}`;
-
-    const SPEED_STAT = document.createElement("li");
-    SPEED_STAT.innerText = `SPEED: ${POKEMON.stats[5].base_stat}`;
+    for (const POKE_STAT of POKEMON.stats) {
+      const THIS_LIST_ITEM = document.createElement("li");
+      THIS_LIST_ITEM.innerText = `${POKE_STAT.stat.name.toUpperCase()}: ${POKE_STAT.base_stat}`;
+      POKE_STATS.appendChild(THIS_LIST_ITEM)
+    }
 
     const GAMES_TITLE = document.createElement("h2");
     GAMES_TITLE.setAttribute("class", "card--title");
@@ -65,13 +52,6 @@ function generateElements() {
     LIST_ITEM.appendChild(CARD_TITLE);
     LIST_ITEM.appendChild(CARD_IMAGE);
     LIST_ITEM.appendChild(INSTRUCTION_LINE);
-
-    POKE_STATS.appendChild(HP_STAT);
-    POKE_STATS.appendChild(ATTACK_STAT);
-    POKE_STATS.appendChild(DEFENSE_STAT);
-    POKE_STATS.appendChild(SPECIAL_ATTACK_STAT);
-    POKE_STATS.appendChild(SPECIAL_DEFENSE_STAT);
-    POKE_STATS.appendChild(SPEED_STAT);
 
     LIST_ITEM.appendChild(POKE_STATS);
     LIST_ITEM.appendChild(GAMES_TITLE);
