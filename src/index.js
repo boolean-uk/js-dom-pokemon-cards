@@ -24,15 +24,19 @@ for(i = 0; i < data.length; i++){
     image.setAttribute('width', '256')
     image.setAttribute('class', 'card--img')
     image.setAttribute('src', data[i].sprites.other["official-artwork"].front_default)
-
+    
     card.append(image)
-
+    const stats = document.createElement('ul')
+    stats.classList.add('card--text')
+    
     for (let j = 0; j < data[i].stats.length; j++) {
-        const stats = document.createElement('li')
-        stats.style.margin = "0px 0px 0px 30px"
-        stats.innerText = data[i].stats[j].stat.name.toUpperCase() +': '+ data[i].stats[j].base_stat
+        const cardText = document.createElement('li')
+        cardText.style.margin = "15px"
+        cardText.style.listStyle = "none"
+        cardText.innerText = data[i].stats[j].stat.name.toUpperCase() +': '+ data[i].stats[j].base_stat
         
         card.append(stats)
+        stats.append(cardText)
     }
     cardsList.append(card)
 }
