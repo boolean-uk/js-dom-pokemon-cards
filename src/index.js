@@ -17,6 +17,7 @@ for (let i = 0; i < data.length; i++) {
     // const img = document.createElement("img");
     // img.setAttribute("class", "card--img");
 
+
     const cards = document.querySelector("ul");
 
     const card = document.createElement("li");
@@ -25,11 +26,14 @@ for (let i = 0; i < data.length; i++) {
 
     const h2 = document.createElement("h2");
     h2.setAttribute("class", "card--title");
+    h2.innerText = ""
+    h2.innerText = data[i].name
     card.appendChild(h2)
-
+    
     const img = document.createElement("img");
     img.setAttribute("class", "card--img");
     card.appendChild(img)
+    card.src = data[i].sprites.back_shiny
 
     // Stats
     const stats = document.createElement("ul");
@@ -45,9 +49,20 @@ for (let i = 0; i < data.length; i++) {
     stats.appendChild(liAtt)
 
     const liDef = document.createElement("li");
+    liDef.innerText = "DEFENCE: " + data[i].stats[2].base_stat
+    stats.appendChild(liDef)
+
     const liSpecAtt = document.createElement("li");
+    liSpecAtt.innerText = "SPECIAL ATTACK: " + data[i].stats[3].base_stat
+    stats.appendChild(liSpecAtt)
+
     const liSpecDef = document.createElement("li");
+    liSpecDef.innerText = "SPECIAL DEFENCE: " + data[i].stats[4].base_stat
+    stats.appendChild(liSpecDef)
+
     const liSpeed = document.createElement("li");
+    liSpeed.innerText = "SPEED: " + data[i].stats[5].base_stat
+    stats.appendChild(liSpeed)
 
 
 
