@@ -26,14 +26,14 @@ for (let i = 0; i < data.length; i++) {
 
     const h2 = document.createElement("h2");
     h2.setAttribute("class", "card--title");
-    h2.innerText = ""
     h2.innerText = data[i].name
     card.appendChild(h2)
     
     const img = document.createElement("img");
     img.setAttribute("class", "card--img");
+    img.setAttribute("width", "256");
+    img.src = data[i].sprites.front_default
     card.appendChild(img)
-    card.src = data[i].sprites.back_shiny
 
     // Stats
     const stats = document.createElement("ul");
