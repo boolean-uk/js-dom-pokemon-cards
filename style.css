@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+ul {
+    list-style: none;
+}
+
 html,
 body {
   margin: 0;
@@ -23,6 +27,7 @@ img {
 h1,
 h2 {
   text-align: center;
+  text-transform: capitalize;
 }
 
 .cards {
@@ -57,6 +62,10 @@ h2 {
   padding: 1rem;
 
   border-radius: 5px;
+}
+
+.card--text li {
+    margin: 0.4rem;
 }
 
 .card--img {
