@@ -18,7 +18,11 @@ for (let i = 0; i < data.length; i++) {
 
   const title = document.createElement("h2");
   title.setAttribute("class", "card--title");
-  title.innerText = pokemonObj.name;
+  let nameToBeChanged = pokemonObj.name;
+  nameToBeChanged = nameToBeChanged[0].toUpperCase() + nameToBeChanged.slice(1);
+  title.innerText = nameToBeChanged;
+  console.log(title.innerText);
+
   pokemonLI.appendChild(title);
 
   const image = document.createElement("img");
@@ -33,7 +37,6 @@ for (let i = 0; i < data.length; i++) {
 
   for (let i = 0; i < pokemonObj.stats.length; i++) {
     const listItem = document.createElement("li");
-    console.log(listItem);
     listItem.innerText = `${pokemonObj.stats[i].stat.name.toUpperCase()}: ${
       pokemonObj.stats[i].base_stat
     }`;
