@@ -72,7 +72,7 @@ h2 {
 
 .card--text {
   margin: 0.2rem 53.5px;
-  padding: 1rem 0 .5rem;
+  padding: 1rem 0rem .5rem;
 
   list-style: none;
 
@@ -80,7 +80,7 @@ h2 {
 }
 
 .card--text li {
-  margin: .3rem;
+  margin: .3rem 0rem;
 }
 
 .card--img {
@@ -89,4 +89,13 @@ h2 {
 
   border: solid 2px gray;
   border-radius: 5px;
+}
+
+.card details {
+  margin-left: 53.5px;
+  margin-bottom: .5rem;
+}
+
+.card details p {
+  margin: .3rem 0rem;
 }
