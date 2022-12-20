@@ -64,6 +64,10 @@ h2 {
   border-radius: 5px;
 }
 
+.card--text li {
+    margin: 0.4rem;
+}
+
 .card--img {
   display: block;
   margin: 0 auto;
