@@ -32,4 +32,20 @@ for (let i = 0; i < data.length; i++) {
         currentStat.innerText = `${statName}: ${statLevel}`.toUpperCase()
         pokemonStats.append(currentStat)
     }
+    // GAME VERSIONS DETAIL BUTTON
+    const gameVersions = document.createElement("details")
+    const summary = document.createElement("summary")
+    summary.innerText = "Game Versions"
+    gameVersions.append(summary)
+    singleCard.append(gameVersions)
+    // NEW LIST FOR VERSIONS
+    const gameUl = document.createElement("ul")
+    gameVersions.append(gameUl)
+    // LOOP TO ADD ALL GAME VERSIONS TO LIST
+    for (k = 0; k < pokemonData.game_indices.length; k++) {
+        const versionName = pokemonData.game_indices[k].version.name
+        const versionLi = document.createElement("li")
+        versionLi.innerText = versionName
+        gameUl.append(versionLi)
+    }
 }

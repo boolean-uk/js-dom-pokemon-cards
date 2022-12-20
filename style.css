@@ -25,6 +25,7 @@ img {
 h1,
 h2 {
   text-align: center;
+  text-transform: capitalize;
 }
 
 .cards {
@@ -59,6 +60,10 @@ h2 {
   padding: 1rem;
 
   border-radius: 5px;
+}
+
+.card--text li {
+  margin-bottom: 0.4rem;
 }
 
 .card--img {
