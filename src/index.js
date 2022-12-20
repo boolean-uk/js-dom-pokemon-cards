@@ -20,12 +20,23 @@ title.setAttribute("class", "card--title");
 title.innerText = pokemonObj.name;
 pokemonLI.appendChild(title);
 
-/* const image = document.createElement("img");
-image
-
-const liItems = document.createElement("li");
-
-pokemonLI.setAttribute("class", "card");
-
+const image = document.createElement("img");
+image.width = 256;
 image.setAttribute("class", "card--img");
-liItems.setAttribute("class", "card--text"); */
+image.src = pokemonObj.sprites.other["official-artwork"].front_default;
+pokemonLI.appendChild(image);
+
+const stats = document.createElement("ul");
+stats.setAttribute("class", "card--text");
+pokemonLI.appendChild(stats);
+
+for (let i = 0; i < pokemonObj.stats.length; i++) {
+  const listItem = document.createElement("li");
+  console.log(listItem);
+  listItem.innerText = `${pokemonObj.stats[i].stat.name.toUpperCase()}: ${
+    pokemonObj.stats[i].base_stat
+  }`;
+  stats.appendChild(listItem);
+}
+
+// pokemonLI.setAttribute("class", "card");
