@@ -8,35 +8,36 @@ console.log(data[0]);
 // append/stitch them together
 // add the li to the ul
 
-const pokemonObj = data[0];
-const pokemonUL = document.querySelector(".cards");
+for (let i = 0; i < data.length; i++) {
+  const pokemonObj = data[i];
+  const pokemonUL = document.querySelector(".cards");
 
-const pokemonLI = document.createElement("li");
-pokemonLI.setAttribute("class", "card");
-pokemonUL.appendChild(pokemonLI);
+  const pokemonLI = document.createElement("li");
+  pokemonLI.setAttribute("class", "card");
+  pokemonUL.appendChild(pokemonLI);
 
-const title = document.createElement("h2");
-title.setAttribute("class", "card--title");
-title.innerText = pokemonObj.name;
-pokemonLI.appendChild(title);
+  const title = document.createElement("h2");
+  title.setAttribute("class", "card--title");
+  title.innerText = pokemonObj.name;
+  pokemonLI.appendChild(title);
 
-const image = document.createElement("img");
-image.width = 256;
-image.setAttribute("class", "card--img");
-image.src = pokemonObj.sprites.other["official-artwork"].front_default;
-pokemonLI.appendChild(image);
+  const image = document.createElement("img");
+  image.width = 256;
+  image.setAttribute("class", "card--img");
+  image.src = pokemonObj.sprites.other["official-artwork"].front_default;
+  pokemonLI.appendChild(image);
 
-const stats = document.createElement("ul");
-stats.setAttribute("class", "card--text");
-pokemonLI.appendChild(stats);
+  const stats = document.createElement("ul");
+  stats.setAttribute("class", "card--text");
+  pokemonLI.appendChild(stats);
 
-for (let i = 0; i < pokemonObj.stats.length; i++) {
-  const listItem = document.createElement("li");
-  console.log(listItem);
-  listItem.innerText = `${pokemonObj.stats[i].stat.name.toUpperCase()}: ${
-    pokemonObj.stats[i].base_stat
-  }`;
-  stats.appendChild(listItem);
+  for (let i = 0; i < pokemonObj.stats.length; i++) {
+    const listItem = document.createElement("li");
+    console.log(listItem);
+    listItem.innerText = `${pokemonObj.stats[i].stat.name.toUpperCase()}: ${
+      pokemonObj.stats[i].base_stat
+    }`;
+    listItem.style.lineHeight = 2;
+    stats.appendChild(listItem);
+  }
 }
-
-// pokemonLI.setAttribute("class", "card");
