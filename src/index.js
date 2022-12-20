@@ -33,24 +33,31 @@ for (let i = 0; i < data.length; i++) {
     singleCard.append(statsUL)
     
 
-
+    // LOOP TO ADD INDIVIDUAL STATS
     for (let j = 0; j < pokemonObj.stats.length; j++) {
         const statsName = pokemonObj.stats[j].stat.name
         const statNum = pokemonObj.stats[j].base_stat
         const stats = document.createElement("li")
-        stats.innerText = `${statsName}: ${statNum}`
+        // const statstring = `${statsName}: ${statNum}`
+        // stats.innerText = statstring.toUpperCase()
+        stats.innerText = `${statsName}: ${statNum}`.toUpperCase()
         statsUL.append(stats)
     }
 
-    // GAME VERSION
-    const pGame = document.createElement("p")
-
-
-    const gameVersion = pokemonObj.game_indices[i].version.name
-    const statVersion = document.createElement("span")
-    statVersion.innerHTML = ` ${gameVersion}`
-    
-    // create the card HTML elements
-    // append them together
-    // add the li to the ul
+    // GAME VERSIONS DETAIL BUTTON
+    const gameVersions = document.createElement("details")
+    const summary = document.createElement("summary")
+    summary.innerText = "Game Versions"
+    gameVersions.append(summary)
+    singleCard.append(gameVersions)
+    // NEW LIST FOR VERSIONS
+    const gameUl = document.createElement("ul")
+    gameVersions.append(gameUl)
+    // LOOP TO ADD ALL GAME VERSIONS TO LIST
+    for (k = 0; k < pokemonObj.game_indices.length; k++) {
+        const versionName = pokemonObj.game_indices[k].version.name
+        const versionLi = document.createElement("li")
+        versionLi.innerText = versionName
+        gameUl.append(versionLi)
+    }
 }
