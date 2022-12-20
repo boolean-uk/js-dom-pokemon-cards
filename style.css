@@ -38,6 +38,9 @@ h2 {
 .card--title{
   text-transform: uppercase;
 }
+ul{
+  list-style:none ;
+}
 .card {
   width: 100%;
   justify-self: center;
