@@ -9,20 +9,20 @@ const pokemonUL = document.querySelector(".cards")
 
 //about 50lines of code expected- 
 
-for(let i=0; i < data.length; i++) {
+for (let i = 0; i < data.length; i++) {
     const pokemonObj = data[i]
-    
+
     const pokemonLi = document.createElement('li')
     pokemonLi.style.listStyle = `none`
     pokemonLi.setAttribute('class', 'card')
     pokemonUL.append(pokemonLi)
-    
+
     const pokemonName = document.createElement('h2')
     pokemonName.setAttribute('class', 'card--title')
     let pName = pokemonObj.name
     pName = pName[0].toUpperCase() + pName.slice(1)
     pokemonName.innerText = pName
-    pokemonLi.append(pokemonName)    
+    pokemonLi.append(pokemonName)
 
     const pokeImage = new Image(256);
     pokeImage.src = pokemonObj.sprites.other['official-artwork'].front_default
@@ -58,8 +58,17 @@ for(let i=0; i < data.length; i++) {
     pokeSpeed.innerText = "SPEED:  " + pokemonObj.stats[5].base_stat;
     pokeStats.append(pokeSpeed);
 
+    const pokeGames = document.createElement('ol')
+    pokeGames.setAttribute('class', 'games') /*fix later*/
+    pokeGames.innerText = "GAMES:  "
+    pokemonLi.append(pokeGames)
 
-    //create the card HTML elements
-    //append/stitch them together
-    //add the li to the ul
+    for (let j = 0; j < pokemonObj.game_indices.length; j++) {
+        const pokeVersions = document.createElement('li')
+        let pVersions = pokemonObj.game_indices[j].version.name
+        pVersions = pVersions[0].toUpperCase() + pVersions.slice(1)
+        pokeVersions.innerText = pVersions
+        pokeGames.append(pokeVersions)
+    }
+
 }
