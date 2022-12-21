@@ -23,6 +23,7 @@ img {
 h1,
 h2 {
   text-align: center;
+  text-transform: capitalize;
 }
 
 .cards {
@@ -64,4 +65,13 @@ h2 {
   margin: 0 auto;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+li {
+  padding: 30px;
+  list-style: none;
+}
+
+p{
+  text-align: center;
 }
