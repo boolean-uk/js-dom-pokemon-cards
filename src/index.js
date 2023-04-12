@@ -15,6 +15,7 @@ for (let i = 0; i < data.length; i++) {
     const pokemonCard = document.createElement("li");
     pokemonCard.style.listStyleType = "none"
     pokemonCard.setAttribute('class', 'card');
+    pokemonCard.setAttribute('id', `card-${i}`)
     pokemonList.append(pokemonCard);
 
 // Card Title
