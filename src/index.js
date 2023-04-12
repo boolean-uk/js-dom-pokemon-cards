@@ -48,6 +48,21 @@ for (let i = 0; i < data.length; i++) {
             pokemonCardTextList.append(pokemonStats)
         }
 
+// Game Appearances
 
-
+    const gameAppearances = document.createElement("details")
+    const summary = document.createElement("summary")
+    summary.innerText = "Appearances"
+    gameAppearances.append(summary)
+    pokemonCard.append(gameAppearances)
+    const appearanceList = document.createElement("ul")
+    appearanceList.style.listStyleType = "none"
+    gameAppearances.append(appearanceList)
+        for (let k = 0; k < currentObject.game_indices.length; k++) {
+            const gameName = currentObject.game_indices[k].version.name
+            const capitalName = gameName.charAt(0).toUpperCase() + gameName.slice(1)
+            const gameVersion = document.createElement("li")
+            gameVersion.innerText = `Name: ${capitalName}`
+            appearanceList.append(gameVersion)
+        }
 }
