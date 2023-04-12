@@ -33,7 +33,16 @@ for (let i = 0; i < data.length; i++) {
     pokemonImage.setAttribute('width', '256');
     pokemonImage.setAttribute('class', 'card--img');
     pokemonImage.setAttribute('src', currentObject.sprites.other["official-artwork"].front_default);
+    function toggleImage() {
+        if (pokemonImage.getAttribute('src') === currentObject.sprites.other["official-artwork"].front_default) {
+          pokemonImage.setAttribute('src', currentObject.sprites.other.dream_world.front_default);
+        } else {
+          pokemonImage.setAttribute('src', currentObject.sprites.other["official-artwork"].front_default);
+        }
+      }      
+      pokemonImage.addEventListener('click', toggleImage);
     pokemonCard.append(pokemonImage);
+    
 
 // Card Stats
     const pokemonCardTextList = document.createElement("ul");
