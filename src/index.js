@@ -66,19 +66,57 @@ for (let i = 0; i < data.length; i++) {
   cardContent.appendChild(versionList)
 }
 
+const altButton = document.querySelector('body > button')
+altButton.style.position = 'fixed'
+altButton.style.top = 0
+altButton.style['z-index'] = 2
+altButton.style['background-color'] = 'red'
 
-function button() {
-    let arrFilter = [];
-    for (let i = 0; i < data.length; i++) {
-        for (let j = 0; j < data[i]['sprites'].length - 1; j++) {
-            const objToArray = Object.values(data[j]['sprites'])
-            arrFilter = objToArray.filter(elements => {
-                return elements !== null;
-            });
-            return arrFilter
-        }
-    }
+
+// function button() {
+//     let arrFilter = [];
+//     for (let i = 0; i < data.length; i++) {
+//         for (let j = 0; j < data[i]['sprites'].length - 1; j++) {
+//             const objToArray = Object.values(data[j]['sprites'])
+//             arrFilter = objToArray.filter(elements => {
+//                 return elements !== null;
+//             });
+//             return arrFilter
+//         }
+//     }
+// }
+
+
+
+const altImg = () => {
+  for (let i = 0; i < data.length; i++) {
+    const pokemonImg = document.querySelector(`body > ul > li:nth-child(${i+1}) > img`)
+    pokemonImg.src = data[i]['sprites']['other']['dream_world']['front_default']
+  }
 }
+
+const defaultImg = () => {
+  for (let i = 0; i < data.length; i++) {
+    const pokemonImg = document.querySelector(`body > ul > li:nth-child(${i+1}) > img`)
+    pokemonImg.src = data[i]['sprites']['other']['official-artwork']['front_default']
+  }
+}
+
+let ALTIMG = false
+
+const toggleAltImg = () => {
+  if (ALTIMG) {
+    defaultImg()
+    ALTIMG = false
+  } else {
+    altImg()
+    ALTIMG = true
+  }
+}
+
+
+// ivysaurImg.src = data[1]['sprites']['other']['official-artwork']['front_default']
+
 
 
 
