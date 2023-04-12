@@ -31,6 +31,7 @@ for (let i = 0; i < data.length; i++) {
     pokemonImage.setAttribute('width', '256');
     pokemonImage.setAttribute('class', 'card--img');
     pokemonImage.setAttribute('src', currentObject.sprites.other["official-artwork"].front_default);
+    pokemonImage.setAttribute(`alt`, `${pokemonTitle} Image`)
     function toggleImage() {
         if (pokemonImage.getAttribute('src') === currentObject.sprites.other["official-artwork"].front_default) {
           pokemonImage.setAttribute('src', currentObject.sprites.other.dream_world.front_default);
