@@ -17,7 +17,7 @@ for (let i = 0; i < data.length; i++) {
 
   // Card title
   const pokeName = document.createElement('h2')
-  pokeName.innerText = entry.name
+  pokeName.innerText = entry.name.toUpperCase()
   pokeName.setAttribute('class', 'card--title')
   cardTile.append(pokeName)
 
@@ -40,10 +40,32 @@ for (let i = 0; i < data.length; i++) {
   //   const statsName = document.createElement('li')
   for (let j = 0; j < entry.stats.length; j++) {
     const statsData = entry.stats[j]
-    const statsName = statsData.stat.name
+    const statsName = statsData.stat.name.toUpperCase()
     const statsPoints = statsData.base_stat
     const statsList = document.createElement('li')
     statsList.innerText = `${statsName}: ${statsPoints}`
     pokeStats.append(statsList)
   }
+
+  // Games title
+  const pokeGamesTitle = document.createElement('h2')
+  pokeGamesTitle.innerText = "Games"
+  cardTile.append(pokeGamesTitle)
+  // Games List
+  const pokeGames = document.createElement('ul')
+  pokeGames.setAttribute('class', 'card--text')
+  cardTile.append(pokeGames)
+  for (let z = 0; z < entry.game_indices.length; z++){
+    const gamesData = entry.game_indices[z]
+    const gamesName = gamesData.version.name.toUpperCase()
+    // const gamesPoints = gamesData.game_index
+    const gamesList = document.createElement('li')
+    gamesList.innerText = `${gamesName}`
+    pokeGames.append(gamesList)
+    
+  }
+  
+
+  
+ 
 }
