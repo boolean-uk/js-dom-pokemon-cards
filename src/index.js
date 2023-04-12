@@ -19,9 +19,50 @@ console.log(data[0]);
         // - loop through each element of array
         // - makes a card for it
         // - appends to the ul
-  
+
+const pokeName = data[0].name
+console.log("pokemon", pokeName)
+
+const pokeHPName = data[0].stats[0].stat.name
+console.log("stat name", pokeHPName)
+
+const pokeHPAmount = data[0].stats[0].base_stat
+console.log("stat value", pokeHPAmount)
+
+function createPokeList (value) {
+    const li = document.createElement("li");
+    li.innerText = value;
+    const ul = document.querySelector("ul")
+    return ul.append(li);
+}
+
+
+console.log("pokemon List", createPokeList(pokeName))
+
+
+
 
 // CARD
+
+// function card (value) {
+//     const li = document.createElement("li");
+//     return li;
+// }
+
+
+
+// // console.log("card",card(data[0].name))
+
+// function renderCard (value) {
+//     const ul = document.querySelector("ul")
+//     ul.innerHTML = "";
+//     card(data[0].name)
+//     body.cards.append(li)
+// }
+
+// console.log(renderCard(3))
+
+
 
 // NAME PATH
     // data[nth]
