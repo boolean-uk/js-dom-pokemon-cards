@@ -20,25 +20,36 @@ console.log(data[0]);
         // - makes a card for it
         // - appends to the ul
 
+
+
+// selects a pokemon from the data array  
 const pokeName = data[0].name
 console.log("pokemon", pokeName)
 
-const pokeHPName = data[0].stats[0].stat.name
-console.log("stat name", pokeHPName)
-
-const pokeHPAmount = data[0].stats[0].base_stat
-console.log("stat value", pokeHPAmount)
-
+// makes a value into a list item
 function createPokeList (value) {
     const li = document.createElement("li");
     li.innerText = value;
-    const ul = document.querySelector("ul")
+    li.setAttribute("class", "card")
+    const ul = document.querySelector(".cards")
     return ul.append(li);
 }
 
+// collects the stat from the data
+const pokeStat = (value) => {
+    const pokeHPName = data[0].stats[0].stat.name
+        console.log("stat name", pokeHPName)
+    const pokeHPAmount = data[0].stats[0].base_stat
+        console.log("stat value", pokeHPAmount)
+    const statContainer = `${pokeHPName}:${pokeHPAmount}`    
+    createPokeList(statContainer)
+}
+
+
+
 
 console.log("pokemon List", createPokeList(pokeName))
-
+console.log("pokemon HP stats", pokeStat())
 
 
 
