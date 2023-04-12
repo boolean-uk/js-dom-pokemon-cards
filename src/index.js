@@ -27,6 +27,9 @@ console.log(data[0]);
 
 // class for name = card--title
 // loop through data array to select pokemon
+
+//-------------------------------------------NAMES ONLY----------------------------------------//
+
 const pokedex = (data) => {
     for (let i = 0; i <= data.length; i++ ) {
         const pokeName = data[i].name
@@ -35,17 +38,32 @@ const pokedex = (data) => {
     
 }
 
-// makes a value into a list item
 function createPokeList (value) {
-    const li = document.createElement("li");
-    li.innerText = value;
-    li.setAttribute("class", "card")
+    const h2 = document.createElement("h2");
+    h2.innerText = value;
+    h2.setAttribute("class", "card--title")
     const ul = document.querySelector(".cards")
-    return ul.append(li);
+    return ul.append(h2);
 }
 
 
+//-------------------------------------------PICS ONLY----------------------------------------//
 
+// const pokedex = (data) => {
+//     for (let i = 0; i <= data.length; i++ ) {
+//         const pokeName = data[i].name
+//         createPokeList(pokeName)
+//     }
+    
+// }
+
+// function createPokeList (value) {
+//     const li = document.createElement("li");
+//     li.innerText = value;
+//     li.setAttribute("class", "card")
+//     const ul = document.querySelector(".cards")
+//     return ul.append(li);
+// }
 
 // loop through all of the stats to find
 
