@@ -11,12 +11,14 @@ console.log(data[0]);
 
 const pokemonList = document.querySelector(".cards")
 
+
 for (let i = 0; i < data.length; i++) {
 
     const currentObject = data[i]
 
 // Card Body
     const pokemonCard = document.createElement("li");
+    pokemonCard.style.listStyleType = "none"
     pokemonCard.setAttribute('class', 'card');
     pokemonList.append(pokemonCard);
 
@@ -26,8 +28,25 @@ for (let i = 0; i < data.length; i++) {
     pokemonTitle.innerText = currentObject.name.charAt(0).toUpperCase() + currentObject.name.slice(1);
     pokemonCard.append(pokemonTitle);
 
+// Card Image
+    const pokemonImage = document.createElement('img')
+    pokemonImage.setAttribute('width', '256');
+    pokemonImage.setAttribute('class', 'card--img');
+    pokemonImage.setAttribute('src', currentObject.sprites.other["official-artwork"].front_default);
+    pokemonCard.append(pokemonImage);
 
-
+// Card Stats
+    const pokemonCardTextList = document.createElement("ul");
+    pokemonCardTextList.setAttribute('class', 'card--text');
+    pokemonCard.append(pokemonCardTextList);
+    pokemonCardTextList.style.listStyleType = "none"
+        for (let j = 0; j < currentObject.stats.length; j++) {
+            const statName = currentObject.stats[j].stat.name
+            const statNumber = currentObject.stats[j].base_stat
+            const pokemonStats = document.createElement("li");
+            pokemonStats.innerText = `${statName}: ${statNumber}`.toUpperCase()
+            pokemonCardTextList.append(pokemonStats)
+        }
 
 
 
