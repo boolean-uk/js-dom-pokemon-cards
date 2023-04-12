@@ -10,6 +10,8 @@ for (let i = 0; i <= 19; i++) {
     const li = document.createElement("li");
     const ul = document.querySelector("ul");
     li.setAttribute("class", "card")
+    li.setAttribute("id", "test")
+    document.getElementsById('test').style[list-style-type] = none
    
     // console.log(li);
         // data[i].sprites.other['official-artwork'].front_default
