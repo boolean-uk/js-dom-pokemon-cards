@@ -56,10 +56,29 @@ for (let i = 0; i < data.length; i++) {
   for (let j = 0; j < data[i]['game_indices'].length; j++) {
     const versionNameItem = document.createElement('li')
     const versionName = data[i]['game_indices'][j]['version']['name']
+    versionList.appendChild(versionNameItem)
+    versionNameItem.innerText = versionName
   }
+
+  const appearances = document.createElement('h4')
+  appearances.innerText = 'This appears in'
+  cardContent.appendChild(appearances)
+  cardContent.appendChild(versionList)
 }
 
 
+function button() {
+    let arrFilter = [];
+    for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < data[i]['sprites'].length - 1; j++) {
+            const objToArray = Object.values(data[j]['sprites'])
+            arrFilter = objToArray.filter(elements => {
+                return elements !== null;
+            });
+            return arrFilter
+        }
+    }
+}
 
 
 
