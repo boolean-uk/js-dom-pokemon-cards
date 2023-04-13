@@ -1,78 +1,146 @@
-console.log(data);
+function element(tag, className) {
+    // create element
+    const element = document.createElement(tag)
+    // set class name to card--img
+    if (className) element.classList.add(className)
 
-//You can start simple and just render a single
-//pokemon card from the first element
-console.log(data[0]);
-
-// select the ul to add the information to
-const cards = document.querySelector(".cards");
-
-// create a loop to go through every single pokemon
-for (let i = 0; i < data.length; i++) {
-  // create a li for every card/pokemon
-  const card = document.createElement("li");
-  // add the class card to li
-  card.classList.add("card");
-  // remove the dot of the li
-  cards.style.listStyleType = "none";
-
-  // create a h2 with class card--title and add it to li
-  const card__title = document.createElement("h2");
-  card__title.setAttribute("class", "card--title");
-  // set h2 to the name of the pokemon
-  card__title.innerText =
-    data[i].name[0].toUpperCase() + data[i].name.substring(1);
-
-  // create an img and add the source and class card--img to it
-  const card__img = document.createElement("img");
-  card__img.setAttribute("class", "card--img");
-  card__img.setAttribute(
-    "src",
-    data[i].sprites.other["official-artwork"].front_default
-  );
-  card__img.setAttribute("width", 256);
-
-  // create a ul with class card--text
-  const card__text = document.createElement("ul");
-  card__text.setAttribute("class", "card--text");
-  // remove the dot of the li
-  card__text.style.listStyleType = "none";
-
-  // create a loop to add every li item to the ul
-
-  for (let j = 0; j < data[i].stats.length; j++) {
-    // create an li element
-    const stat = document.createElement("li");
-    stat.style.padding = "5px";
-    const stat__name = data[i].stats[j].stat.name.toUpperCase();
-    const stat__value = data[i].stats[j].base_stat;
-    stat.innerText = stat__name + ": " + stat__value;
-
-    card__text.append(stat);
-  }
-
-  // create an extra div for the games the pokemon has appeared in
-  const card__games = document.createElement("div");
-  card__games.setAttribute("class", "card--text");
-  // create a loop to add every game to the div
-  for (let k = 0; k < data[i].game_indices.length; k++) {
-    // create a p for every game name
-    const game = document.createElement("p");
-    // add game name
-    const game__name = data[i].game_indices[i].version.name;
-    // paste game name to the p
-    game.innerText = game__name;
-    console.log(game);
-
-    card__games.append(game);
-  }
-
-  // append img to card
-  card.append(card__title);
-  card.append(card__img);
-  card.append(card__text);
-  card.append(card__games);
-
-  // append card to the list of cards
-  cards.append(card);
+    return element
 }
+
+function imageElement(className, imagePath, width, height) {
+    const img = element('img', className)
+    img.setAttribute('src', imagePath)
+    img.setAttribute('width', width)
+    img.setAttribute('height', height)
+
+    return img
+}
+
+function textElement(tag, className, text) {
+    const e = element(tag, className)
+    if (text) e.innerText = text
+
+    return e
+}
+
+function listElement(tag, className, listStyle, text) {
+    const e = element(tag, className)
+    if (text) e.innerText = text
+    if (listStyle) e.style.listStyleType = listStyle
+
+    return e
+}
+
+function pokemonName(name) {
+    return textElement('h2', 'card--title', name)
+}
+
+function pokemonImage(img) {
+    return imageElement('card--img', img, 256, 256)
+}
+
+function pokemonStat(statName, statValue) {
+    const pokemonStat = listElement('li', null, 'none', null)
+    pokemonStat.style.padding = '5px'
+
+    pokemonStat.innerText = `${statName}: ${statValue}`
+
+    return pokemonStat
+}
+
+function pokemonStats(stats) {
+    const pokemonStats = listElement('ul', 'card--text', 'none')
+
+    stats.map(stat => pokemonStats.append(pokemonStat(stat.name, stat.value)))
+
+    return pokemonStats
+}
+
+function loadPokemonGameVersions(games) {
+    const pokemonGamesContainer = listElement('div', 'card--text', 'none', null)
+    pokemonGamesContainer.style.textAlign = 'center'
+
+    const pokemonGamesContainerTitle = textElement('div', 'card--text', 'Game Versions')
+    pokemonGamesContainerTitle.style.fontWeight = 'bold'
+
+    const pokemonGames = textElement('div', 'card--text', games.join(', '))
+    pokemonGames.style.textAlign = 'justify'
+    
+    pokemonGamesContainer.append(pokemonGamesContainerTitle)
+    pokemonGamesContainer.append(pokemonGames)
+
+    return pokemonGamesContainer
+}
+
+function pokemonCard(pokemon, dreamWordVersion) {
+    const card = listElement('li', 'card', 'none')
+    
+    card.append(pokemonName(pokemon.name[0].toUpperCase() + pokemon.name.substring(1)))
+
+    if (dreamWordVersion)
+        card.append(pokemonImage(pokemon.sprites.other['dream_world'].front_default))
+    else
+        card.append(pokemonImage(pokemon.sprites.other['official-artwork'].front_default))
+
+    card.append(pokemonStats(pokemon.stats.map(attribute => ({ name: attribute.stat.name.toUpperCase(), value: attribute.base_stat }))))
+
+    card.append(loadPokemonGameVersions(pokemon.game_indices.map((g) => g.version.name)))
+
+    return card
+}
+
+function loadAllPokemon(dreamWordVersion) {
+    const cards = document.querySelector('.cards')
+
+    for (const pokemon of data) {
+        cards.append(pokemonCard(pokemon, dreamWordVersion))
+    }
+}
+
+function deleteAllPokemon() {
+    const cards = document.querySelector('.cards')
+    const cardlist = document.querySelectorAll('.card')
+
+    for (const card of cardlist) cards.removeChild(card)
+}
+
+function createButton() {
+    const buttonContainer = document.createElement('div')
+    buttonContainer.style.textAlign = 'center'
+
+    const button = document.createElement('button')
+    button.innerText = 'Dream World Version'
+    button.style.width = '150px'
+    button.style.padding = '20px 10px'
+
+    buttonContainer.append(button)
+
+    const body = document.querySelector('body')
+    const cards = document.querySelector('.cards')
+
+    body.insertBefore(buttonContainer, cards)
+
+    return button
+}
+
+function loadPage() {
+    let state = {
+        true: 'Dream World Version',
+        false: 'Normal Version',
+    }
+
+    let dreamWordVersion = false
+
+    const button = createButton()
+
+    button.onclick = () => {
+        button.innerText = state[dreamWordVersion]
+        dreamWordVersion = !dreamWordVersion;
+        deleteAllPokemon()
+        loadAllPokemon(dreamWordVersion)
+    };
+
+    loadAllPokemon(dreamWordVersion)
+}
+
+loadPage()
