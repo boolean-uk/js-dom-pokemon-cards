@@ -13,12 +13,14 @@ for (let i = 0; i < data.length; i++) {
 
   const pokemonName = document.createElement("h2");
   pokemonName.classList.add("card--title");
-  pokemonName.innerText = data[i].name;
+
+  pokemonName.innerText =
+    data[i].name.charAt(0).toUpperCase() + data[i].name.slice(1);
 
   const pokemonImage = document.createElement("img");
   pokemonImage.setAttribute(
     "src",
-    data[i].sprites.other.dream_world.front_default
+    data[i].sprites.other["official-artwork"].front_default
   );
   pokemonImage.setAttribute("width", 256);
   pokemonImage.classList.add("card--img");
@@ -26,14 +28,18 @@ for (let i = 0; i < data.length; i++) {
   pokemonElement.append(pokemonImage);
   cardList.append(pokemonElement);
 
-  const pokemonStat = document.createElement("ul")
-  pokemonStat.classList.add("card--text")
-  pokemonElement.append(pokemonStat)
-  const pokemonStatList = document.createElement("li")
-  pokemonStatList.innerText = data[i].stats[0].stat.name.toUpperCase()
-  
-  pokemonStat.append(pokemonStatList)
+  const pokemonStat = document.createElement("ul");
+  pokemonStat.classList.add("card--text");
+  pokemonElement.append(pokemonStat);
 
+  for (let j = 0; j <= 5; j++) {
+    const pokemonStatList = document.createElement("li");
+    const stat_name = data[i].stats[j].stat.name.toUpperCase();
+    const stat_value = data[i].stats[j].base_stat;
+    pokemonStatList.innerText = stat_name + ": " + stat_value;
+    pokemonStat.append(pokemonStatList);
+    pokemonStatList.style.padding = "5px";
+  }
+  pokemonStat.style.listStyle = "none";
+  pokemonElement.style.listStyle = "none";
 }
-
-// link (line 21)not working for corret image data[i].sprites.other.dream_world["official-artwork"].front_default
