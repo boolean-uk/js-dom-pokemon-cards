@@ -19,6 +19,7 @@ for(let i=0;i<data.length;i++){
     image.setAttribute("width", "256")
     const images = [data[i].sprites.other["official-artwork"].front_default, data[i].sprites.front_shiny ]
     image.setAttribute("src", images[0])
+    //swaping the pictures with every click
     image.addEventListener("click",function(){
         [images[0], images[1]] = [images[1], images[0]];
         image.setAttribute("src", images[0])
