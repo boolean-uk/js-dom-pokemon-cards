@@ -38,9 +38,20 @@ for (let i = 0; i < data.length; i++) {
   const stats = document.createElement("ul");
   stats.classList.add("card--text");
   cardElement.append(stats);
+
+//   extension
+const games = document.createElement("section");
+games.classList.add("card--text")
+games.innerText = 'APPEARED IN: ' + data[i].game_indices[i].version.name;
+// games.style.color = `${data[i].game_indices[i].version.name}`  maybe could change to all the colords but not all colors works
+
+cardElement.append(games)
+
   //   creating the stats
   for (let j = 0; j < data[i].stats.length; j++) {
     const statsLi = document.createElement("li");
+    
+
 
     statsLi.innerText =
       data[i].stats[j].stat.name.toUpperCase() +
@@ -49,3 +60,4 @@ for (let i = 0; i < data.length; i++) {
     stats.append(statsLi);
   }
 }
+
