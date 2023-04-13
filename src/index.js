@@ -63,6 +63,15 @@ for (let i = 0; i < data.length; i++) {
     // append the pokemonStats in my card 
     pokemonCard.append(pokemonStats)
 
+    // // create Game appearances
+    // const pokemonApperances = document.createElement('ul')
+    // pokemonApperances.classList.add('card--text')
+    // for (let j = 0; j < currentPokemon.game_indices.length; j++) {
+    //     const versions = document.createElement('li')
+    //     versions.innerText = currentPokemon.game_indices[j].version.name +': '+currentPokemon.game_indices[j].game_index
+    //     pokemonApperances.append(versions)
+    // }
+    // pokemonCard.append(pokemonApperances)
 
 
     // append the pokemonCard to my pokemon list
