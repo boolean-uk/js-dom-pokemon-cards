@@ -1,12 +1,16 @@
-
 // console.log(data);
 
-//You can start simple and just render a single 
+//You can start simple and just render a single
 //pokemon card from the first element
 console.log(data[0]);
 
-const cards = document.querySelector('.cards')
-const newCard = document.createElement('li')
-newCard.classList.add('card')
-newCard.innerText = "Bulbasaur"
-cards.append(newCard)
+const cards = document.querySelector(".cards");
+const newCard = document.createElement("li");
+newCard.classList.add("card");
+const heading = document.createElement("h2");
+heading.classList.add("card--title");
+heading.innerText = "Bulbasaur";
+newCard.append(heading);
+// newCard.innerText = "Bulbasaur"
+
+cards.append(newCard);
