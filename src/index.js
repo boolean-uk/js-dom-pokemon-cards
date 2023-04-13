@@ -22,6 +22,7 @@ for (let i = 0; i < data.length; i++) {
     // create img
     const pokemonImage = document.createElement('img')
     pokemonImage.classList.add('card--img')
+    pokemonImage.setAttribute('id', "pokemonId" + [i])
     pokemonImage.setAttribute('src', data[i].sprites.other["official-artwork"].front_default)
     pokemonImage.setAttribute('width', 256)
 
@@ -86,4 +87,18 @@ for (let i = 0; i < data.length; i++) {
     // append li to cardlist
     cardList.append(pokemonElement)
     // cardList.append(pokemonImage)
+    document.getElementById('pokemonId'+ [i]).addEventListener('click', clicked)
+    function clicked(parameter){
+        console.log('you have cliked ' + data[i].name)
+        pokemonImage.setAttribute('src', data[i].sprites.front_default)
+    }
+    
 }
+
+
+
+// let currentImg = ''
+        
+// for (let k = 0; k < data.length; k++){          
+//         console.log(Object.values(data[k].sprites)[k])             
+// }
