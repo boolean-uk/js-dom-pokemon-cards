@@ -16,6 +16,8 @@ for (let i = 0; i < data.length; i++) {
     const pokemonName = document.createElement('h2')
     pokemonName.classList.add('card--title')
     pokemonName.innerText = data[i].name
+    // const pokemonNameTUC = pokemonName.toUpperCase()
+    // console.log(pokemonNameTUC);
 
     // create img
     const pokemonImage = document.createElement('img')
