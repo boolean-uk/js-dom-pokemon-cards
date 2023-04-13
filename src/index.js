@@ -32,7 +32,7 @@ for (let i = 0; i < data.length; i++) {
   pokemonStat.classList.add("card--text");
   pokemonElement.append(pokemonStat);
 
-  for (let j = 0; j <= 5; j++) {
+  for (let j = 0; j < data[i].stats.length; j++) {
     const pokemonStatList = document.createElement("li");
     const stat_name = data[i].stats[j].stat.name.toUpperCase();
     const stat_value = data[i].stats[j].base_stat;
@@ -40,6 +40,19 @@ for (let i = 0; i < data.length; i++) {
     pokemonStat.append(pokemonStatList);
     pokemonStatList.style.padding = "5px";
   }
+  const pokemonGameApperance = document.createElement("ul");
+  pokemonGameApperance.classList.add("card--text");
+  pokemonElement.append(pokemonGameApperance);
+
+  for (let n = 0; n < data[i].game_indices.length; n++) {
+    const pokemonApperance = document.createElement("li");
+    let gameName = data[i].game_indices[n].version.name;
+    gameName = gameName.toUpperCase();
+    pokemonApperance.innerText = gameName;
+    pokemonGameApperance.append(pokemonApperance);
+    pokemonApperance.style.padding = "3px";
+  }
+  pokemonGameApperance.style.listStyle = "none";
   pokemonStat.style.listStyle = "none";
   pokemonElement.style.listStyle = "none";
 }
