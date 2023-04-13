@@ -25,6 +25,15 @@ for (let i = 0; i < data.length; i++) {
   pokemonElement.append(pokemonName);
   pokemonElement.append(pokemonImage);
   cardList.append(pokemonElement);
+
+  const pokemonStat = document.createElement("ul")
+  pokemonStat.classList.add("card--text")
+  pokemonElement.append(pokemonStat)
+  const pokemonStatList = document.createElement("li")
+  pokemonStatList.innerText = data[i].stats[0].stat.name.toUpperCase()
+  
+  pokemonStat.append(pokemonStatList)
+
 }
 
 // link (line 21)not working for corret image data[i].sprites.other.dream_world["official-artwork"].front_default
