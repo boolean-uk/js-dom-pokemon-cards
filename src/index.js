@@ -4,7 +4,7 @@
 //You can start simple and just render a single
 //pokemon card from the first element
 
-for (let i = 0; i <= 19; i++) {
+for (let i = 0; i < data.length; i++) {
   //create the outer list
   const li = document.createElement("li");
   const ul = document.querySelector("ul");
@@ -33,34 +33,11 @@ for (let i = 0; i <= 19; i++) {
   newUl.setAttribute("class", "card--text");
   li.append(newUl)
 
-  const newLi = document.createElement('li');
-  newLi.innerText = (data[i].stats[0].stat.name).toLocaleUpperCase() + ": " + data[i].stats[0].base_stat
-  newUl.append(newLi)
-
-  const newLiTwo = document.createElement('li');
-  newLiTwo.innerText = (data[i].stats[1].stat.name).toLocaleUpperCase() + ": " + data[i].stats[1].base_stat
-  newUl.append(newLiTwo)
-
-  const newLiThree = document.createElement('li');
-  newLiThree.innerText = (data[i].stats[2].stat.name).toLocaleUpperCase() + ": " + data[i].stats[2].base_stat
-  newUl.append(newLiThree)
-
-  const newLiFour = document.createElement('li');
-  newLiFour.innerText = (data[i].stats[3].stat.name).toLocaleUpperCase() + ": " + data[i].stats[3].base_stat
-  newUl.append(newLiFour)
-
-  const newLiFive = document.createElement('li');
-  newLiFive.innerText = (data[i].stats[4].stat.name).toLocaleUpperCase() + ": " + data[i].stats[4].base_stat
-  newUl.append(newLiFive)
-
-  const newLiSix = document.createElement('li');
-  newLiSix.innerText = (data[i].stats[5].stat.name).toLocaleUpperCase() + ": " + data[i].stats[5].base_stat
-  newUl.append(newLiSix)
-
-  newUl.style.listStyleType = 'none';
-
-
-
-
+  for (j = 0; j < data[j].stats.length; j++) {
+    const newLi = document.createElement('li');
+    newLi.innerText = (data[i].stats[j].stat.name).toLocaleUpperCase() + ": " + data[i].stats[j].base_stat
+    newUl.append(newLi)
+    newUl.style.listStyleType = 'none';
+  }
 }
 console.log(data);
