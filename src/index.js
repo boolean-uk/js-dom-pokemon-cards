@@ -28,6 +28,13 @@ for (let i = 0; i < data.length; i++) {
   pokemonElement.append(pokemonImage);
   cardList.append(pokemonElement);
 
+  pokemonImage.onclick = function () {
+    pokemonImage.setAttribute(
+      "src",
+      data[i].sprites.other.dream_world.front_default
+    );
+  };
+
   const pokemonStat = document.createElement("ul");
   pokemonStat.classList.add("card--text");
   pokemonElement.append(pokemonStat);
