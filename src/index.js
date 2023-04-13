@@ -32,4 +32,15 @@ for(let i=0;i<data.length; i++){
       statListItem.innerHTML = data[i].stats[j].stat.name.toUpperCase() + ":  " + data[i].stats[j].base_stat
       pokemonStatList.append(statListItem)
     }
+
+    const pokemonGameInfoList= document.createElement('ul')
+    pokemonListItem.append(pokemonGameInfoList)
+
+    for (j = 0; j < data[i].game_indices.length; j++ ) {
+        const gameListItem = document.createElement('li')
+        console.log(data[i].game_indices[j])
+        gameListItem.innerHTML = data[i].game_indices[j].version.name
+        pokemonGameInfoList.append(gameListItem)
+      }
+
 }
