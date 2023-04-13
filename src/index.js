@@ -1,14 +1,14 @@
 
-console.log(data[0]);
+const cards = document.querySelector('.cards')
 
 for (let j=0; j < data.length; j++) {
     const elementPokemon = document.querySelector('.card')
+    cards.appendChild(elementPokemon)
     const pName = document.createElement('h2')
     pName.classList.add("card--title")
     pName.innerText = data[j].name
     
     elementPokemon.append(pName)
-    
     
     const image = document.createElement('img')
     image.classList.add("card--img")
@@ -25,14 +25,3 @@ for (let j=0; j < data.length; j++) {
         elementPokemon.append(text)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
