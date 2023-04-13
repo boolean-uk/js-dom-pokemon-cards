@@ -26,13 +26,34 @@ cardTitle.innerText = pokemonName
 
 const pokemonImage = document.createElement('img')
 pokemonImage.classList.add('card--img')
-pokemonImage.style.width = "256"
+pokemonImage.style.width = "256px"
 
 //look for the right image url for every card. We chooosed the front facing images from the sprites object
 pokemonImage.setAttribute('src', pokemon.sprites.other["official-artwork"].front_default)
 
+
+//adding front and back face of the pokemon image in an array
+const imgs = [
+    pokemon.sprites.other["official-artwork"].front_default,
+    pokemon.sprites.back_default,
+]
+
+//current starts from 0 (so the first image to show is the front)
+
+let current = 0
+
+//when the user clicks on the image, if the current variable is 0 we set it
+//to 1 and vice versa
+//then we update the source of the image to the imgs[current]
+pokemonImage.addEventListener('click', function(e){
+    if(current === 0) current = 1
+    else current = 0
+    pokemonImage.setAttribute('src', imgs[current])
+})
+
 const cardText = document.createElement('ul')
 cardText.classList.add('card--text')
+cardText.style.listStyle = 'none'
 
 //add hp stat
 const hp = document.createElement('li')
@@ -81,10 +102,32 @@ speed.textContent = `SPEED: ${speedValue}`
 
 cardText.append(speed)
 
+//Game section
+
+const gamesText = document.createElement('ul')
+gamesText.style.listStyle = 'none'
+
+gamesText.classList.add('card--text')
+
+const gameTitle = document.createElement('h2')
+gameTitle.style.fontWeight = 'bold'
+gameTitle.style.textAlign = 'left'
+gameTitle.style.padding = '1rem'
+gameTitle.innerText = 'GAMES'
+
+for(let i = 0; i < pokemon.game_indices.length; i++){
+    const gameChild = pokemon.game_indices[i]
+    const game = document.createElement('li')
+    game.textContent = gameChild.version.name.toUpperCase()
+    gamesText.append(game)
+}
+
 //add elements to the card
 pokemonElement.append(cardTitle)
 pokemonElement.append(pokemonImage)
 pokemonElement.append(cardText)
+pokemonElement.append(gameTitle)
+pokemonElement.append(gamesText)
 //add card to the cards list
 cardList.append(pokemonElement)
 }
@@ -96,7 +139,6 @@ function getStat(stats, statName) {
 
     for(let i = 0; i < stats.length; i++){
         const statsChild = stats[i]
-        console.log(statsChild.stat.name)
         if(statsChild.stat.name === statName)
         {
             return statsChild.base_stat;
