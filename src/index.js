@@ -23,7 +23,9 @@ for (let i = 0; i < data.length; i++) {
   const cardImage = document.createElement("img");
   cardImage.classList.add("card--img");
   cardImage.setAttribute("width", "256px");
-  cardImage.setAttribute("src", data[i].sprites.back_shiny);
+  cardImage.setAttribute(
+    "src",
+    data[i].sprites.other['official-artwork'].front_default);
 
   // append h2,img to cardElement
   cardElement.append(cardTittle);
