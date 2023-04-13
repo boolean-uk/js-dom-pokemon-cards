@@ -20,6 +20,14 @@ for(let i = 0; i < data.length; i++) {
     image.setAttribute('src', data[i].sprites.front_default)
     card.append(image)
 
+    const listOfStats = document.createElement('ul')
+    listOfStats.classList.add('card--text')
+    for(let j = 0; j < data[i].stats.length; j++){
+        const statElementOfList = document.createElement('li')
+        statElementOfList.innerText=data[i].stats[j].stat.name.toUpperCase() + '; ' + data[i].stats[j].base_stat
+        listOfStats.append(statElementOfList)
+    }
+    card.append(listOfStats)
     
 
     cardList.append(card)
