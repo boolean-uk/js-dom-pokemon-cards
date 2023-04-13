@@ -7,39 +7,43 @@ console.log(data[0]);
 
 
 
-function card (){
+function card (num){
     const cardLi = document.createElement ('li');
     const cardSelection = document.body.querySelector ('ul');
     cardLi.setAttribute('class', 'card')
+    title (num,cardLi)
+    img(num, cardLi)
+    listCharacteristics(num, cardLi)
     cardSelection.append(cardLi)
 
 }
 
 
-function title (num) {
+function title (num, cardLi) {
     const titleHeader = document.createElement ('h2');
-    const titleSelection = document.body.querySelector('li')
-    titleHeader.innerText = data[num].name;
+   let name = data[num].name;
+   name = name[0].toUpperCase() + name.slice(1);
+    titleHeader.innerText = name;
     titleHeader.setAttribute('class','card--title')
-    titleSelection.append(titleHeader)
+    cardLi.append(titleHeader)
 
 }
 
 
-function img (num) {
+function img (num, cardLi) {
     const pokeImg = document.createElement ('img');
     const imgSrc = data[num].sprites.other["official-artwork"].front_default
     pokeImg.setAttribute ('src', `${imgSrc}`)
     pokeImg.setAttribute('class', 'card--img');
     pokeImg.setAttribute('width', '256');
-    const imgSelection = document.body.querySelector('li');
-    imgSelection.append(pokeImg)
+   
+    cardLi.append(pokeImg)
 }
 
 
 
 
-function listCharacteristics (num) {
+function listCharacteristics (num, cardLi) {
     const stats = data[num].stats
     const pokeCharacteristics = document.createElement ('ul');
     pokeCharacteristics.setAttribute('class', 'card--text') 
@@ -48,25 +52,17 @@ function listCharacteristics (num) {
         statName.innerText = `${stats[i].stat.name}: ${stats[i].base_stat}`
         pokeCharacteristics.append(statName)
     }
-
+cardLi.append(pokeCharacteristics)
 }
-const listCharacteristicsSel = document.body.querySelector('li');
-listCharacteristicsSel.append(pokeCharacteristics);
 
-// 
 
-card ()
-title (0)
-img(0)
-listCharacteristics(0)
 
-// function render (num) {
-//     //     for (let i = 0; i < data.length; i++) {
-//     //         card();
-//     //         title (i);
-//     //         img (i);
-//     //         listCharacteristics(i)
-//     //     }
-//     // }
+
+function render (num) {
+        for (let i = 0; i < data.length; i++) {
+            card(i);
+           
+        }
+    }
     
-// render ()
+render ()
