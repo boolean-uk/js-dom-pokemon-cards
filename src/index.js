@@ -53,6 +53,16 @@ for (let i = 0; i < data.length; i++) {
     const pokemonSPD = document.createElement('li')
     pokemonSPD.innerText = 'SPEED: ' + data[i].stats[5].base_stat
 
+    // Create p with games
+    const pokemonGames = document.createElement('p')
+    pokemonGames.classList.add("card--text")
+    pokemonGames.innerText = 'Games included: ' 
+    
+    // make a loop so it includes the games
+    for(let j = 0; j < data[i].game_indices.length; j++){
+        pokemonGames.innerText += data[i].game_indices[j].version.name + ', '
+    }
+
     // append li to pokemonStatsList
     pokemonStatsList.append(pokemonHp)
     pokemonStatsList.append(pokemonAT)
@@ -61,12 +71,15 @@ for (let i = 0; i < data.length; i++) {
     pokemonStatsList.append(pokemonSD)
     pokemonStatsList.append(pokemonSPD)
 
+    
     // append h2 to pokemonElement
     pokemonElement.append(pokemonName)
     // append img to pokemonElement
     pokemonElement.append(pokemonImage)
     // append ul to pokemonElement
     pokemonElement.append(pokemonStatsList)
+    // append p to pokemonElement
+    pokemonElement.append(pokemonGames)
 
     
     
