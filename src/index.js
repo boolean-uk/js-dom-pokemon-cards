@@ -19,11 +19,25 @@ const cardTitle = document.createElement('h2')
 cardTitle.classList.add('card--title')
 const pokemonName = pokemon.name.replace(pokemon.name.charAt(0), pokemon.name.charAt(0).toUpperCase())
 cardTitle.innerText = pokemonName
-pokemonElement.append(cardTitle)
 
+// Add pokemon image to the card
+
+const pokemonImage = document.createElement('img')
+pokemonImage.classList.add('card--img')
+pokemonImage.style.width = "256"
+
+//look for the right image url for every card. We chooosed the front facing images from the sprites object
+pokemonImage.setAttribute('src', pokemon.sprites.other["official-artwork"].front_default)
+
+
+//add elements to the card
+pokemonElement.append(cardTitle)
+pokemonElement.append(pokemonImage)
+
+//add card to the cards list
 cardList.append(pokemonElement)
 }
-//function
+
 //You can start simple and just render a single 
 //pokemon card from the first element
 // console.log(data[0]);

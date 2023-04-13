@@ -26,6 +26,9 @@ h2 {
 }
 
 .cards {
+  /* remove annoying dots from each card */
+  list-style: none;
+  
   display: grid;
   grid-template-columns: repeat(auto-fill, 375px);
   gap: 15px;
