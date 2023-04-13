@@ -3,8 +3,8 @@ console.log(data);
 
 //You can start simple and just render a single
 //pokemon card from the first element
-console.log(data[0]);
 const cardsList = document.querySelector('.cards')
+console.log(data[0]);
 
 for(let i=0;i<data.length; i++){
     const pokemonListItem = document.createElement('li')
@@ -20,7 +20,27 @@ for(let i=0;i<data.length; i++){
     pokemonImg.setAttribute("width", "256")
     pokemonImg.classList.add('card--img')
     pokemonImg.setAttribute("src", data[i].sprites.other["official-artwork"].front_default)
+    
+    const images =[]
+    images.push(data[i].sprites.other["official-artwork"].front_default)
+    images.push(data[i].sprites.back_default)
+    images.push(data[i].sprites.back_shiny)
+    images.push(data[i].sprites.front_default)
+    images.push(data[i].sprites.front_shiny)
+    data[i].images=images
+    data[i].imageCounter=1
 
+    pokemonImg.addEventListener('click',function(){
+
+        if(data[i].imageCounter === data[i].images.length){
+            data[i].imageCounter=0
+
+        }
+        pokemonImg.setAttribute("src", data[i].images[data[i].imageCounter])
+        data[i].imageCounter++
+
+        
+    })
     pokemonListItem.append(pokemonImg)
 
     cardsList.append(pokemonListItem)
@@ -41,6 +61,8 @@ for(let i=0;i<data.length; i++){
         console.log(data[i].game_indices[j])
         gameListItem.innerHTML = data[i].game_indices[j].version.name
         pokemonGameInfoList.append(gameListItem)
-      }
+    }
+
 
 }
+
