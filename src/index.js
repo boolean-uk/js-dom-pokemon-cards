@@ -30,6 +30,21 @@ for(let i = 0; i < data.length; i++) {
         listOfStats.append(statElementOfList)
     }
     card.append(listOfStats)
+
+    const gameVersions = document.createElement('p')
+    let strVersions = 'Appeared in: '
+    const arrVersions = []
+    for (let j = 0; j < data[i].game_indices.length; j++) {
+        arrVersions.push(data[i].game_indices[j].version.name)
+    }
+    for (let j = 0; j < arrVersions.length; j++) {
+        if (j > 0) {
+            strVersions += ', '
+        }
+        strVersions += arrVersions[j]
+    }
+    gameVersions.innerText= strVersions
+    card.append(gameVersions)
     
 
     cardList.append(card)
