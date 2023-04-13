@@ -2,6 +2,8 @@
 // console.log(data);
 // refer to the ul in the body with class 'cards'
 const cardList = document.querySelector('.cards')
+ /* remove annoying dots from each card */
+cardList.style.listStyle = 'none'
 // check if we correctly assigned the ul element in the body.html
 // console.log(cardList) (just to check if it runs)
 
@@ -29,6 +31,10 @@ pokemonImage.style.width = "256"
 //look for the right image url for every card. We chooosed the front facing images from the sprites object
 pokemonImage.setAttribute('src', pokemon.sprites.other["official-artwork"].front_default)
 
+const cardText = document.createElement('ul')
+cardText.classList.add('card--text')
+const hp = document.createElement('li')
+hp.textContent = `HP: ${}`
 
 //add elements to the card
 pokemonElement.append(cardTitle)
@@ -37,7 +43,9 @@ pokemonElement.append(pokemonImage)
 //add card to the cards list
 cardList.append(pokemonElement)
 }
-
+function getStat (stats, statName) {
+    
+}
 //You can start simple and just render a single 
 //pokemon card from the first element
 // console.log(data[0]);
