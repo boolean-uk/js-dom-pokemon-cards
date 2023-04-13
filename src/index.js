@@ -1,6 +1,7 @@
 
 console.log(data);
 const pokemonList = document.querySelector('.cards')
+pokemonList.style.listStyle = 'none'
 //You can start simple and just render a single 
 //pokemon card from the first element
 console.log(data[0]);
