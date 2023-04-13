@@ -41,7 +41,7 @@ hp.textContent = `HP: ${hpValue}`
 
 cardText.append(hp)
 
-//add attack hp
+//add attack attack
 
 const attack = document.createElement('li')
 const attackValue = getStat(pokemon.stats, 'attack')
@@ -49,7 +49,7 @@ attack.textContent = `ATTACK: ${attackValue}`
 
 cardText.append(attack)
 
-//add attack hp
+//add attack defense
 
 const defense = document.createElement('li')
 const defenseValue = getStat(pokemon.stats, 'defense')
@@ -57,6 +57,29 @@ defense.textContent = `DEFENSE: ${defenseValue}`
 
 cardText.append(defense)
 
+//add attack special-attack
+
+const specialAttack = document.createElement('li')
+const specialAttackValue = getStat(pokemon.stats, 'special-attack')
+specialAttack.textContent = `SPECIAL-ATTACK: ${specialAttackValue}`
+
+cardText.append(specialAttack)
+
+//add attack special-defense
+
+const specialDefense = document.createElement('li')
+const specialDefenseValue = getStat(pokemon.stats, 'special-defense')
+specialDefense.textContent = `SPECIAL-DEFENSE: ${specialDefenseValue}`
+
+cardText.append(specialDefense)
+
+//add attack speed
+
+const speed = document.createElement('li')
+const speedValue = getStat(pokemon.stats, 'speed')
+speed.textContent = `SPEED: ${speedValue}`
+
+cardText.append(speed)
 
 //add elements to the card
 pokemonElement.append(cardTitle)
