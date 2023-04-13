@@ -1,7 +1,7 @@
 
 console.log(data);
 
-//You can start simple and just render a single 
+//You can start simple and just render a single
 //pokemon card from the first element
 console.log(data[0]);
 const cardsList = document.querySelector('.cards')
@@ -24,5 +24,12 @@ for(let i=0;i<data.length; i++){
     pokemonListItem.append(pokemonImg)
 
     cardsList.append(pokemonListItem)
-
+    const pokemonStatList = document.createElement('ul')
+    pokemonStatList.classList.add('card--text')
+    pokemonListItem.append(pokemonStatList)
+    for (j = 0; j < data[i].stats.length; j++ ) {
+      const statListItem = document.createElement('li')
+      statListItem.innerHTML = data[i].stats[j].stat.name.toUpperCase() + ":  " + data[i].stats[j].base_stat
+      pokemonStatList.append(statListItem)
+    }
 }
