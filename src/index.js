@@ -58,6 +58,8 @@ for (let i = 0; i <= 19; i++) {
   newUl.append(newLiSix)
 
   newUl.style.listStyleType = 'none';
+  newUl.style.lineHeight = "25px";
+  newUl.style.marginLeft = "10px";
 
 
 
