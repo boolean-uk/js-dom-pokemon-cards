@@ -33,18 +33,54 @@ pokemonImage.setAttribute('src', pokemon.sprites.other["official-artwork"].front
 
 const cardText = document.createElement('ul')
 cardText.classList.add('card--text')
+
+//add hp stat
 const hp = document.createElement('li')
-hp.textContent = `HP: ${}`
+const hpValue = getStat(pokemon.stats, 'hp')
+hp.textContent = `HP: ${hpValue}`
+
+cardText.append(hp)
+
+//add attack hp
+
+const attack = document.createElement('li')
+const attackValue = getStat(pokemon.stats, 'attack')
+attack.textContent = `ATTACK: ${attackValue}`
+
+cardText.append(attack)
+
+//add attack hp
+
+const defense = document.createElement('li')
+const defenseValue = getStat(pokemon.stats, 'defense')
+defense.textContent = `DEFENSE: ${defenseValue}`
+
+cardText.append(defense)
+
 
 //add elements to the card
 pokemonElement.append(cardTitle)
 pokemonElement.append(pokemonImage)
-
+pokemonElement.append(cardText)
 //add card to the cards list
 cardList.append(pokemonElement)
 }
-function getStat (stats, statName) {
-    
+
+// gets the stats array for each pokemon and the name of the stat we want. Then the function
+// loops through the stats array, and when it finds the desired
+// stat name, it returns the base_stat value
+function getStat(stats, statName) {
+
+    for(let i = 0; i < stats.length; i++){
+        const statsChild = stats[i]
+        console.log(statsChild.stat.name)
+        if(statsChild.stat.name === statName)
+        {
+            return statsChild.base_stat;
+        }
+        
+    }
+    return 0;
 }
 //You can start simple and just render a single 
 //pokemon card from the first element
