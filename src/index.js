@@ -32,9 +32,20 @@ for (let i = 0; i < data.length; i++) {
         stats.append(stat)
     }
 
+    const games = document.createElement('p')
+    games.classList.add('card--text')
+    games.innerText = 'APPEARED IN: '
+
+    for (let j = 0; j < data[i].game_indices.length -1; j++) {
+        games.innerText += data[i].game_indices[j].version.name + ", ";
+    }
+    games.innerText += data[i].game_indices[data[i].game_indices.length -1].version.name
+
+
     card.append(header)
     card.append(image)
     card.append(stats)
+    card.append(games)
 
     cards.append(card)
 }
