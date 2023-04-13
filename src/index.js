@@ -35,7 +35,9 @@ for(let i = 0; i < data.length; i++) {
     let strVersions = 'Appeared in: '
     const arrVersions = []
     for (let j = 0; j < data[i].game_indices.length; j++) {
-        arrVersions.push(data[i].game_indices[j].version.name)
+        let gameName = data[i].game_indices[j].version.name
+        gameName = gameName.charAt(0).toUpperCase() + gameName.substring(1)
+        arrVersions.push(gameName)
     }
     for (let j = 0; j < arrVersions.length; j++) {
         if (j > 0) {
@@ -43,7 +45,7 @@ for(let i = 0; i < data.length; i++) {
         }
         strVersions += arrVersions[j]
     }
-    gameVersions.innerText= strVersions
+    gameVersions.innerHTML= '<strong>' + strVersions.substring(0,12) + '</strong>' + strVersions.substring(12)
     card.append(gameVersions)
     
 
