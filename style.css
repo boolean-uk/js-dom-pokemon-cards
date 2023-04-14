@@ -11,7 +11,7 @@ body {
   display: grid;
   grid-template-columns: minmax(300px, 1200px);
   justify-content: center;
-
+  background-image: url("https://trumpwallpapers.com/wp-content/uploads/Pokemon-Wallpaper-11-1440-x-900.jpg");
   height: 100vh;
   font-family: sans-serif;
 }
@@ -29,13 +29,20 @@ ul, li {
   list-style-type: none;
 }
 
+button {
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, 375px);
   gap: 15px;
   justify-content: center;
   justify-items: center;
-
   padding: 2rem 0;
   margin-bottom: 2rem;
 }
@@ -43,10 +50,9 @@ ul, li {
 .card {
   width: 100%;
   justify-self: center;
-
+  background-color: rgba(255, 255, 255, 0.873);
   border: 1px solid #252525;
   border-radius: 8px;
-
   cursor: pointer;
   transition: all 300ms;
 }

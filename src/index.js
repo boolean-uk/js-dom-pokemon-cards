@@ -1,68 +1,105 @@
 
-console.log(data);
-
-//You can start simple and just render a single
-//pokemon card from the first element
 const cardsList = document.querySelector('.cards')
-console.log(data[0]);
 
-for(let i=0;i<data.length; i++){
-    const pokemonListItem = document.createElement('li')
-    pokemonListItem.classList.add('card')
+const capitalise = (str) => {
+  const firstLetter = str[0].toUpperCase()
+  const restString = str.slice(1)
+  return firstLetter + restString
+}
 
-    const pokemonName = document.createElement('h2')
-    pokemonName.innerText = data[i].name
-    pokemonName.classList.add('card--title')
+const changeImageOnHover = (pokemon, img) => {
+  img.setAttribute("src", pokemon.sprites.other.dream_world.front_default)
+}
 
-    pokemonListItem.append(pokemonName)
+const changeImageBack = (pokemon, img) => {
+  img.setAttribute("src", pokemon.sprites.other["official-artwork"].front_default)
+}
 
-    const pokemonImg = document.createElement('img')
-    pokemonImg.setAttribute("width", "256")
-    pokemonImg.classList.add('card--img')
-    pokemonImg.setAttribute("src", data[i].sprites.other["official-artwork"].front_default)
-    
-    const images =[]
-    images.push(data[i].sprites.other["official-artwork"].front_default)
-    images.push(data[i].sprites.back_default)
-    images.push(data[i].sprites.back_shiny)
-    images.push(data[i].sprites.front_default)
-    images.push(data[i].sprites.front_shiny)
-    data[i].images=images
-    data[i].imageCounter=1
+const getImageSet = (pokemon) => {
+  let imageSet = []
+  let images = Object.values(pokemon.sprites)
+  images.forEach((img) => {
+    if (typeof img === 'string'){
+      imageSet.push(img)
+    }
+  })
+  return imageSet
+}
 
-    pokemonImg.addEventListener('click',function(){
+const createNewCard = (pokemon) => {
+  const pokemonCard= document.createElement('li')
+  pokemonCard.classList.add('card')
 
-        if(data[i].imageCounter === data[i].images.length){
-            data[i].imageCounter=0
+  const title = document.createElement('h2')
+  title.innerText = capitalise(pokemon.name)
+  title.classList.add('card--title')
+  pokemonCard.append(title)
 
-        }
-        pokemonImg.setAttribute("src", data[i].images[data[i].imageCounter])
-        data[i].imageCounter++
+  const img = document.createElement('img')
+  img.setAttribute("width", "256")
+  img.classList.add('card--img')
+  img.setAttribute("src", pokemon.sprites.other["official-artwork"].front_default)
+  pokemonCard.append(img)
+  cardsList.append(pokemonCard)
 
-        
-    })
-    pokemonListItem.append(pokemonImg)
+  const btnIcons = document.createElement('button')
+  btnIcons.innerText = 'Show all images'
+  pokemonCard.append(btnIcons)
 
-    cardsList.append(pokemonListItem)
-    const pokemonStatList = document.createElement('ul')
-    pokemonStatList.classList.add('card--text')
-    pokemonListItem.append(pokemonStatList)
-    for (j = 0; j < data[i].stats.length; j++ ) {
-      const statListItem = document.createElement('li')
-      statListItem.innerHTML = data[i].stats[j].stat.name.toUpperCase() + ":  " + data[i].stats[j].base_stat
-      pokemonStatList.append(statListItem)
+  const imageContainer = document.createElement('div')
+
+  const images = getImageSet(pokemon)
+  images.forEach(img => {
+    const icon = document.createElement('img')
+    icon.setAttribute("src", img)
+    imageContainer.append(icon)
+  })
+
+  btnIcons.addEventListener('click', () => {
+    if (btnIcons.innerText === 'Show all images') {
+      imageContainer.classList.remove('hide')
+      btnIcons.innerText = 'Hide all images'
+    } else {
+      imageContainer.classList.add('hide')
+      btnIcons.innerText = 'Show all images'
     }
 
-    const pokemonGameInfoList= document.createElement('ul')
-    pokemonListItem.append(pokemonGameInfoList)
+  })
 
-    for (j = 0; j < data[i].game_indices.length; j++ ) {
-        const gameListItem = document.createElement('li')
-        console.log(data[i].game_indices[j])
-        gameListItem.innerHTML = data[i].game_indices[j].version.name
-        pokemonGameInfoList.append(gameListItem)
-    }
+  img.addEventListener('mouseover', () => {
+    changeImageOnHover(pokemon, img)
+  })
 
+  img.addEventListener('mouseout', () => {
+    changeImageBack(pokemon, img)
+  })
+
+  imageContainer.classList.add('hide')
+  pokemonCard.append(imageContainer)
+
+
+  const statsTitle = document.createElement('h3')
+  statsTitle.innerText = 'Info'.toUpperCase()
+  statsTitle.classList.add('card--text')
+  pokemonCard.append(statsTitle)
+
+  const statsList = document.createElement('ul')
+  statsList.classList.add('card--text')
+  pokemonCard.append(statsList)
+
+
+  const stats = pokemon.stats
+  stats.forEach(element => {
+    const statLi = document.createElement('li')
+    statLi.innerHTML = element.stat.name.toUpperCase() + ": " + element.base_stat
+    statsList.append(statLi)
+  })
+  console.log(stats)
+  // stat.innerHTML = data[i].stats[j].stat.name.toUpperCase() + ":  " + data[i].stats[j].base_stat
+  // pokemonStatList.append(statListItem)
 
 }
 
+data.forEach((pokemon) => {
+  createNewCard(pokemon)
+})
