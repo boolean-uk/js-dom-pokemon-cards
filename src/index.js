@@ -82,23 +82,33 @@ for (let i = 0; i < data.length; i++) {
     // append p to pokemonElement
     pokemonElement.append(pokemonGames)
 
+    const imgArray = [ 
+    data[i].sprites.other["dream_world"].front_default,
+    data[i].sprites.front_default, 
+    data[i].sprites.back_default, 
+    data[i].sprites.front_shiny, 
+    data[i].sprites.back_shiny,
+    data[i].sprites.other["official-artwork"].front_default
+    ]
+console.log(data[i].sprites.back_female)
+    if (data[i].sprites.back_female !== null) {
+        imgArray.push(data[i].sprites.back_female)
+    }
     
-    
+    data[i].clickCounter = 0
+
     // append li to cardlist
     cardList.append(pokemonElement)
     // cardList.append(pokemonImage)
     document.getElementById('pokemonId'+ [i]).addEventListener('click', clicked)
-    function clicked(parameter){
+    function clicked(){
+        if (data[i].clickCounter === imgArray.length - 1) {
+            data[i].clickCounter = 0
+        } else {
         console.log('you have cliked ' + data[i].name)
-        pokemonImage.setAttribute('src', data[i].sprites.front_default)
+        data[i].clickCounter = data[i].clickCounter + 1
+        console.log(data[i].clickCounter)
+        pokemonImage.setAttribute('src', imgArray[data[i].clickCounter])
+        }
     }
-    
 }
-
-
-
-// let currentImg = ''
-        
-// for (let k = 0; k < data.length; k++){          
-//         console.log(Object.values(data[k].sprites)[k])             
-// }
