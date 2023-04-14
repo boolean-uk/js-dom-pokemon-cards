@@ -56,7 +56,7 @@ function pokemonStats(stats) {
     return pokemonStats
 }
 
-function loadPokemonGameVersions(games) {
+function pokemonGameVersions(games) {
     const pokemonGamesContainer = listElement('div', 'card--text', 'none', null)
     pokemonGamesContainer.style.textAlign = 'center'
 
@@ -72,75 +72,107 @@ function loadPokemonGameVersions(games) {
     return pokemonGamesContainer
 }
 
-function pokemonCard(pokemon, dreamWordVersion) {
+function pokemonCard(name, image, stats, gameVersions) {
     const card = listElement('li', 'card', 'none')
     
-    card.append(pokemonName(pokemon.name[0].toUpperCase() + pokemon.name.substring(1)))
-
-    if (dreamWordVersion)
-        card.append(pokemonImage(pokemon.sprites.other['dream_world'].front_default))
-    else
-        card.append(pokemonImage(pokemon.sprites.other['official-artwork'].front_default))
-
-    card.append(pokemonStats(pokemon.stats.map(attribute => ({ name: attribute.stat.name.toUpperCase(), value: attribute.base_stat }))))
-
-    card.append(loadPokemonGameVersions(pokemon.game_indices.map((g) => g.version.name)))
+    card.append(pokemonName(name))
+    card.append(pokemonImage(image))
+    card.append(pokemonStats(stats))
+    card.append(pokemonGameVersions(gameVersions))
 
     return card
 }
 
-function loadAllPokemon(dreamWordVersion) {
+function loadAllPokemon(pokemons) {
     const cards = document.querySelector('.cards')
 
-    for (const pokemon of data) {
-        cards.append(pokemonCard(pokemon, dreamWordVersion))
+    for (const pokemon of pokemons) {
+        cards.append(
+            pokemonCard(
+                pokemon.name,
+                pokemon.image,
+                pokemon.stats,
+                pokemon.games
+            )
+        )
     }
 }
 
 function deleteAllPokemon() {
-    const cards = document.querySelector('.cards')
-    const cardlist = document.querySelectorAll('.card')
+    /* remove all children 
+        const cards = document.querySelector('.cards')
+        const cardlist = document.querySelectorAll('.card')
 
-    for (const card of cardlist) cards.removeChild(card)
+        for (const card of cardlist) cards.removeChild(card)
+    */
+
+   // set innerText to empty string
+   const cards = document.querySelector('.cards')
+   cards.innerText = ''
 }
 
-function createButton() {
-    const buttonContainer = document.createElement('div')
-    buttonContainer.style.textAlign = 'center'
-
-    const button = document.createElement('button')
-    button.innerText = 'Dream World Version'
-    button.style.width = '150px'
-    button.style.padding = '20px 10px'
-
-    buttonContainer.append(button)
-
+function createButton(pokemonVersions) {
     const body = document.querySelector('body')
     const cards = document.querySelector('.cards')
 
+    const buttonContainer = document.createElement('div')
+    const button = document.createElement('button')
+    
+    button.innerText = 'Dream World Version'
+    button.style.width = '150px'
+    button.style.padding = '20px 10px'
+  
+    buttonContainer.style.textAlign = 'center'
+    buttonContainer.append(button)
+
     body.insertBefore(buttonContainer, cards)
 
-    return button
+    let defaultVersion = true
+    button.innerText = 'Default Version'
+
+    button.onclick = () => {
+        defaultVersion = !defaultVersion;
+
+        deleteAllPokemon()
+
+        if (defaultVersion) {
+            loadAllPokemon(pokemonVersions[0])
+            button.innerText = 'Default Version'
+        } else {
+            loadAllPokemon(pokemonVersions[1])
+            button.innerText = 'Dream World Version'
+        }
+    };
+}
+
+function pokemonVersions() {
+    const defaultPokemons = data.map(pokemon => (
+        {
+            name: pokemon.name[0].toUpperCase() + pokemon.name.substring(1),
+            image: pokemon.sprites.other['official-artwork'].front_default,
+            stats: pokemon.stats.map(attribute => ({ name: attribute.stat.name.toUpperCase(), value: attribute.base_stat })),
+            games: pokemon.game_indices.map((g) => g.version.name)
+        }
+    ))
+
+    const dreamWorldPokemons = data.map(pokemon => (
+        {
+            name: pokemon.name[0].toUpperCase() + pokemon.name.substring(1),
+            image: pokemon.sprites.other['dream_world'].front_default,
+            stats: pokemon.stats.map(attribute => ({ name: attribute.stat.name.toUpperCase(), value: attribute.base_stat })),
+            games: pokemon.game_indices.map((g) => g.version.name)
+        }
+    ))
+
+    return [ defaultPokemons, dreamWorldPokemons ]
 }
 
 function loadPage() {
-    let state = {
-        true: 'Dream World Version',
-        false: 'Normal Version',
-    }
+    const pokemons = pokemonVersions()
+    
+    createButton(pokemons)
 
-    let dreamWordVersion = false
-
-    const button = createButton()
-
-    button.onclick = () => {
-        button.innerText = state[dreamWordVersion]
-        dreamWordVersion = !dreamWordVersion;
-        deleteAllPokemon()
-        loadAllPokemon(dreamWordVersion)
-    };
-
-    loadAllPokemon(dreamWordVersion)
+    loadAllPokemon(pokemons[0])
 }
 
 loadPage()
