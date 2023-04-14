@@ -5,6 +5,10 @@ console.log(data);
 console.log(data[0]);
 
 const cardList = document.querySelector(".cards");
+// deze class bestaat al, dit is de ul waarbinnen je de li's maakt
+// binnen de li's maak je alle andere code om te zorgen dat het
+// binnen de kaarten valt
+// de rest creeer je later door onderstaande code
 console.log(cardList);
 
 for (let i = 0; i < data.length; i++) {
@@ -38,13 +42,6 @@ for (let i = 0; i < data.length; i++) {
       pokemonImage.src = data[i].sprites.other.dream_world.front_default;
     }
   });
-
-  // pokemonImage.onclick = function () {
-  //   pokemonImage.setAttribute(
-  //     "src",
-  //     data[i].sprites.other.dream_world.front_default
-  //   );
-  // };
 
   const pokemonStat = document.createElement("ul");
   pokemonStat.classList.add("card--text");
