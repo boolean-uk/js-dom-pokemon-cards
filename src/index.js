@@ -1,10 +1,10 @@
 
 for (i = 0; i < data.length; i++) {
-    const ul = document.querySelector('ul');
+    const cards = document.querySelector('.cards');
     const li = document.createElement('li');
     li.setAttribute('class', 'card');
     li.style.listStyleType = 'none';
-    ul.append(li);
+    cards.append(li);
 
     const h2 = document.createElement('h2');
     h2.setAttribute('class', 'card--title');
@@ -43,9 +43,11 @@ for (i = 0; i < data.length; i++) {
     img.addEventListener('click', function(){
     toggle = !toggle;
     if(toggle){
-        img.src = 'img//one.png'; 
-    }else{
-        img.src = 'img//two.jpg';
+        img.src = 'img//one.jpeg'; 
+        img.setAttribute('height', '256')
+    } else {
+        img.src = 'img//two.jpeg'; 
+        img.setAttribute('height', '256');
     }
     })
 }
