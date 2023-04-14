@@ -1,5 +1,5 @@
 
-for (i = 0; i < data.length; i++) {
+for (let i = 0; i < data.length; i++) {
     const cards = document.querySelector('.cards');
     const li = document.createElement('li');
     li.setAttribute('class', 'card');
@@ -23,7 +23,7 @@ for (i = 0; i < data.length; i++) {
 
     li.append(newUl)
     
-    for (j = 0; j < data[j].stats.length; j++) {
+    for (let j = 0; j < data[j].stats.length; j++) {
     const newLi = document.createElement('li');
     newLi.innerText = data[i].stats[j].stat.name.toUpperCase() + ": " + data[i].stats[j].base_stat;
     newLi.style.listStyleType = 'none';
