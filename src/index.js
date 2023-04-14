@@ -28,12 +28,23 @@ for (let i = 0; i < data.length; i++) {
   pokemonElement.append(pokemonImage);
   cardList.append(pokemonElement);
 
-  pokemonImage.onclick = function () {
-    pokemonImage.setAttribute(
-      "src",
-      data[i].sprites.other.dream_world.front_default
-    );
-  };
+  let toggle = true;
+  pokemonImage.addEventListener("click", function () {
+    toggle = !toggle;
+    if (toggle) {
+      pokemonImage.src =
+        data[i].sprites.other["official-artwork"].front_default;
+    } else {
+      pokemonImage.src = data[i].sprites.other.dream_world.front_default;
+    }
+  });
+
+  // pokemonImage.onclick = function () {
+  //   pokemonImage.setAttribute(
+  //     "src",
+  //     data[i].sprites.other.dream_world.front_default
+  //   );
+  // };
 
   const pokemonStat = document.createElement("ul");
   pokemonStat.classList.add("card--text");
