@@ -27,7 +27,7 @@ for (let i = 0; i <= data.length; i++) {
   let toggle = true;
   
   img.addEventListener("click", function event () {
-    toggle = !toggle
+    
     if (toggle) {
       img.src = pokemon.sprites.other["dream_world"].front_default;
       img.setAttribute("class", "card--img")
@@ -39,8 +39,8 @@ for (let i = 0; i <= data.length; i++) {
       img.setAttribute("class", "card--img")
       img.setAttribute("width", "256")
       img.setAttribute("height", "256")
-      
     }
+    toggle = !toggle
     
 })
 
