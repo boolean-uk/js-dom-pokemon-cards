@@ -21,7 +21,7 @@ for (let i = 0; i <= data.length; i++) {
   li.append(img);
   img.setAttribute("class", "card--img")
   img.setAttribute("width", "256")
-
+  img.setAttribute("height", "256")
   // extension with click event that toggles between images
 
   let toggle = true;
@@ -30,9 +30,16 @@ for (let i = 0; i <= data.length; i++) {
     toggle = !toggle
     if (toggle) {
       img.src = pokemon.sprites.other["dream_world"].front_default;
+      img.setAttribute("class", "card--img")
+      img.setAttribute("width", "256")
+      img.setAttribute("height", "256")
   
     } else {
       img.src = pokemon.sprites.other["official-artwork"].front_default;
+      img.setAttribute("class", "card--img")
+      img.setAttribute("width", "256")
+      img.setAttribute("height", "256")
+      
     }
     
 })
