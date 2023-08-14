@@ -1,7 +1,5 @@
 function createCardElement (pokemonData, cardsContainer) {
-  
-        // const pokemonData = data[index];
-    
+      
         const listElement = document.createElement('li')
         listElement.classList.add('card')
         cardsContainer.append(listElement)
@@ -27,7 +25,7 @@ function createCardElement (pokemonData, cardsContainer) {
             ulElement.append(liElement)        
         }   
 
-    createGamesListElement(pokemonData, listElement)
+        createGamesListElement(pokemonData, listElement)
     }
 function createImageElement(pokemonData, listElement) {
      
@@ -38,17 +36,18 @@ function createImageElement(pokemonData, listElement) {
     imgElemenet.setAttribute("id", pokemonData.id)
     imgElemenet.addEventListener("click", e =>toggleBetweenImages(e))
     listElement.append(imgElemenet)
+
 }
 
 function toggleBetweenImages(e) {
-    console.log(data[e.target.getAttribute('id') - 1])
+
     if (e.target.getAttribute('src')  === 
     data[e.target.getAttribute('id') - 1].sprites.other["official-artwork"].front_default) {
-        e.target.setAttribute("src", data[e.target.getAttribute('id') - 1].sprites.other.dream_world.front_default)
-
+        e.target.setAttribute("src", data[e.target.getAttribute('id') - 1]
+        .sprites.other.dream_world.front_default)
     }else {
-
-        e.target.setAttribute("src", data[e.target.getAttribute('id') - 1].sprites.other["official-artwork"].front_default)
+        e.target.setAttribute("src", data[e.target.getAttribute('id') - 1]
+        .sprites.other["official-artwork"].front_default)
       }
 }
 
@@ -71,6 +70,7 @@ function createGamesListElement (pokemonData,listElement) {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 } 
+
 function render() {
     const cardsContainer = document.querySelector('.cards')
     data.forEach((pokemonData) => {
