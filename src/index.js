@@ -1,7 +1,4 @@
-// console.log(data[2].name)
-let naam = "Ali Keskin"
-
-console.log(`Dit is een string, en ik heet                            ${naam}`)
+console.log(data[0].sprites.other["official-artwork"].front_default)
 
 // //NAME
 // console.log(data[0].name)
@@ -20,7 +17,7 @@ console.log(`Dit is een string, en ik heet                            ${naam}`)
 
 
 let ulContainer = document.querySelector('.cards')
-console.log(data.length)
+// console.log(data.length)
 
 let some = "text"
 
@@ -125,7 +122,7 @@ function contentCreator() {
         //SPEED
         let speStat = data[i].stats[5].base_stat
         //IMG
-        let imgStat = data[i].sprites.other.dream_world.front_default
+        let imgStat = data[i].sprites.other["official-artwork"].front_default
 
 
         let listItemContent = `
