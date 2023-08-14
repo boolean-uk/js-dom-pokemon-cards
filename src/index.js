@@ -98,7 +98,7 @@ function contentCreator() {
 
     // });
 
-    //NOT WORKING FOR LOOP (SEE TEXT ONLY)
+    //FIXED FOR LOOP 
 
     for (let i = 0; i < data.length; i++) {
 
@@ -141,6 +141,19 @@ function contentCreator() {
                     <li>SPECIAL-DEFENSE: ${sdStat}</li>
                     <li>SPEED: ${speStat}</li>
                 </ul>
+
+                <h3>5 games this pokemon starred in</h3>
+                <ul class="card--text">
+                  <li>Game 1</li>
+                  <li>Game 2</li>
+                  <li>Game 3</li>
+                  <li>Game 4</li>
+                  <li>Game 5</li>
+                </ul>
+                
+
+
+                
              </li>
             `
         ulContainer.innerHTML += listItemContent
