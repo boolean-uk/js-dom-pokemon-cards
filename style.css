@@ -7,6 +7,9 @@ body {
   margin: 0;
 }
 
+li {
+  list-style: none;
+}
 body {
   display: grid;
   grid-template-columns: minmax(300px, 1200px);
@@ -31,7 +34,7 @@ h2 {
   gap: 15px;
   justify-content: center;
   justify-items: center;
-
+  list-style: none;
   padding: 2rem 0;
   margin-bottom: 2rem;
 }
