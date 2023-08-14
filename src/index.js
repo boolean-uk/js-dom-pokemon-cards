@@ -6,6 +6,7 @@ function createCardElement (pokemonData, cardsContainer) {
     
         const headingElement = document.createElement('h2')
         headingElement.classList.add('card--title')
+        headingElement.innerText= capitalizeFirstLetter(pokemonData.name)
         listElement.append(headingElement)
     
         createImageElement(pokemonData,listElement) 
