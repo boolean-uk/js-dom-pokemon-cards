@@ -15,7 +15,7 @@ function drawCard(data) {  // render a single pokemon card
   card.append(title)
   // create image of card
   const image = document.createElement('img')
-  image.style.width = '256'
+  image.style.width = '256px'
   image.classList.add('card--img')
   image.src = data.sprites.other['official-artwork']['front_default']
   card.append(image)
