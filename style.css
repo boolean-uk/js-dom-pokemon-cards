@@ -81,3 +81,25 @@ h2 {
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
+
+summary {
+ /* Center align the text */
+ text-align: center;
+ /* Change text font */
+ font-family: sans-serif;
+ font-style: italic;
+ /* Add margin for better readability */
+ margin: 10px;
+}
+
+/* Modify marker's colour */
+summary::marker {
+  color: rgb(28, 97, 139);
+}
+
+p {
+  /* Center align the text */
+ text-align: center;
+ /* Change text font */
+ font-family: sans-serif;
+}
