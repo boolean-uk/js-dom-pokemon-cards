@@ -34,4 +34,9 @@ function drawCard(data) {  // render a single pokemon card
   container.append(card)
 }
 
-drawCard(data[0])  // experiment by rendering first card of cards array
+function drawCards(cardsArray) {
+  cardsArray.forEach(element => drawCard(element));
+}
+
+// drawCard(data[0])  // experiment by rendering first card of cards array
+drawCards(data)
