@@ -25,6 +25,7 @@ function showCollection() {
         const statsList = data[i].stats
         for (let i=0; i < statsList.length; i++) {
             const stat = document.createElement('li')
+            stat.classList.add('card--stats')
             const desc = statsList[i].stat.name.toUpperCase() + ": " + statsList[i].base_stat
             stat.innerText = desc
             //Append Elemets to Text
