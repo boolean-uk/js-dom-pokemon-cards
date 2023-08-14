@@ -21,7 +21,7 @@ function createCardElement (pokemonData, cardsContainer) {
             const statName = currentStat.stat.name.toUpperCase()
             const statValue = currentStat.base_stat
             const liElement = document.createElement('li')
-            liElement.textContent = `${statName}: ${statValue}`
+            liElement.innerText = `${statName}: ${statValue}`
             ulElement.append(liElement)        
         }   
 
