@@ -27,12 +27,22 @@ for(let i = 0; i < 20; i++) {
     // symbol.innerText = cellValues[i]
     // cellValues[i] = symbols[0]
 
-    const cardimg = document.createElement('img')
-    cardimg.classList.add('card--img')
-    cardimg.width = "256"
-    cardimg.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + (i + 1) +".png"
-    // cardimg.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-    //data[i].sprites.other.front_default:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+    const cardimg1 = document.createElement('img')
+    cardimg1.classList.add('card--img')
+    cardimg1.width = "256"
+    cardimg1.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + (i + 1) +".png"
+    
+    const cardimg2 = document.createElement('img')
+    cardimg2.classList.add('card--img')
+    cardimg2.width = "256"
+    cardimg2.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (i + 1) +".png"
+    
+    const pokeimages = [cardimg1, cardimg2]
+    cardimg1.addEventListener('click', function () {
+        pokeimages.reverse()
+        card.append(pokeimages[0])
+    })
+
     const cardtext = document.createElement('ul')
     cardtext.classList.add("card--text")
 
@@ -50,8 +60,15 @@ for(let i = 0; i < 20; i++) {
     const cardspeed = document.createElement('li')
     cardspeed.innerText = 'SPEED: ' + data[i].stats[5].base_stat
 
+    // const gamesin = []
+    // for (let j = 0; j <20; j++) {
+    //     gamesin.push(data[i].game_indices[j].version.name)
+    // }
+    // const gameindices = document.createElement('li')
+    // gameindices.innerText = 'GAMES: ' + gamesin
+        
     card.append(cardtitle)
-    card.append(cardimg)
+    card.append(pokeimages[0])
 
     cardtext.append(cardhp)
     cardtext.append(cardattk)
@@ -59,6 +76,7 @@ for(let i = 0; i < 20; i++) {
     cardtext.append(cardspattk)
     cardtext.append(cardspdef)
     cardtext.append(cardspeed)
+    // cardtext.append(gameindices)
     card.append(cardtext)
 
     cards.append(card)
