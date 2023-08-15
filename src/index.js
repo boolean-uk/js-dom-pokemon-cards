@@ -169,11 +169,11 @@ function contentCreator() {
         ## Extended Requirements
         - Add an extra section to each card that contains information about which games each pokemon appeared in.
        
-        >>>>  I met this requirement by adding an extra h3 and ul>li elements under the let variable below
+        >>>>  I met this requirement by adding an extra h3 and ul>li elements under the let variable below, every pokemon starred in the same games with same titles. I just chose the first game of every generation (max 5 games to keep the list short)
       
         - See if you can find a way to toggle between the different images of each card! (this is a hard one! You might want to use google...)
 
-        >>>> I met this requirement by randomly choosing between the 2 pictures that are provided with the data file. I got the image 
+        >>>> I met this requirement by randomly choosing between the 2 pictures that are provided with the data file. I got the image by using Math.floor and getting a value between 0-1. That value is used within an array, which decides which img you get shown on your screen.
 
         */
         let listItemContent = `
