@@ -49,13 +49,12 @@ h2 {
 
 .card:hover {
   transform: scale(1.02);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(228, 6, 6, 0.941) 0px 5px 15px;
 }
 
 .card--text {
   margin: 0.2rem;
   padding: 1rem;
-
   border-radius: 5px;
 }
 
@@ -63,5 +62,5 @@ h2 {
   display: block;
   margin: 0 auto;
 
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  box-shadow: rgba(174, 10, 10, 0.524) 0px 2px 8px;
 }
