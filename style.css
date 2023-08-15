@@ -5,6 +5,7 @@
 html,
 body {
   margin: 0;
+  background-color: gray;
 }
 
 body {
@@ -23,6 +24,11 @@ img {
 h1,
 h2 {
   text-align: center;
+}
+
+li, h3{
+
+  margin-left:25px;
 }
 
 .cards {
@@ -62,6 +68,11 @@ h2 {
 .card--img {
   display: block;
   margin: 0 auto;
-
+  margin-bottom: 20px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+
+.card {
+  list-style: none;
 }
