@@ -1,4 +1,6 @@
 const cards = document.querySelector('.cards')
+// const style = document.createElement('style')
+// style.innerHTML = body.font.fam
 
 console.log(data);
 
@@ -11,12 +13,22 @@ function pokeDex(){
 
 for (let i = 0 ; i < data.length ; i++){
     const pokemonCard = data[i]
+    
     const singleCard = document.createElement('li')
     singleCard.classList.add('card')
 
-    const h2Element = document.createElement('h2')
+    
+    // singleCard.classList.add('body')
+
+    // const layOut = document.createElement ('li')
+    // layOut.classList.add('body')
+    
+    
+    const h2Element = document.createElement('h2') 
     h2Element.classList.add('card--title')
-    h2Element.innerText = pokemonCard.name
+    h2Element.innerText = pokemonCard.name.charAt(0).toUpperCase() + pokemonCard.name.slice(1)
+    
+    
     
     const pokeImg = document.createElement('img')
     pokeImg.classList.add('card--img')
@@ -66,10 +78,11 @@ for (let i = 0 ; i < data.length ; i++){
     unorList.append(pokeSpeed)
     
 
-
+    
 singleCard.append(h2Element)
 singleCard.append(pokeImg)
 singleCard.append(unorList)
+// cards.append(style)
 cards.append(singleCard)
 
 }
