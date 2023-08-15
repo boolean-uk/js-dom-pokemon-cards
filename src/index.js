@@ -18,8 +18,6 @@ function showSlides(slideNo, slideIndex) {
   }
   slideIndices[slideIndex] = slideNo
 
-  // console.log(`slideIndices[${slideIndex}] = ${slideIndices[slideIndex]}, slideNo = ${slideNo}, slides.length = ${slides.length}`)    // TODO: delete this statement
-
   for (let i = 0; i < slides.length; ++i) {
     slides[i].style.display = 'none'
   }
@@ -34,15 +32,16 @@ function drawSlideshow(data) {
   slideshowContainer.classList.add('slideshow-container')
   // array of image links to display
   const imageLinks = [
-    data.sprites.other['official-artwork']['front_default']
-    , data.sprites.other.dream_world.front_default
-    // , data.sprites.versions["generation-iii"]["emerald"].front_default
+    data.sprites.other['official-artwork']['front_default'],
+    data.sprites.other.dream_world.front_default
+    //, data.sprites.versions["generation-iii"]["emerald"].front_default
   ]
 
   // create div for each image
-  imageLinks.forEach(element => {
+  imageLinks.forEach((element, index) => {
     const imageDiv = document.createElement('div')
-    imageDiv.classList.add('mySlides', `mySlides${slideIndex}`, 'fade')
+    imageDiv.classList.add(`mySlides${slideIndex}`, 'fade')
+    imageDiv.style.display = (index === 0) ? 'block' : 'none'
     // create image of slideshow
     const image = document.createElement('img')
     image.style.width = '256px'
