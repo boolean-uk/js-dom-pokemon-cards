@@ -1,5 +1,3 @@
-console.log(data[0].sprites.other["official-artwork"].front_default)
-
 // //NAME
 // console.log(data[0].name)
 // //HP
@@ -16,16 +14,20 @@ console.log(data[0].sprites.other["official-artwork"].front_default)
 // console.log(data[0].stats[5].base_stat)
 
 
+
 let ulContainer = document.querySelector('.cards')
 // console.log(data.length)
 
-let some = "text"
 
-let start = some.slice(0, 1).toUpperCase()
+//TEST SETTING UP FIRST LETTER AS CAPITAL
+// let some = "text"
 
-let end = some.slice(1)
+// let start = some.slice(0, 1).toUpperCase()
 
-console.log(start + end)
+// let end = some.slice(1)
+
+// console.log(start + end)
+
 
 function contentCreator() {
     // data.forEach(item => {
@@ -125,13 +127,62 @@ function contentCreator() {
         let imgStat = data[i].sprites.other["official-artwork"].front_default
 
 
+
+        /* Codes below are used to get the data for the extensions*/
+
+        let togImg1 = data[i].sprites.other.dream_world.front_default
+        let togImg2 = data[i].sprites.other["official-artwork"].front_default
+
+        let togArray = [togImg1, togImg2]
+
+        let randomArrayPicker = Math.random()
+
+        if (randomArrayPicker < 0.5) {
+            randomArrayPicker = 0
+        } else {
+            randomArrayPicker = 1
+        }
+
+        let endImg = togArray[randomArrayPicker]
+
+
+        // console.log(togArray)
+
+
+        let getGameOne = data[i].sprites.versions["generation-i"]
+        let getGameTwo = data[i].sprites.versions["generation-ii"]
+        let getGameThree = data[i].sprites.versions["generation-iii"]
+        let getGameFour = data[i].sprites.versions["generation-iv"]
+        let getGameFive = data[i].sprites.versions["generation-v"]
+
+        let game1 = Object.keys(getGameOne)[0]
+        let game2 = Object.keys(getGameTwo)[0]
+        let game3 = Object.keys(getGameThree)[0]
+        let game4 = Object.keys(getGameFour)[0]
+        let game5 = Object.keys(getGameFive)[0]
+
+
+
+        /*--------------------------------------------------------------------------------------- */
+
+        /*
+        ## Extended Requirements
+        - Add an extra section to each card that contains information about which games each pokemon appeared in.
+       
+        >>>>  I met this requirement by adding an extra h3 and ul>li elements under the let variable below
+      
+        - See if you can find a way to toggle between the different images of each card! (this is a hard one! You might want to use google...)
+
+        >>>> I met this requirement by randomly choosing between the 2 pictures that are provided with the data file. I got the image 
+
+        */
         let listItemContent = `
             <li class="card">
                  <h2 class="card--title">${newName}</h2>
                     <img
                         width="256"
                         class="card--img"
-                        src="${imgStat}"
+                        src="${endImg}"
                     />
                  <ul class="card--text">
                     <li>HP: ${hpStat}</li>
@@ -142,13 +193,15 @@ function contentCreator() {
                     <li>SPEED: ${speStat}</li>
                 </ul>
 
+
+
                 <h3>5 games this pokemon starred in</h3>
                 <ul class="card--text">
-                  <li>Game 1</li>
-                  <li>Game 2</li>
-                  <li>Game 3</li>
-                  <li>Game 4</li>
-                  <li>Game 5</li>
+                  <li>${game1}</li>
+                  <li>${game2}</li>
+                  <li>${game3}</li>
+                  <li>${game4}</li>
+                  <li>${game5}</li>
                 </ul>
                 
 
