@@ -18,6 +18,7 @@ data.forEach((pokemon) => {
         (i) => i.stat.name === "special-defense"
     ).base_stat;
     const speed = pokemon.stats.find((i) => i.stat.name === "speed").base_stat;
+    const games = pokemon.game_indices.map((i) => i.version.name).join(", ");
 
     const element = `
         <li class="card">
@@ -33,6 +34,7 @@ data.forEach((pokemon) => {
                 <li>SPECIAL-ATTACK: ${special_attack}</li>
                 <li>SPECIAL-DEFENSE: ${special_defense}</li>
                 <li>SPEED: ${speed}</li>
+                <li>APPEARED IN: ${games}</li>
             </ul>
         </li>
     `;
