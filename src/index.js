@@ -75,15 +75,15 @@ function placeStats(tagParent) {
   stats.forEach((stat) => {
     const key = Object.keys(stat);
     const text = `${key}: ${stat[key]}`;
-    elementAdd("li", ul, null, text);
+    elementAdd("li", tagParent, null, text);
   });
 }
 
 function placeGameText(gameArray, tagParent) {
-  games.forEach((array, idx) => {
+  gameArray.forEach((array, idx) => {
     const join = array.join(" ");
     const joinAttr = [["class", `border-text border-${idx}`]];
-    elementAdd("span", li, joinAttr, join);
+    elementAdd("span", tagParent, joinAttr, join);
   });
 }
 
