@@ -1,7 +1,7 @@
 
 console.log(data);
 
-data.forEach (element => {
+data.forEach(element => {
 
 //CARD
 const list = document.querySelector('ul')
@@ -39,16 +39,32 @@ element.stats.forEach(s => {
     const statsElement = document.createElement('li')
     stats.append(statsElement)
     statsElement.innerText = `${s.stat.name}: ${s.base_stat}`
-}
-)
+})
 
 
 //additional section 
 
-const appearances = document.createElement('section')
-    section.innerText = ``
+const appearances = document.createElement('ul')
 card.append(appearances)
+
+
+element.game_indices.forEach(g => {
+
+    const game = document.createElement('li') 
+    appearances.append(game)
+    game.innerText = `name: ${g.version.name}` 
+    
+})
+
+
+
 
 })
 
 console.log(data[0]);
+
+//side note: earlier versions had ${data[data.indeOf(element].name} 
+// instead of just, well, ${element.name} 
+//... yeah. 
+//..
+//Just leaving that there so I (hopefully) remember to not get so focused on details that I loose sight of the, let's be honest here, glaringly obvious. 
