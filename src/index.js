@@ -32,32 +32,22 @@ const stats = document.createElement('ul')
 stats.setAttribute('class', 'card--text')
 card.append(stats)
 
-const hp = document.createElement('li')
-stats.append(hp)
-hp.innerText = `hp: ${element.stats[0].base_stat}`
-
-const attack = document.createElement('li')
-stats.append(attack)
 
 
-// this is where I realised I needed a short break. 'data[data.indexOf(element)]', seriously!? I corrected the other instances (yes, this was the norm at one point, but though I'd just leave one out there as a hopefuly somewhat amusing wee reminder)
-attack.innerText = `attack: ${data[data.indexOf(element)].stats[1].base_stat}`
+element.stats.forEach(s => {
 
-const defense = document.createElement('li')
-stats.append(defense)
-defense.innerText = `defense: ${element.stats[2].base_stat}`
+    const statsElement = document.createElement('li')
+    stats.append(statsElement)
+    statsElement.innerText = `${s.stat.name}: ${s.base_stat}`
+}
+)
 
-const specialAttack = document.createElement('li')
-stats.append(specialAttack)
-specialAttack.innerText = `specialAttack: ${element.stats[3].base_stat}`
 
-const specialDefense = document.createElement('li')
-stats.append(specialDefense)
-specialDefense.innerText = `specialDefense ${element.stats[3].base_stat}`
+//additional section 
 
-const speed= document.createElement('li')
-stats.append(speed)
-speed.innerText = `speed: ${element.stats[5].base_stat}`
+const appearances = document.createElement('section')
+    section.innerText = ``
+card.append(appearances)
 
 })
 
