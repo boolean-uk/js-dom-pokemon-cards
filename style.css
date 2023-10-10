@@ -32,6 +32,7 @@ h2 {
   justify-content: center;
   justify-items: center;
 
+  list-style-type: none;
   padding: 2rem 0;
   margin-bottom: 2rem;
 }
