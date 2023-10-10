@@ -105,7 +105,7 @@ const changeCoverImg = (coverIndex) => {
 
   const cover = select(`#cover-${coverIndex}`);
 
-  let url
+  let url;
 
   switch (cover.src) {
     case dream:
