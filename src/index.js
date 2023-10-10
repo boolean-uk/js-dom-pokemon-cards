@@ -29,12 +29,14 @@ function createImage(pokemon) {
   img.setAttribute("width", "256px")
   img.setAttribute("src", pokemon.sprites.front_default);
   
-  // let currentImageIndex = 0;
+  let currentImageIndex = 0;
 
-  // img.addEventListener("click", function() {
-  //   currentImageIndex = (currentImageIndex + 1) % sprites.length;
-  //   img.src = sprites[currentImageIndex];
-  // });
+  img.addEventListener("click", function() {
+    console.log(Object.values(pokemon.sprites))
+    const imgArr = [pokemon.sprites.front_default, pokemon.sprites.back_default, pokemon.sprites.front_shiny, pokemon.sprites.back_shiny]
+    currentImageIndex = (currentImageIndex + 1) % imgArr.length;
+    img.src = imgArr[currentImageIndex];
+  });
 
   return img;
 }
