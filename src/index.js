@@ -7,6 +7,7 @@ console.log(data[0]);
 
 const list = document.querySelector('.cards');
 
+
 const h1Element = document.querySelector('h1');
 h1Element.style.color = 'white';
 
