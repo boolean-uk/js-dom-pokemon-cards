@@ -36,4 +36,29 @@ card.append(img);
 
 const ul = document.createElement("ul");
 ul.setAttribute("class", "card--text");
+card.append(ul)
+
+const HP = document.createElement("li")
+HP.innerText = 'HP: 45'
+ul.append(HP)
+
+const ATTACK = document.createElement("li")
+ATTACK.innerText = 'ATTACK: 49'
+ul.append(ATTACK)
+
+const DEFENSE = document.createElement("li")
+DEFENSE.innerText = 'DEFENSE: 49'
+ul.append(DEFENSE)
+
+const SPECIALATTACK = document.createElement("li")
+SPECIALATTACK.innerText = 'SPECIALATTACK: 65'
+ul.append(SPECIALATTACK)
+
+const SPECIALDEFENSE = document.createElement("li")
+SPECIALDEFENSE.innerText = 'SPECIALDEFENSE: 65'
+ul.append(SPECIALDEFENSE)
+
+const SPEED = document.createElement("li")
+SPEED.innerText = 'SPEED: 45'
+ul.append(SPEED)
 
