@@ -11,7 +11,7 @@ card.setAttribute('class','card')
 list.append(card)
 
 const pokemonName = document.createElement('h2')
-card.setAttribute('class','card--title')
+pokemonName.setAttribute('class','card--title')
 //pokemonName.innerText= 'Bulbasaur'
 //pokemonName.innerText = `${data[data.indexOf(Element)].name}`
 pokemonName.innerText = `${Element.name}`
