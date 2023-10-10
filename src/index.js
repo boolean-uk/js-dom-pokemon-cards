@@ -16,6 +16,7 @@ pokemonName.setAttribute('class','card--title')
 //pokemonName.innerText = `${data[data.indexOf(Element)].name}`
 pokemonName.innerText = `${Element.name}`
 card.append(pokemonName)
+pokemonName.style.textTransform = 'capitalize'
 
 //imgg
 
@@ -31,7 +32,7 @@ card.append(image)
 const anotherList = document.createElement('ul')
 anotherList.setAttribute('class','card--text')
 card.append(anotherList)
-
+anotherList.style.lineHeight = '2rem'
 
 
 const anotherItems = document.createElement('li')
