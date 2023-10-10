@@ -6,39 +6,39 @@ function capitalize(string) {
 }
 
 data.forEach((pokemon) => {
-    const li = document.createElement("li");
-    li.setAttribute("class", "card");
-    createTitle(pokemon)
-    createImage(pokemon)
-    renderSpecs(pokemon)
-}
-);
+  const listItem = document.createElement("li");
+  listItem.setAttribute("class", "card");
+  listItem.append(createTitle(pokemon));
+  listItem.append(createImage(pokemon));
+  listItem.append(renderSpecs(pokemon));
+  container.append(listItem)
+});
 
-//You can start simple and just render a single 
+//You can start simple and just render a single
 //pokemon card from the first element
 function createTitle(pokemon) {
-const h2 = document.createElement("h2");
-h2.setAttribute("class", "card--title");
-h2.innerText = capitalize(pokemon.name);
-container.append(h2);
+  const h2 = document.createElement("h2");
+  h2.setAttribute("class", "card--title");
+  h2.innerText = capitalize(pokemon.name);
+  return h2;
 }
 
-function createImage (pokemon) {
-    const img = document.createElement("img");
-    img.setAttribute("class", "card--img");
-    img.setAttribute("src", pokemon.sprites.front_default);
-    container.append(img);
+function createImage(pokemon) {
+  const img = document.createElement("img");
+  img.setAttribute("class", "card--img");
+  img.setAttribute("src", pokemon.sprites.front_default);
+  return img;
 }
 
-function renderSpecs (pokemon) {
-    const ul = document.createElement("ul");
-    ul.setAttribute("class", "card--text");
-    pokemon.stats.forEach((item) => {
-        const li = document.createElement("li");
-        li.innerText = `${item.stat.name.toUpperCase()}: ${item.base_stat}`;
-        ul.append(li);
-    });
-    container.append(ul);
+function renderSpecs(pokemon) {
+  const ul = document.createElement("ul");
+  ul.setAttribute("class", "card--text");
+  pokemon.stats.forEach((item) => {
+    const li = document.createElement("li");
+    li.innerText = `${item.stat.name.toUpperCase()}: ${item.base_stat}`;
+    ul.append(li);
+  });
+  return ul;
 }
 
 console.log(data[0]);
