@@ -1,5 +1,5 @@
 const createCard = (pokemonEntry) => {
-  const liParent = cardGallery;
+  const liParent = select(".cards");
   const liAttr = [["class", "card"]];
   const li = elementAdd("li", liParent, liAttr, null);
 
@@ -7,10 +7,13 @@ const createCard = (pokemonEntry) => {
   const h2Text = pokemonEntry.name;
   elementAdd("h2", li, h2Attr, h2Text);
 
+  const pokemonIndex = pokemonEntry.id - 1;
   const imgAttr = [
     ["width", "256"],
     ["class", "card--img"],
     ["src", pokemonEntry.sprites.other["official-artwork"].front_default],
+    ["id", `cover-${pokemonIndex}`],
+    ["onclick", `changeCoverImg(${pokemonIndex})`],
   ];
   elementAdd("img", li, imgAttr, null);
 
@@ -19,19 +22,11 @@ const createCard = (pokemonEntry) => {
 
   stats = getStats(pokemonEntry);
 
-  stats.forEach((stat) => {
-    const key = Object.keys(stat)
-    const text = `${key}: ${stat[key]}`
-    elementAdd("li", ul, null, text);
-  });
+  placeStats(ul);
 
-  const games = getGames(pokemonEntry)
+  const games = getGames(pokemonEntry);
 
-  games.forEach((array, idx) => {
-    const join = array.join(" ")
-    const joinAttr = [["class", `border-text border-${idx}`]]
-    elementAdd("span", li, joinAttr, join)
-  })
+  placeGameText(games, li);
 };
 
 const elementAdd = (tagName, tagParent, attributePairs, text) => {
@@ -55,8 +50,7 @@ const getStats = (pokemonEntry) => {
 
   let results = [];
 
-  Object.keys(stats).forEach((idx) => {
-    const entry = stats[idx];
+  stats.forEach((entry, idx) => {
     const name = entry.stat.name;
     const base_stat = entry.base_stat;
 
@@ -69,12 +63,28 @@ const getStats = (pokemonEntry) => {
 };
 
 const getGames = (pokemonEntry) => {
-  const games = pokemonEntry.game_indices
-  const gameArray = [[],[],[],[]]
+  const games = pokemonEntry.game_indices;
+  const gameArray = [[], [], [], []];
   Object.keys(games).forEach((idx) => {
-    gameArray[idx%4].push(games[idx]["version"]["name"])
-  })
-  return gameArray
+    gameArray[idx % 4].push(games[idx]["version"]["name"]);
+  });
+  return gameArray;
+};
+
+function placeStats(tagParent) {
+  stats.forEach((stat) => {
+    const key = Object.keys(stat);
+    const text = `${key}: ${stat[key]}`;
+    elementAdd("li", ul, null, text);
+  });
+}
+
+function placeGameText(gameArray, tagParent) {
+  games.forEach((array, idx) => {
+    const join = array.join(" ");
+    const joinAttr = [["class", `border-text border-${idx}`]];
+    elementAdd("span", li, joinAttr, join);
+  });
 }
 
 function addAttr(attributePairs, element) {
@@ -86,12 +96,28 @@ function addAttr(attributePairs, element) {
   }
 }
 
-const bul = data[0];
+const changeCoverImg = (coverIndex) => {
+  const entry = data[coverIndex];
+  const sprites = entry.sprites.other;
 
-const cardGallery = select(".cards");
+  const dream = sprites.dream_world.front_default;
+  const official = sprites["official-artwork"].front_default;
+
+  const cover = select(`#cover-${coverIndex}`);
+
+  let url
+
+  switch (cover.src) {
+    case dream:
+      url = official;
+      break;
+    default:
+      url = dream;
+      break;
+  }
+  addAttr([["src", url]], cover);
+};
 
 data.forEach((entry) => {
   createCard(entry);
-})
-
-getGames(bul)
+});
