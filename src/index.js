@@ -24,6 +24,14 @@ const createCard = (pokemonEntry) => {
     const text = `${key}: ${stat[key]}`
     elementAdd("li", ul, null, text);
   });
+
+  const games = getGames(pokemonEntry)
+
+  games.forEach((array, idx) => {
+    const join = array.join(" ")
+    const joinAttr = [["class", `border-text border-${idx}`]]
+    elementAdd("span", li, joinAttr, join)
+  })
 };
 
 const elementAdd = (tagName, tagParent, attributePairs, text) => {
@@ -60,6 +68,15 @@ const getStats = (pokemonEntry) => {
   return results;
 };
 
+const getGames = (pokemonEntry) => {
+  const games = pokemonEntry.game_indices
+  const gameArray = [[],[],[],[]]
+  Object.keys(games).forEach((idx) => {
+    gameArray[idx%4].push(games[idx]["version"]["name"])
+  })
+  return gameArray
+}
+
 function addAttr(attributePairs, element) {
   if (attributePairs) {
     attributePairs.forEach((pair) => {
@@ -69,7 +86,7 @@ function addAttr(attributePairs, element) {
   }
 }
 
-const pokemonEntry = data[0];
+const bul = data[0];
 
 const cardGallery = select(".cards");
 
@@ -77,3 +94,4 @@ data.forEach((entry) => {
   createCard(entry);
 })
 
+getGames(bul)
