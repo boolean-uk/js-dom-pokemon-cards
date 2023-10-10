@@ -1,9 +1,9 @@
 const createCard = (pokemonEntry) => {
   const liParent = cardGallery;
   const liAttr = [["class", "card"]];
-  const li = elementAdd("li", liParent, liAttr);
+  const li = elementAdd("li", liParent, liAttr, null);
 
-  const h2Attr = [["class", "card-title"]];
+  const h2Attr = [["class", "card--title"]];
   const h2Text = pokemonEntry.name;
   elementAdd("h2", li, h2Attr, h2Text);
 
@@ -73,4 +73,7 @@ const pokemonEntry = data[0];
 
 const cardGallery = select(".cards");
 
-createCard(pokemonEntry);
+data.forEach((entry) => {
+  createCard(entry);
+})
+
