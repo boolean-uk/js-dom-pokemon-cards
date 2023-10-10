@@ -21,8 +21,10 @@ card.append(pokemonName)
 
 const image = document.createElement('img')
 image.setAttribute('class','card--img')
+
 image.setAttribute('width', '256')
-image.setAttribute('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png')
+
+image.setAttribute('src', `${data[data.indexOf(element)]}`)
 card.append(image)
 
 
@@ -34,27 +36,27 @@ card.append(stats)
 
 const hp = document.createElement('li')
 stats.append(hp)
-hp.innerText = 'hp'
+hp.innerText = `hp: ${data[data.indexOf(element)].stats[0].base_stat}`
 
 const attack = document.createElement('li')
 stats.append(attack)
-attack.innerText = 'attack'
+attack.innerText = `attack: ${data[data.indexOf(element)].stats[1].base_stat}`
 
 const defense = document.createElement('li')
 stats.append(defense)
-defense.innerText = 'defense'
+defense.innerText = `defense: ${data[data.indexOf(element)].stats[2].base_stat}`
 
 const specialAttack = document.createElement('li')
 stats.append(specialAttack)
-specialAttack.innerText = 'specialAttack'
+specialAttack.innerText = `specialAttack: ${data[data.indexOf(element)].stats[3].base_stat}`
 
 const specialDefense = document.createElement('li')
 stats.append(specialDefense)
-specialDefense.innerText = 'specialDefense'
+specialDefense.innerText = `specialDefense ${data[data.indexOf(element)].stats[4].base_stat}`
 
 const speed= document.createElement('li')
 stats.append(speed)
-speed.innerText = 'speed'
+speed.innerText = `speed: ${data[data.indexOf(element)].stats[4].base_stat}`
 
 })
 
