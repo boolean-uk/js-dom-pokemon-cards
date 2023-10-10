@@ -21,7 +21,8 @@ card.append(pokemonName)
 
 const image = document.createElement('img')
 image.setAttribute('class','card--img')
-// image.setAttribue('src', data[0].sprites.others[1].front_default)
+image.setAttribute('width', '256')
+image.setAttribute('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png')
 card.append(image)
 
 
