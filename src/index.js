@@ -3,7 +3,7 @@ const cardContainer = document.getElementsByClassName('cards');
 
 function pokeTitle(pokemon) {
     const cardTitle = document.createElement('h2');
-    cardTitle.setAttribute('class', ['h1, h2']);
+    cardTitle.setAttribute('class', 'card--text');
     cardTitle.innerText = `${pokemon.name}`;
     return cardTitle;
 };
@@ -27,6 +27,24 @@ function pokeStats(pokemon) {
     return cardStats;
 }
 
+function genTitle(pokemon) {
+    const cardGenTitle = document.createElement('h3');
+    cardGenTitle.setAttribute('class', 'card--text');
+    cardGenTitle.innerText = 'Game Versions';
+    return cardGenTitle;
+}
+
+function pokeGen(pokemon) {
+    const cardGen = document.createElement('ul');
+    cardGen.setAttribute('class', 'card--text');
+    pokemon.game_indices.forEach((version) => {
+        const gameName = document.createElement('li');
+        gameName.innerText = `${version.version.name}`;
+        cardGen.append(gameName);
+    });
+    return cardGen;
+}
+
 
 data.forEach((pokemon) => {
     const div = document.createElement('div');
@@ -34,6 +52,8 @@ data.forEach((pokemon) => {
     div.append(pokeTitle(pokemon));
     div.append(pokeImg(pokemon));
     div.append(pokeStats(pokemon));
+    div.append(genTitle(pokemon));
+    div.append(pokeGen(pokemon));
     cardContainer[0].append(div);
 });
 
