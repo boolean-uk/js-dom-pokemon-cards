@@ -16,6 +16,16 @@ body {
   font-family: sans-serif;
 }
 
+ul {
+  list-style: none;
+  padding: 10px;
+  margin-left: 10px;
+  line-height: 1.5;
+  text-align: start;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
 img {
   max-width: 100%;
 }
