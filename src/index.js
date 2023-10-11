@@ -33,26 +33,26 @@ ul.setAttribute("class", "card--text");
 card.append(ul)
 
 const HP = document.createElement("li")
-HP.innerText = `HP: ${value.stats[0].base_stat}`;
+HP.innerText = `${value.stats[0].stat.name.toUpperCase()} : ${value.stats[0].base_stat}`;
 ul.append(HP)
 
 const ATTACK = document.createElement("li")
-ATTACK.innerText = `ATTACK: ${value.stats[1].base_stat}`
+ATTACK.innerText = `${value.stats[1].stat.name.toUpperCase()} : ${value.stats[1].base_stat}`
 ul.append(ATTACK)
 
 const DEFENSE = document.createElement("li")
-DEFENSE.innerText = `DEFENSE: ${value.stats[2].base_stat}`
+DEFENSE.innerText = `${value.stats[2].stat.name.toUpperCase()} : ${value.stats[2].base_stat}`
 ul.append(DEFENSE)
 
 const SPECIALATTACK = document.createElement("li")
-SPECIALATTACK.innerText = `SPECIAL-ATTACK: ${value.stats[3].base_stat}`
+SPECIALATTACK.innerText = `${value.stats[3].stat.name.toUpperCase()} : ${value.stats[3].base_stat}`
 ul.append(SPECIALATTACK)
 
 const SPECIALDEFENSE = document.createElement("li")
-SPECIALDEFENSE.innerText = `SPECIAL-DEFENSE: ${value.stats[4].base_stat}`
+SPECIALDEFENSE.innerText = `${value.stats[4].stat.name.toUpperCase()} : ${value.stats[4].base_stat}`
 ul.append(SPECIALDEFENSE)
 
 const SPEED = document.createElement("li")
-SPEED.innerText = `SPEED: ${value.stats[5].base_stat}`
+SPEED.innerText = `${value.stats[5].stat.name.toUpperCase()} : ${value.stats[5].base_stat}`
 ul.append(SPEED)
 })
