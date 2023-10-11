@@ -5,30 +5,28 @@ console.log(data);
 // You can start simple and just render a single 
 // pokemon card from the first element
 const cards = document.querySelector('.cards')
-data.forEach((each) => {
+data.forEach((eachPokemon) => {
     const list = document.createElement('li')
     list.setAttribute('class', 'card')
     
     const heading = document.createElement('h2')
     heading.setAttribute('class', 'card--title')
-    heading.innerText = each.name
+    heading.innerText = eachPokemon.name
     
     const image = document.createElement('img')
-    const imageSRC = image.setAttribute('src', `${each.sprites.front_default}`)
+    const imageSRC = image.setAttribute('src', `${eachPokemon.sprites.other['official-artwork'].front_default}`)
     image.setAttribute('class', `${imageSRC} card--img`)
     
     const cardTExt = document.createElement('ul')
     cardTExt.setAttribute('class', 'card--text')
 
-    // const statList = forEach((stat) => {
-    //     const listOfCradText = document.createElement('li' * 6)
-
-        
-    // })
-    const listOfCradText = document.createElement('li' * 6)
-    listOfCradText.innerText = each.stats
+    eachPokemon.stats.forEach((dataStat) => {
+    const listOfCradText = document.createElement('li')
+    listOfCradText.innerText = `${dataStat.stat.name.toUpperCase()}: ${dataStat.base_stat}`
 
     cardTExt.append(listOfCradText)
+    })
+
     
     list.append(heading)
     list.append(image)
