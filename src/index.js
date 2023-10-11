@@ -18,10 +18,20 @@ function createPokemonCard(pokemon) {
   const name = document.createElement('h2');
   name.textContent = pokemon.name;
 
+  const statsList = document.createElement('ul');
+  statsList.classList.add('stats-list');
+  pokemon.stats.forEach(stat => {
+    const statItem = document.createElement('li');
+    statItem.textContent = `${stat.stat.name}: ${stat.base_stat}`;
+    statsList.appendChild(statItem);
+  });
+
   card.appendChild(img);
   card.appendChild(name);
+  card.appendChild(statsList);
   return card;
 }
+
 
 function renderPokemonCards() {
   data.forEach(pokemon => {
