@@ -40,7 +40,8 @@ h2 {
   width: 100%;
   justify-self: center;
 
-  border: 1px solid #252525;
+  /* border: 1px solid #252525; */
+  border: solid 1px black;
   border-radius: 8px;
 
   cursor: pointer;
@@ -65,3 +66,5 @@ h2 {
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
+
+
