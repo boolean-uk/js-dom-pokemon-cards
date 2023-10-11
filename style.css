@@ -11,7 +11,7 @@ body {
   display: grid;
   grid-template-columns: minmax(300px, 1200px);
   justify-content: center;
-  
+  background-color: whitesmoke;
   height: 100vh;
   font-family: sans-serif;
   background: whitesmoke;

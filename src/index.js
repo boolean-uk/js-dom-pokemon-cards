@@ -10,6 +10,7 @@ for (let i = 0; i < data.length; i++) {
     const pokemonCard = document.createElement('li');
     pokemonCard.style.listStyleType = 'none'
     pokemonCard.setAttribute('class', 'card');
+    pokemonCard.style.border = '1px black solid'
     pokemonCardList.append(pokemonCard);
 
     // Card Title
@@ -30,8 +31,9 @@ for (let i = 0; i < data.length; i++) {
     // Card Stats
 
     const pokemonCardStats = document.createElement('ul');
-    pokemonCard.style.listStyleType = 'none'
-    pokemonCard.setAttribute('class', 'card--text');
+    pokemonCardStats.style.listStyleType = 'none'
+    pokemonCardStats.style.lineHeight = '2rem'
+    pokemonCardStats.setAttribute('class', 'card--text');
     pokemonCard.append(pokemonCardStats);
     for (let j = 0; j < pokemon.stats.length; j++) {
         const statName = pokemon.stats[j].stat.name
