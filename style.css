@@ -11,13 +11,16 @@ body {
   display: grid;
   grid-template-columns: minmax(300px, 1200px);
   justify-content: center;
-
+  
   height: 100vh;
   font-family: sans-serif;
+  background: whitesmoke;
 }
 
 img {
   max-width: 100%;
+  width: 220px;
+  border-radius: 10px;
 }
 
 h1,
@@ -31,7 +34,7 @@ h2 {
   gap: 15px;
   justify-content: center;
   justify-items: center;
-
+  padding: 10px;
   padding: 2rem 0;
   margin-bottom: 2rem;
 }
@@ -39,7 +42,7 @@ h2 {
 .card {
   width: 100%;
   justify-self: center;
-
+  
   border: 1px solid #252525;
   border-radius: 8px;
 

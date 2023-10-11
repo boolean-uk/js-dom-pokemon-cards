@@ -17,6 +17,7 @@ for (let i = 0; i < data.length; i++) {
     const pokemonCardTitle = document.createElement('h2');
     pokemonCardTitle.setAttribute('class', 'h2');
     pokemonCardTitle.innerText = pokemon.name
+    pokemonCardTitle.style.textTransform = 'capitalize'
     pokemonCard.append(pokemonCardTitle);
 
     // Card Image
