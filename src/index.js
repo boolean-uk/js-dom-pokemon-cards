@@ -4,40 +4,46 @@ data.forEach((pokemon) => {
     const name = pokemon.name;
     const photo1 = pokemon.sprites.other["official-artwork"].front_default;
     const photo2 = pokemon.sprites.other.dream_world.front_default;
-    const hp = pokemon.stats.find((i) => i.stat.name === "hp").base_stat;
-    const attack = pokemon.stats.find(
-        (i) => i.stat.name === "attack"
-    ).base_stat;
-    const defense = pokemon.stats.find(
-        (i) => i.stat.name === "defense"
-    ).base_stat;
-    const special_attack = pokemon.stats.find(
-        (i) => i.stat.name === "special-attack"
-    ).base_stat;
-    const special_defense = pokemon.stats.find(
-        (i) => i.stat.name === "special-defense"
-    ).base_stat;
-    const speed = pokemon.stats.find((i) => i.stat.name === "speed").base_stat;
     const games = pokemon.game_indices.map((i) => i.version.name).join(", ");
 
-    const element = `
-        <li class="card">
-            <h2 class="card--title">${name}</h2>
-            <img width="256" class="card--img"
-                src="${photo1}" />
-            <img width="256" class="card--img card--img-another"
-                src="${photo2}" />
-            <ul class="card--text">
-                <li>HP: ${hp}</li>
-                <li>ATTACK: ${attack}</li>
-                <li>DEFENSE: ${defense}</li>
-                <li>SPECIAL-ATTACK: ${special_attack}</li>
-                <li>SPECIAL-DEFENSE: ${special_defense}</li>
-                <li>SPEED: ${speed}</li>
-                <li>APPEARED IN: ${games}</li>
-            </ul>
-        </li>
-    `;
+    // variables
+    const card = document.createElement("li");
+    const cardList = document.createElement("ul");
+    const headerTitle = document.createElement("h2");
+    const image = document.createElement("img");
+    const image2 = document.createElement("img");
 
-    cards.innerHTML += element;
+    // card
+    cards.append(card);
+    card.setAttribute("class", "card");
+    card.append(headerTitle);
+    card.append(image);
+    card.append(image2);
+    card.append(cardList);
+
+    // card header
+    headerTitle.setAttribute("class", "card--title");
+    headerTitle.innerText = name;
+    headerTitle.style.textTransform = "capitalize";
+
+    // card image
+    image.setAttribute("class", "card--img");
+    image.src = photo1;
+    image.setAttribute("width", "256");
+    image2.setAttribute("class", "card--img card--img-another");
+    image2.src = photo2;
+    image2.setAttribute("width", "256");
+
+    // card list
+    cardList.setAttribute("class", "card--text");
+
+    pokemon.stats.forEach((i) => {
+        const li = document.createElement("li");
+        li.innerText = `${i.stat.name.toUpperCase()}: ${i.base_stat}`;
+        cardList.append(li);
+    });
+
+    const gamesElement = document.createElement("li");
+    gamesElement.innerText = `APPEARED IN: ${games}`;
+    cardList.append(gamesElement);
 });
