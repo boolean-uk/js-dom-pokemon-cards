@@ -22,7 +22,7 @@ const data = [
         },
         "official-artwork": {
           front_default:
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+            "https://raw.githubusrcontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
         }
       },
       versions: {
