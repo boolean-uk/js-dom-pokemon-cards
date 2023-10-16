@@ -55,7 +55,7 @@ h2 {
 .card--text {
   margin: 0.2rem;
   padding: 1rem;
-
+  list-style-type: none;
   border-radius: 5px;
 }
 
