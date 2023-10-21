@@ -1,10 +1,15 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style: none;
+  text-decoration: none;
 }
 
 html,
 body {
-  margin: 0;
+  margin: 15px 0 0 0;
 }
 
 body {
@@ -52,6 +57,18 @@ h2 {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.card:hover .card--img {
+  display: none;
+}
+
+.card:hover .card--img-another {
+  display: block;
+}
+
+.card--title {
+  margin: 15px 0;
+}
+
 .card--text {
   margin: 0.2rem;
   padding: 1rem;
@@ -59,9 +76,18 @@ h2 {
   border-radius: 5px;
 }
 
+.card--text li {
+  margin-bottom: 10px;
+}
+
 .card--img {
   display: block;
   margin: 0 auto;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  transition: all .3s ease-in;
+}
+
+.card--img-another {
+  display: none;
 }
