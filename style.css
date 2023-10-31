@@ -39,6 +39,7 @@ h2 {
 .card {
   width: 100%;
   justify-self: center;
+  padding: 20px;
 
   border: 1px solid #252525;
   border-radius: 8px;
@@ -64,4 +65,8 @@ h2 {
   margin: 0 auto;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+body > ul {
+  list-style-type: none;
 }
