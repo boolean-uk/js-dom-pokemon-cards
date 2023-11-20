@@ -23,7 +23,21 @@ data.forEach((value) => {
         "src",
         `${value.sprites.other["official-artwork"].front_default}`
     );
-    img.addEventListener("click", () => img.src = `${value.sprites.back_default}`)
+
+    let indexChange = 0
+
+
+    img.addEventListener("click", function() {
+
+        const allImages = [value.sprites.other["official-artwork"].front_default, value.sprites.front_default, value.sprites.back_default, value.sprites.front_shiny, value.sprites.back_shiny]
+
+        indexChange = indexChange + 1
+        if (indexChange === allImages.length){
+            indexChange = 0
+        }
+
+        img.src = allImages[indexChange]
+    })
     
     
     
