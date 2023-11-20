@@ -23,6 +23,10 @@ data.forEach((value) => {
         "src",
         `${value.sprites.other["official-artwork"].front_default}`
     );
+    img.addEventListener("click", () => img.src = `${value.sprites.back_default}`)
+    
+    
+    
     card.append(img);
 
     const ul = document.createElement("ul");
@@ -65,8 +69,7 @@ data.forEach((value) => {
     ul.append(SPEED);
 
     const gamesNames = value.game_indices.map((game)=> game.version.name.toUpperCase()).join(", ")
-     console.log(gamesNames)
-     
+    
     const GAMES = document.createElement("li");
     GAMES.innerText = "GAMES: " + `${gamesNames}`;
     ul.append(GAMES)
