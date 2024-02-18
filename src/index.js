@@ -1,6 +1,122 @@
-
 console.log(data);
 
-//You can start simple and just render a single 
+//You can start simple and just render a single
 //pokemon card from the first element
 console.log(data[0]);
+
+// SELECTED ROOT ELEMENTS
+//const taskListUL = document.querySelector("#task-list");
+const cardListUL = document.querySelector(".cards");
+imglist = ["front_default", "front_shiny", "back_default", "back_shiny"];
+var count = 0;
+var imgcount = 0;
+
+function toUpper(text) {
+  return text.toUpperCase();
+}
+
+function toggleChangeImage(pokemon, id) {
+  count += 1;
+  if (count > 3) {
+    count = 0;
+  }
+
+  document.querySelector(`#${id}`).src = pokemon.sprites[imglist[count]];
+}
+
+// FUNCTIONS TO HANDLE USER EVENTS (clicks, etc...)
+function handleClick(event, pokemon) {
+  toggleChangeImage(pokemon, event.target.id);
+}
+
+function createCard(pokemon) {
+  const pk = document.createElement("div");
+
+  pk.setAttribute("name", "value");
+
+  const img = document.createElement("img");
+
+  img.setAttribute("width", "256");
+  img.setAttribute("id", `img-${imgcount}`);
+  img.setAttribute("class", "card--img");
+  imgcount++;
+
+  img.addEventListener("click", (event) => handleClick(event, pokemon));
+
+  const ul = document.createElement("ul");
+
+  ul.setAttribute("class", "card--text");
+
+  img.setAttribute("src", pokemon.sprites["front_default"]);
+
+  for (let i = 0; i < 6; i++) {
+    const li = document.createElement("p");
+
+    li.innerText =
+      toUpper(pokemon.stats[i].stat.name) + " : " + pokemon.stats[i].base_stat;
+
+    ul.setAttribute("p", li);
+    ul.appendChild(li);
+  }
+
+  const li2 = document.createElement("p");
+
+  for (let i = 0; i < pokemon.game_indices.length; i++) {
+    if (i === 0) {
+      li2.innerText += "GAMES : " + pokemon.game_indices[i].version.name;
+    } else {
+      li2.innerText += ", " + pokemon.game_indices[i].version.name;
+    }
+    ul.setAttribute("p", li2);
+    ul.appendChild(li2);
+  }
+
+  pk.appendChild(img);
+  pk.appendChild(ul);
+
+  return pk;
+}
+
+function capitalize(text) {
+  return text.replace(/\b\w/g, function (m) {
+    return m.toUpperCase();
+  });
+}
+
+function renderTasks() {
+  console.log("calling renderTasks()");
+  // reset my task list completely
+  cardListUL.innerHTML = "";
+
+  // for each task in my data, create a new li element
+  for (let i = 0; i < data.length; i++) {
+    const pokemon = data[i];
+
+    const divel = document.createElement("div");
+    divel.setAttribute("class", "card");
+    const pokemonh2 = document.createElement("h2");
+
+    pokemonh2.innerText = capitalize(pokemon.name);
+
+    pokemonh2.setAttribute("id", "card--title");
+    // create the <li></li>
+    const pokemonLi = document.createElement("ul");
+
+    const pokeCard = createCard(pokemon, pokemonLi);
+    // compose the taskLi with any child elements
+    pokemonLi.appendChild(pokeCard);
+
+    divel.appendChild(pokemonh2);
+    divel.appendChild(pokemonLi);
+
+    cardListUL.appendChild(divel);
+  }
+}
+
+// INITIAL RENDER
+function main() {
+  console.log("running main()");
+  renderTasks();
+}
+
+main();
