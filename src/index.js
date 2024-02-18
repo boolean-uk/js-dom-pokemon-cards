@@ -8,8 +8,11 @@ console.log(data[0]);
 //const taskListUL = document.querySelector("#task-list");
 const cardListUL = document.querySelector(".cards");
 
+function toUpper(text) {
+  return text.toUpperCase();
+}
+
 function createCard(pokemon) {
-  // create an input of type checkbox
   const pk = document.createElement("div");
 
   pk.setAttribute("name", "value");
@@ -25,18 +28,37 @@ function createCard(pokemon) {
   img.setAttribute("src", pokemon.sprites.front_default);
 
   for (let i = 0; i < 6; i++) {
-    const li = document.createElement("li");
-    li.innerText =
-      pokemon.stats[i].stat.name + " : " + pokemon.stats[i].base_stat;
+    const li = document.createElement("p");
 
-    ul.setAttribute("li", li);
+    li.innerText =
+      toUpper(pokemon.stats[i].stat.name) + " : " + pokemon.stats[i].base_stat;
+
+    ul.setAttribute("p", li);
     ul.appendChild(li);
+  }
+
+  const li2 = document.createElement("p");
+
+  for (let i = 0; i < pokemon.game_indices.length; i++) {
+    if (i === 0) {
+      li2.innerText += "GAMES : " + pokemon.game_indices[i].version.name;
+    } else {
+      li2.innerText += ", " + pokemon.game_indices[i].version.name;
+    }
+    ul.setAttribute("p", li2);
+    ul.appendChild(li2);
   }
 
   pk.appendChild(img);
   pk.appendChild(ul);
 
   return pk;
+}
+
+function capitalize(text) {
+  return text.replace(/\b\w/g, function (m) {
+    return m.toUpperCase();
+  });
 }
 
 function renderTasks() {
@@ -49,21 +71,22 @@ function renderTasks() {
     const pokemon = data[i];
 
     const divel = document.createElement("div");
-    divel.setAttribute("id", "div-class");
-    const pokemonh2 = document.createElement("p");
+    divel.setAttribute("class", "card");
+    const pokemonh2 = document.createElement("h2");
 
-    pokemonh2.innerText = pokemon.name;
+    pokemonh2.innerText = capitalize(pokemon.name);
 
     pokemonh2.setAttribute("id", "card--title");
     // create the <li></li>
-    const pokemonLi = document.createElement("li");
+    const pokemonLi = document.createElement("ul");
 
     const pokeCard = createCard(pokemon, pokemonLi);
     // compose the taskLi with any child elements
     pokemonLi.appendChild(pokeCard);
-    pokemonh2.appendChild(pokemonLi);
+
     divel.appendChild(pokemonh2);
-    // add the list element inside the taskListUL
+    divel.appendChild(pokemonLi);
+
     cardListUL.appendChild(divel);
   }
 }
