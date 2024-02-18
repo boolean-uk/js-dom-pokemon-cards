@@ -7,9 +7,26 @@ console.log(data[0]);
 // SELECTED ROOT ELEMENTS
 //const taskListUL = document.querySelector("#task-list");
 const cardListUL = document.querySelector(".cards");
+imglist = ["front_default", "front_shiny", "back_default", "back_shiny"];
+var count = 0;
+var imgcount = 0;
 
 function toUpper(text) {
   return text.toUpperCase();
+}
+
+function toggleChangeImage(pokemon, id) {
+  count += 1;
+  if (count > 3) {
+    count = 0;
+  }
+
+  document.querySelector(`#${id}`).src = pokemon.sprites[imglist[count]];
+}
+
+// FUNCTIONS TO HANDLE USER EVENTS (clicks, etc...)
+function handleClick(event, pokemon) {
+  toggleChangeImage(pokemon, event.target.id);
 }
 
 function createCard(pokemon) {
@@ -20,12 +37,17 @@ function createCard(pokemon) {
   const img = document.createElement("img");
 
   img.setAttribute("width", "256");
+  img.setAttribute("id", `img-${imgcount}`);
   img.setAttribute("class", "card--img");
+  imgcount++;
+
+  img.addEventListener("click", (event) => handleClick(event, pokemon));
+
   const ul = document.createElement("ul");
 
   ul.setAttribute("class", "card--text");
 
-  img.setAttribute("src", pokemon.sprites.front_default);
+  img.setAttribute("src", pokemon.sprites["front_default"]);
 
   for (let i = 0; i < 6; i++) {
     const li = document.createElement("p");
