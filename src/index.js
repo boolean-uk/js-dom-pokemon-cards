@@ -36,29 +36,56 @@ function add_stats(pokemonData){
     for(const pokemonStat of pokemonData.stats){
         console.log(pokemonStat)
         const stat = document.createElement('li')
-        stat.innerHTML = `${pokemonStat.stat.name.toUpperCase()}: ${pokemonStat.base_stat}`
+        stat.innerHTML = `<strong>${pokemonStat.stat.name.toUpperCase()}: ${pokemonStat.base_stat}</strong>`
         stats.appendChild(stat)
     }
     return stats
 }
-
+function backsideImage(pokemonData){
+    const cardBackImage = document.createElement('img')
+    cardBackImage.width = '256'
+    cardBackImage.src = "https://archives.bulbagarden.net/media/upload/1/17/Cardback.jpg"
+    cardBackImage.className = "card--img"
+    return cardBackImage
+}
 function createCard(pokemonData){
-
+    
     const card = document.createElement("li");
     card.className = "card"
+    card.addEventListener('click', (e) => {
 
-    const title = createTitle(pokemonData)
-    card.appendChild(title)
+        console.log(pokemonData.frontForward);
+        pokemonData.frontForward = !pokemonData.frontForward
+        console.log(pokemonData.frontForward);
+        console.log(pokemonData.name);
+        drawPokemons()
+    });
 
-    const img = createImage(pokemonData)
-    card.appendChild(img)
+    if(pokemonData.frontForward){
+        const title = createTitle(pokemonData)
+        card.appendChild(title)
 
-    stats = add_stats(pokemonData)
-    card.appendChild(stats)
+        const img = createImage(pokemonData)
+        card.appendChild(img)
 
-    pokemonCardsUL.appendChild(card)
+        stats = add_stats(pokemonData)
+        card.appendChild(stats)
+
+        pokemonCardsUL.appendChild(card)
+    }
+    else {
+        backside = backsideImage(pokemonData)
+        card.appendChild(backside)
+    }
+
 }
-
-for(const pokemon of data){
+function drawPokemons(){
+    pokemonCardsUL.innerHTML = ""
+    for(const pokemon of data){
     createCard(pokemon)
 }
+}
+for(const pokemon of data){
+    pokemon.frontForward = true;}
+
+drawPokemons()
