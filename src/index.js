@@ -5,7 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     //You can start simple and just render a single 
     //pokemon card from the first element
     // console.log(data);
-    data.forEach((pokemon) => {
+    GeneratePokemonCards(data, parent)
+});
+
+function GeneratePokemonCards(pokemonData, parentElement) {
+    
+    pokemonData.forEach((pokemon) => {
         const imagePaths = [
             pokemon.sprites.other["official-artwork"].front_default,
             pokemon.sprites.front_default,
@@ -21,15 +26,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const CardImageDescription = [
             'Official artwork',
-            'Default sprite',
-            'Shiny sprite',
-            'Gen 1: Red/Blue sprite',
-            'Gen 2: Crystal sprite',
-            'Gen 3: Ruby/Sapphire sprite',
-            'Gen 4: Diamond/Pearl sprite',
-            'Gen 5: Black/White sprite',
-            'Gen 6: Omega-Ruby/Alpha-Sapphire sprite',
-            'Gen 7: Ultra-Sun/Ultra-Moon sprite'
+            'Default',
+            'Shiny',
+            'Gen 1: Red/Blue',
+            'Gen 2: Crystal',
+            'Gen 3: Ruby/Sapphire',
+            'Gen 4: Diamond/Pearl',
+            'Gen 5: Black/White',
+            'Gen 6: Omega-Ruby/Alpha-Sapphire',
+            'Gen 7: Ultra-Sun/Ultra-Moon'
         ]
 
         const listItem = document.createElement('li')
@@ -73,34 +78,40 @@ document.addEventListener('DOMContentLoaded', function() {
             cardStats.appendChild(stat)
         })
         
-        const accordian = document.createElement("button")
-        accordian.classList.add("accordion")
-        accordian.innerHTML = "Appeared in"
-        accordian.addEventListener("click", function() {
-            accordian.classList.toggle("active")
-            let displayStyle = this.childNodes[1].style
-            if (displayStyle.display === "block") {
-                displayStyle.display = "none"
-            }  else {
-                displayStyle.display = "block"
-            }
-        })
-        listItem.appendChild(accordian)
 
-        const accordianPanel = document.createElement("div")
-        accordianPanel.classList.add("panel")
-        accordian.appendChild(accordianPanel)
+        const accordion = GenerateDetailsAccordion(pokemon)
+        listItem.appendChild(accordion)
 
-        const accordianList = document.createElement("ul")
-        accordianPanel.appendChild(accordianList)
-
-        pokemon.game_indices.forEach((game) => {
-            const appearance = document.createElement("li")
-            let name = game.version.name.charAt(0).toUpperCase() + game.version.name.slice(1)
-            appearance.innerHTML = `${name}`
-            accordianList.appendChild(appearance)
-        })
-
-        parent.appendChild(listItem)
+        parentElement.appendChild(listItem)
     })
-});
+}
+
+function GenerateDetailsAccordion(pokemon) {
+    const accordion = document.createElement("button")
+    accordion.classList.add("accordion")
+    accordion.innerHTML = "Featured in"
+    accordion.addEventListener("click", function() {
+        accordion.classList.toggle("active")
+        let displayStyle = this.childNodes[1].style
+        if (displayStyle.display === "block") {
+            displayStyle.display = "none"
+        }  else {
+            displayStyle.display = "block"
+        }
+    })
+    
+    const accordionPanel = document.createElement("div")
+    accordionPanel.classList.add("panel")
+    accordion.appendChild(accordionPanel)
+    
+    const accordionList = document.createElement("ul")
+    accordionPanel.appendChild(accordionList)
+    
+    pokemon.game_indices.forEach((game) => {
+        const appearance = document.createElement("li")
+        let name = game.version.name.charAt(0).toUpperCase() + game.version.name.slice(1)
+        appearance.innerHTML = `${name}`
+        accordionList.appendChild(appearance)
+    })
+    return accordion
+}
