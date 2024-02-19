@@ -26,7 +26,18 @@ function Cardstats(pokemonData){
     return stats
 }
 
+function Cardgames(pokemonData){
+    const games = document.createElement('ul')
+     games.className = "card--game-info"
+    for (const pokemonGames of pokemonData.game_indices) {
+        const game = document.createElement('li')
+        game.innerHTML = pokemonGames.version.name
+        games.appendChild(game)
+    }
+    return games
+}
 
+ 
 
 function Card(pokemonData){
     const card = document.createElement("li");
@@ -38,9 +49,11 @@ function Card(pokemonData){
     const img = CardImage(pokemonData)
     card.appendChild(img)
 
-    stats = Cardstats(pokemonData)
+    const stats = Cardstats(pokemonData)
     card.appendChild(stats)
 
+   const games = Cardgames(pokemonData)
+   card.appendChild(games)
 
     pokemonCardsUL.appendChild(card)
 }

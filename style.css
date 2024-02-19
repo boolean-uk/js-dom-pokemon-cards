@@ -66,6 +66,15 @@ h2 {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 
+.card--game-info {
+  margin: 0.2rem;
+  padding: 1rem;
+
+  column-count: 4;
+
+  border-radius: 5px;
+}
+
 li {
   list-style-type: none;
 }
