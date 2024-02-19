@@ -24,7 +24,7 @@ function RenderCards() {
     //set inner text to pokemon name
     cardH2.innerText = pokemon.name;
     //add h2 inside the list item
-    cardLi.append(cardH2);
+    cardLi.appendChild(cardH2);
 
     //create a new image
     const cardImg = document.createElement("img");
@@ -35,14 +35,15 @@ function RenderCards() {
     //setAttribute source on immage
     cardImg.setAttribute("src", pokemon.sprites.front_default);
     //add image to list item
-    cardLi.append(cardImg);
+    cardLi.appendChild(cardImg);
 
     //create a new ul
     const cardUl = document.createElement("ul");
+
     //setAttribute class for ul
     cardUl.setAttribute("class", "card--text");
     //might want to add the list items here before i append
-    cardLi.append(cardUl);
+    cardLi.appendChild(cardUl);
     for (let i = 0; i < pokemon.stats.length; i++) {
       //create a listItem for stats
       const cardStatsLi = document.createElement("li");
@@ -51,7 +52,7 @@ function RenderCards() {
         pokemon.stats[i].base_stat
       }`;
       //add li to ul
-      cardUl.append(cardStatsLi);
+      cardUl.appendChild(cardStatsLi);
     }
 
     cardsUL.appendChild(cardLi);
