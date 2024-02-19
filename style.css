@@ -65,3 +65,14 @@ h2 {
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.card--games {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
