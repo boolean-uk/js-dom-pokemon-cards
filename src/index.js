@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     //You can start simple and just render a single 
     //pokemon card from the first element
     // console.log(data);
-    data.forEach((pokemon) => {
+    dataOne = data.slice(18)
+    dataOne.forEach((pokemon) => {
         const db = pokemon
         
         const listItem = document.createElement('li')
@@ -37,6 +38,35 @@ document.addEventListener('DOMContentLoaded', function() {
             cardStats.appendChild(stat)
         })
         
+        const accordian = document.createElement("button")
+        accordian.classList.add("accordian")
+        accordian.innerHTML = "Appeared in"
+        accordian.addEventListener("click", function() {
+            this.classList.toggle("active")
+            let displayStyle = this.childNodes[1].style
+            console.log(displayStyle)
+            if (displayStyle.display === "block") {
+                displayStyle.display = "none"
+            }  else {
+                displayStyle.display = "block"
+            }
+        })
+        listItem.appendChild(accordian)
+
+        const accordianPanel = document.createElement("div")
+        accordianPanel.classList.add("panel")
+        accordian.appendChild(accordianPanel)
+
+        const accordianList = document.createElement("ul")
+        accordianPanel.appendChild(accordianList)
+
+        db.game_indices.forEach((game) => {
+            const appearance = document.createElement("li")
+            appearance.innerHTML = `${game.version.name}`
+            accordianList.appendChild(appearance)
+        })
+
         parent.appendChild(listItem)
+        console.log(accordian)
     })
 });
