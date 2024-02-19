@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image.src = imagePaths[(elementIndex + 1) % imagePaths.length]
             imageDescription.innerHTML = CardImageDescription[(elementIndex + 1) % imagePaths.length]
         })
-        imageDescription.style.fontSize = 10
+        imageDescription.style.fontSize = "small"
 
         imageContainer.appendChild(image)
         imageContainer.appendChild(imageDescription)
