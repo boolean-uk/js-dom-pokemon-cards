@@ -4,13 +4,233 @@
     <title>JS</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
-    <script defer src="/src/data.js"></script>
-    <script defer src="/src/index.js"></script>
+    <script defer src="./src/data.js"></script>
+    <script defer src="./src/index.js"></script>
   </head>
   <body>
-    <h1>Pokemon Trading Cards</h1>
-    <ul class="cards">
-      <!-- Look at /templates/card.html for the template of a card -->
-    </ul>
+    <!-- Select dropdown for sprite style -->
+    <select id="sprite-select">
+
+      <!-- Other Sprites -->
+      <optgroup label="Other Sprites">
+        <option value='{"other": "dream_world"}'>Dream World</option>
+        <option value='{"other": "official-artwork"}' selected>Official Artwork</option>
+      </optgroup>
+
+      <!-- Generation Sprites -->
+      <optgroup label="Generation Sprites">
+        <!-- Generation I -->
+        <optgroup label="Generation I">
+            <!-- Red/Blue -->
+            <optgroup label="Red/Blue">
+                <option value='{"generation": "generation-i", "game": "red-blue", "type": "back_default"}'>Back Default</option>
+                <option value='{"generation": "generation-i", "game": "red-blue", "type": "back_gray"}'>Back Gray</option>
+                <option value='{"generation": "generation-i", "game": "red-blue", "type": "front_default"}'>Front Default</option>
+                <option value='{"generation": "generation-i", "game": "red-blue", "type": "front_gray"}'>Front Gray</option>
+            </optgroup>
+            <!-- Yellow -->
+            <optgroup label="Yellow">
+                <option value='{"generation": "generation-i", "game": "yellow", "type": "back_default"}'>Back Default</option>
+                <option value='{"generation": "generation-i", "game": "yellow", "type": "back_gray"}'>Back Gray</option>
+                <option value='{"generation": "generation-i", "game": "yellow", "type": "front_default"}'>Front Default</option>
+                <option value='{"generation": "generation-i", "game": "yellow", "type": "front_gray"}'>Front Gray</option>
+            </optgroup>
+        </optgroup>
+
+                <!-- Generation II -->
+        <optgroup label="Generation II">
+            <!-- Crystal -->
+            <optgroup label="Crystal">
+                <option value='{"generation": "generation-ii", "game": "crystal", "type": "back_default"}'>Back Default</option>
+                <option value='{"generation": "generation-ii", "game": "crystal", "type": "back_shiny"}'>Back Shiny</option>
+                <option value='{"generation": "generation-ii", "game": "crystal", "type": "front_default"}'>Front Default</option>
+                <option value='{"generation": "generation-ii", "game": "crystal", "type": "front_shiny"}'>Front Shiny</option>
+            </optgroup>
+            <!-- Gold -->
+            <optgroup label="Gold">
+                <option value='{"generation": "generation-ii", "game": "gold", "type": "back_default"}'>Back Default</option>
+                <option value='{"generation": "generation-ii", "game": "gold", "type": "back_shiny"}'>Back Shiny</option>
+                <option value='{"generation": "generation-ii", "game": "gold", "type": "front_default"}'>Front Default</option>
+                <option value='{"generation": "generation-ii", "game": "gold", "type": "front_shiny"}'>Front Shiny</option>
+            </optgroup>
+            <!-- Silver -->
+            <optgroup label="Silver">
+                <option value='{"generation": "generation-ii", "game": "silver", "type": "back_default"}'>Back Default</option>
+                <option value='{"generation": "generation-ii", "game": "silver", "type": "back_shiny"}'>Back Shiny</option>
+                <option value='{"generation": "generation-ii", "game": "silver", "type": "front_default"}'>Front Default</option>
+                <option value='{"generation": "generation-ii", "game": "silver", "type": "front_shiny"}'>Front Shiny</option>
+            </optgroup>
+        </optgroup>
+        <!-- Generation III -->
+        <optgroup label="Generation III">
+            <!-- Emerald -->
+            <optgroup label="Emerald">
+                <option value='{"generation": "generation-iii", "game": "emerald", "type": "front_default"}'>Front Default</option>
+                <option value='{"generation": "generation-iii", "game": "emerald", "type": "front_shiny"}'>Front Shiny</option>
+            </optgroup>
+            <!-- Firered/Leafgreen -->
+            <optgroup label="Firered/Leafgreen">
+                <option value='{"generation": "generation-iii", "game": "firered-leafgreen", "type": "back_default"}'>Back Default</option>
+                <option value='{"generation": "generation-iii", "game": "firered-leafgreen", "type": "back_shiny"}'>Back Shiny</option>
+                <option value='{"generation": "generation-iii", "game": "firered-leafgreen", "type": "front_default"}'>Front Default</option>
+                <option value='{"generation": "generation-iii", "game": "firered-leafgreen", "type": "front_shiny"}'>Front Shiny</option>
+            </optgroup>
+            <!-- Ruby/Sapphire -->
+            <optgroup label="Ruby/Sapphire">
+                <option value='{"generation": "generation-iii", "game": "ruby-sapphire", "type": "back_default"}'>Back Default</option>
+                <option value='{"generation": "generation-iii", "game": "ruby-sapphire", "type": "back_shiny"}'>Back Shiny</option>
+                <option value='{"generation": "generation-iii", "game": "ruby-sapphire", "type": "front_default"}'>Front Default</option>
+                <option value='{"generation": "generation-iii", "game": "ruby-sapphire", "type": "front_shiny"}'>Front Shiny</option>
+            </optgroup>
+        </optgroup>
+
+        <!-- Generation II -->
+        <optgroup label="Generation II">
+          <!-- Crystal -->
+          <optgroup label="Crystal">
+              <option value='{"generation": "generation-ii", "game": "crystal", "type": "back_default"}'>Back Default</option>
+              <option value='{"generation": "generation-ii", "game": "crystal", "type": "back_shiny"}'>Back Shiny</option>
+              <option value='{"generation": "generation-ii", "game": "crystal", "type": "front_default"}'>Front Default</option>
+              <option value='{"generation": "generation-ii", "game": "crystal", "type": "front_shiny"}'>Front Shiny</option>
+          </optgroup>
+          <!-- Gold -->
+          <optgroup label="Gold">
+              <option value='{"generation": "generation-ii", "game": "gold", "type": "back_default"}'>Back Default</option>
+              <option value='{"generation": "generation-ii", "game": "gold", "type": "back_shiny"}'>Back Shiny</option>
+              <option value='{"generation": "generation-ii", "game": "gold", "type": "front_default"}'>Front Default</option>
+              <option value='{"generation": "generation-ii", "game": "gold", "type": "front_shiny"}'>Front Shiny</option>
+          </optgroup>
+          <!-- Silver -->
+          <optgroup label="Silver">
+              <option value='{"generation": "generation-ii", "game": "silver", "type": "back_default"}'>Back Default</option>
+              <option value='{"generation": "generation-ii", "game": "silver", "type": "back_shiny"}'>Back Shiny</option>
+              <option value='{"generation": "generation-ii", "game": "silver", "type": "front_default"}'>Front Default</option>
+              <option value='{"generation": "generation-ii", "game": "silver", "type": "front_shiny"}'>Front Shiny</option>
+          </optgroup>
+      </optgroup>
+
+      <!-- Generation III -->
+      <optgroup label="Generation III">
+          <!-- Emerald -->
+          <optgroup label="Emerald">
+              <option value='{"generation": "generation-iii", "game": "emerald", "type": "front_default"}'>Front Default</option>
+              <option value='{"generation": "generation-iii", "game": "emerald", "type": "front_shiny"}'>Front Shiny</option>
+          </optgroup>
+          <!-- Firered/Leafgreen -->
+          <optgroup label="Firered/Leafgreen">
+              <option value='{"generation": "generation-iii", "game": "firered-leafgreen", "type": "back_default"}'>Back Default</option>
+              <option value='{"generation": "generation-iii", "game": "firered-leafgreen", "type": "back_shiny"}'>Back Shiny</option>
+              <option value='{"generation": "generation-iii", "game": "firered-leafgreen", "type": "front_default"}'>Front Default</option>
+              <option value='{"generation": "generation-iii", "game": "firered-leafgreen", "type": "front_shiny"}'>Front Shiny</option>
+          </optgroup>
+          <!-- Ruby/Sapphire -->
+          <optgroup label="Ruby/Sapphire">
+              <option value='{"generation": "generation-iii", "game": "ruby-sapphire", "type": "back_default"}'>Back Default</option>
+              <option value='{"generation": "generation-iii", "game": "ruby-sapphire", "type": "back_shiny"}'>Back Shiny</option>
+              <option value='{"generation": "generation-iii", "game": "ruby-sapphire", "type": "front_default"}'>Front Default</option>
+              <option value='{"generation": "generation-iii", "game": "ruby-sapphire", "type": "front_shiny"}'>Front Shiny</option>
+          </optgroup>
+      </optgroup>
+      
+      <!-- Generation IV -->
+      <optgroup label="Generation IV">
+        <!-- Diamond/Pearl -->
+        <optgroup label="Diamond/Pearl">
+            <option value='{"generation": "generation-iv", "game": "diamond-pearl", "type": "back_default"}'>Back Default</option>
+            <option value='{"generation": "generation-iv", "game": "diamond-pearl", "type": "back_female"}'>Back Female</option>
+            <option value='{"generation": "generation-iv", "game": "diamond-pearl", "type": "back_shiny"}'>Back Shiny</option>
+            <option value='{"generation": "generation-iv", "game": "diamond-pearl", "type": "back_shiny_female"}'>Back Shiny Female</option>
+            <option value='{"generation": "generation-iv", "game": "diamond-pearl", "type": "front_default"}'>Front Default</option>
+            <option value='{"generation": "generation-iv", "game": "diamond-pearl", "type": "front_female"}'>Front Female</option>
+            <option value='{"generation": "generation-iv", "game": "diamond-pearl", "type": "front_shiny"}'>Front Shiny</option>
+            <option value='{"generation": "generation-iv", "game": "diamond-pearl", "type": "front_shiny_female"}'>Front Shiny Female</option>
+        </optgroup>
+        <!-- Heartgold/Soulsilver -->
+        <optgroup label="Heartgold/Soulsilver">
+            <option value='{"generation": "generation-iv", "game": "heartgold-soulsilver", "type": "back_default"}'>Back Default</option>
+            <option value='{"generation": "generation-iv", "game": "heartgold-soulsilver", "type": "back_female"}'>Back Female</option>
+            <option value='{"generation": "generation-iv", "game": "heartgold-soulsilver", "type": "back_shiny"}'>Back Shiny</option>
+            <option value='{"generation": "generation-iv", "game": "heartgold-soulsilver", "type": "back_shiny_female"}'>Back Shiny Female</option>
+            <option value='{"generation": "generation-iv", "game": "heartgold-soulsilver", "type": "front_default"}'>Front Default</option>
+            <option value='{"generation": "generation-iv", "game": "heartgold-soulsilver", "type": "front_female"}'>Front Female</option>
+            <option value='{"generation": "generation-iv", "game": "heartgold-soulsilver", "type": "front_shiny"}'>Front Shiny</option>
+            <option value='{"generation": "generation-iv", "game": "heartgold-soulsilver", "type": "front_shiny_female"}'>Front Shiny Female</option>
+        </optgroup>
+        <!-- Platinum -->
+        <optgroup label="Platinum">
+            <option value='{"generation": "generation-iv", "game": "platinum", "type": "back_default"}'>Back Default</option>
+            <option value='{"generation": "generation-iv", "game": "platinum", "type": "back_female"}'>Back Female</option>
+            <option value='{"generation": "generation-iv", "game": "platinum", "type": "back_shiny"}'>Back Shiny</option>
+            <option value='{"generation": "generation-iv", "game": "platinum", "type": "back_shiny_female"}'>Back Shiny Female</option>
+            <option value='{"generation": "generation-iv", "game": "platinum", "type": "front_default"}'>Front Default</option>
+            <option value='{"generation": "generation-iv", "game": "platinum", "type": "front_female"}'>Front Female</option>
+            <option value='{"generation": "generation-iv", "game": "platinum", "type": "front_shiny"}'>Front Shiny</option>
+            <option value='{"generation": "generation-iv", "game": "platinum", "type": "front_shiny_female"}'>Front Shiny Female</option>
+        </optgroup>
+    </optgroup>
+
+    <!-- Generation V -->
+    <optgroup label="Generation V">
+        <!-- Black/White -->
+        <optgroup label="Black/White">
+            <option value='{"generation": "generation-v", "game": "black-white", "type": "animated"}'>Animated</option>
+            <option value='{"generation": "generation-v", "game": "black-white", "type": "back_default"}'>Back Default</option>
+            <option value='{"generation": "generation-v", "game": "black-white", "type": "back_female"}'>Back Female</option>
+            <option value='{"generation": "generation-v", "game": "black-white", "type": "back_shiny"}'>Back Shiny</option>
+            <option value='{"generation": "generation-v", "game": "black-white", "type": "back_shiny_female"}'>Back Shiny Female</option>
+            <option value='{"generation": "generation-v", "game": "black-white", "type": "front_default"}'>Front Default</option>
+            <option value='{"generation": "generation-v", "game": "black-white", "type": "front_female"}'>Front Female</option>
+            <option value='{"generation": "generation-v", "game": "black-white", "type": "front_shiny"}'>Front Shiny</option>
+            <option value='{"generation": "generation-v", "game": "black-white", "type": "front_shiny_female"}'>Front Shiny Female</option>
+        </optgroup>
+    </optgroup>
+
+    <!-- Generation VI -->
+    <optgroup label="Generation VI">
+        <!-- Omegaruby/Alphasapphire -->
+        <optgroup label="Omegaruby/Alphasapphire">
+            <option value='{"generation": "generation-vi", "game": "omegaruby-alphasapphire", "type": "front_default"}'>Front Default</option>
+            <option value='{"generation": "generation-vi", "game": "omegaruby-alphasapphire", "type": "front_female"}'>Front Female</option>
+            <option value='{"generation": "generation-vi", "game": "omegaruby-alphasapphire", "type": "front_shiny"}'>Front Shiny</option>
+            <option value='{"generation": "generation-vi", "game": "omegaruby-alphasapphire", "type": "front_shiny_female"}'>Front Shiny Female</option>
+        </optgroup>
+        <!-- X/Y -->
+        <optgroup label="X/Y">
+            <option value='{"generation": "generation-vi", "game": "x-y", "type": "front_default"}'>Front Default</option>
+            <option value='{"generation": "generation-vi", "game": "x-y", "type": "front_female"}'>Front Female</option>
+            <option value='{"generation": "generation-vi", "game": "x-y", "type": "front_shiny"}'>Front Shiny</option>
+            <option value='{"generation": "generation-vi", "game": "x-y", "type": "front_shiny_female"}'>Front Shiny Female</option>
+        </optgroup>
+    </optgroup>
+
+    <!-- Generation VII -->
+    <optgroup label="Generation VII">
+        <!-- Icons -->
+        <optgroup label="Icons">
+            <option value='{"generation": "generation-vii", "game": "icons", "type": "front_default"}'>Front Default</option>
+            <option value='{"generation": "generation-vii", "game": "icons", "type": "front_female"}'>Front Female</option>
+        </optgroup>
+        <!-- Ultra Sun/Ultra Moon -->
+        <optgroup label="Ultra Sun/Ultra Moon">
+            <option value='{"generation": "generation-vii", "game": "ultra-sun-ultra-moon", "type": "front_default"}'>Front Default</option>
+            <option value='{"generation": "generation-vii", "game": "ultra-sun-ultra-moon", "type": "front_female"}'>Front Female</option>
+            <option value='{"generation": "generation-vii", "game": "ultra-sun-ultra-moon", "type": "front_shiny"}'>Front Shiny</option>
+            <option value='{"generation": "generation-vii", "game": "ultra-sun-ultra-moon", "type": "front_shiny_female"}'>Front Shiny Female</option>
+        </optgroup>
+    </optgroup>
+    
+    <!-- Generation VIII -->
+    <optgroup label="Generation VIII">
+        <!-- Icons -->
+        <optgroup label="Icons">
+            <option value='{"generation": "generation-viii", "game": "icons", "type": "front_default"}'>Front Default</option>
+            <option value='{"generation": "generation-viii", "game": "icons", "type": "front_female"}'>Front Female</option>
+        </optgroup>
+    </optgroup>
+    
+      </optgroup>
+
+    </select>
+    <div class="cards"></div>
   </body>
 </html>
