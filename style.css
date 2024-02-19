@@ -34,6 +34,8 @@ h2 {
 
   padding: 2rem 0;
   margin-bottom: 2rem;
+
+  list-style-type: none; /* Adding this line to remove bullet points */
 }
 
 .card {
