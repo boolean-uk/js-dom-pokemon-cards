@@ -1,6 +1,50 @@
+const pokemonCardsUL = document.querySelector("ul")
 
-console.log(data);
+function CardTitle(pokemonData){
+    const Title = document.createElement("h2");
+    Title.className = "card--title"
+    Title.innerHTML = pokemonData.name
+    return Title
+}
 
-//You can start simple and just render a single 
-//pokemon card from the first element
-console.log(data[0]);
+function CardImage(pokemonData){
+    const Image = document.createElement('img')
+    Image.width = '256'
+    Image.src = pokemonData.sprites.other['official-artwork'].front_default
+    Image.className = "card--img"
+    return Image
+}
+
+function Cardstats(pokemonData){
+    const stats = document.createElement('ul')
+    stats.className = "card--text"
+    for(const pokemonStat of pokemonData.stats){
+        const stat = document.createElement('li')
+        stat.innerHTML = `${pokemonStat.stat.name.toUpperCase()}: ${pokemonStat.base_stat}`
+        stats.appendChild(stat)
+    }
+    return stats
+}
+
+
+
+function Card(pokemonData){
+    const card = document.createElement("li");
+    card.className = "card"
+
+    const title = CardTitle(pokemonData)
+    card.appendChild(title)
+
+    const img = CardImage(pokemonData)
+    card.appendChild(img)
+
+    stats = Cardstats(pokemonData)
+    card.appendChild(stats)
+
+
+    pokemonCardsUL.appendChild(card)
+}
+
+for(const pokemon of data){
+    Card(pokemon)
+}
