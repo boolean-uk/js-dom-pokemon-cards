@@ -23,6 +23,7 @@ img {
 h1,
 h2 {
   text-align: center;
+  color: rgb(65, 5, 5);
 }
 
 .cards {
@@ -55,13 +56,21 @@ h2 {
 .card--text {
   margin: 0.2rem;
   padding: 1rem;
-
+  list-style-type: none;
   border-radius: 5px;
 }
 
 .card--img {
   display: block;
   margin: 0 auto;
-
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
+
+.card--game-info {
+  margin: 0.2rem;
+  padding: 1rem;
+  column-count: 4;
+  border-radius: 3px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
