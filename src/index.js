@@ -24,7 +24,7 @@ function createImage(pokemonData){
     //cardImage.setAttribute('src', pokemonData.sprites.other['official-artwork'].front_default)
     
     cardImage.width = '256'
-    cardImage.src = pokemonData.sprites.other['official-artwork'].front_default
+    cardImage.src = pokemonData.image
     cardImage.className = "card--img"
     return cardImage
 }
@@ -32,15 +32,84 @@ function createImage(pokemonData){
 function add_stats(pokemonData){
     const stats = document.createElement('ul')
     stats.className = "card--text"
-    console.log(pokemonData.stats)
+    //console.log(pokemonData.stats)
     for(const pokemonStat of pokemonData.stats){
-        console.log(pokemonStat)
+        //console.log(pokemonStat)
         const stat = document.createElement('li')
         stat.innerHTML = `<strong>${pokemonStat.stat.name.toUpperCase()}: ${pokemonStat.base_stat}</strong>`
         stats.appendChild(stat)
     }
     return stats
 }
+
+function addGenData(pokemonData){
+    //[0].sprites.versions["generation-i"]["red-blue"].back_default
+    const generations = document.createElement('ul')
+    generations.classList.add('pokemon-generator')
+
+    const defaultImageBtnLi = document.createElement('li');
+    defaultImageBtnLi.classList.add('pokemon-generator-item', 'pokemon-generator-center');
+      
+    const defaultImageBtn  = createButton("Default Image", ()=> {
+        pokemonData.image = pokemonData.imageDefault
+        drawPokemons()
+
+    })
+    defaultImageBtn .classList.add('pokemon-default-image-button')
+    defaultImageBtnLi.appendChild(defaultImageBtn);
+    generations.appendChild(defaultImageBtnLi);
+    
+    for (const gen in pokemonData.sprites.versions) {
+        if (Object.hasOwnProperty.call (pokemonData.sprites.versions, gen)) {
+            const genSprites = pokemonData.sprites.versions[gen];
+            
+            for (const game in genSprites) {
+                if (Object.hasOwnProperty.call(genSprites, game)) {
+                    const element = genSprites[game];
+                    console.log(element.front_default)
+                    console.log(game)
+                    const img = element.front_default
+                    //Game Li and text
+                    const gameLi = document.createElement('li')
+                    gameLi.innerHTML = `<strong>${capitalizeFirstLetter(game)}</strong>` 
+                    generations.appendChild(gameLi)
+                    gameLi.classList.add('pokemon-generator-item');
+                    //Preview Image
+                    gameLi.appendChild(smallImage(img)) 
+                    //Change Image btn
+                    const SetImageButton = createButton("Set image", () => {pokemonData.image = img
+                     drawPokemons()} )
+
+                     gameLi.appendChild(SetImageButton) 
+
+                }
+            }
+
+            
+        }
+    }
+    return generations
+
+}
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function createButton(text, onClick) {
+    const button = document.createElement('button');
+    button.textContent = text;
+    button.addEventListener("click", onClick);
+    button.classList.add('button');
+    return button;
+  }
+
+function smallImage(url){
+    const smallImg = document.createElement('img')
+    smallImg.width = '32'
+    smallImg.src = url
+    smallImg.className = "card--img"
+    return smallImg
+}
+
 function backsideImage(pokemonData){
     const cardBackImage = document.createElement('img')
     cardBackImage.width = '256'
@@ -50,16 +119,16 @@ function backsideImage(pokemonData){
 }
 function createCard(pokemonData){
     
-    const card = document.createElement("li");
+    let card = document.createElement("li");
     card.className = "card"
-    card.addEventListener('click', (e) => {
+    // card.addEventListener('click', (e) => {
 
-        console.log(pokemonData.frontForward);
-        pokemonData.frontForward = !pokemonData.frontForward
-        console.log(pokemonData.frontForward);
-        console.log(pokemonData.name);
-        drawPokemons()
-    });
+    //     //console.log(pokemonData.frontForward);
+    //     pokemonData.frontForward = !pokemonData.frontForward
+    //     //console.log(pokemonData.frontForward);
+    //     //console.log(pokemonData.name);
+    //     drawPokemons()
+    // });
 
     if(pokemonData.frontForward){
         const title = createTitle(pokemonData)
@@ -71,12 +140,20 @@ function createCard(pokemonData){
         stats = add_stats(pokemonData)
         card.appendChild(stats)
 
-        pokemonCardsUL.appendChild(card)
+        genData = addGenData(pokemonData)
+        card.appendChild(genData)
+
+        
+
+
     }
-    else {
+    else{
+        const title = createTitle(pokemonData)
+        card.appendChild(title)
         backside = backsideImage(pokemonData)
         card.appendChild(backside)
     }
+    pokemonCardsUL.appendChild(card)
 
 }
 function drawPokemons(){
@@ -86,6 +163,8 @@ function drawPokemons(){
 }
 }
 for(const pokemon of data){
+    pokemon.imageDefault = pokemon.sprites.other['official-artwork'].front_default
+    pokemon.image = pokemon.sprites.other['official-artwork'].front_default
     pokemon.frontForward = true;}
 
 drawPokemons()

@@ -69,3 +69,31 @@ ul, ol {
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
+
+.pokemon-generator li {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.pokemon-generator .pokemon-generator-item {
+  margin-bottom: 10px;
+}
+
+.button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #45a049;
+}
+.pokemon-generator-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
