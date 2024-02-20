@@ -1,4 +1,4 @@
-console.log(data);
+import { flattenObj } from "./slideshowUtil.js";
 
 const cards = document.createElement("ul");
 cards.className = "cards";
@@ -17,18 +17,29 @@ function renderCard(data) {
   title.setAttribute("class", "card--title");
 
   container.appendChild(title);
-  container.appendChild(getPokemonImage(data["sprites"]["front_default"]));
+  container.appendChild(getPokemonImage(data["sprites"]));
   container.appendChild(getPokemonStats(data["stats"]));
   container.appendChild(getGamesAppearedIn(data["game_indices"]));
   return container;
 }
 
-function getPokemonImage(image) {
+function slidePokemonImage(imgElement, images, index) {
+  imgElement.src = images[index];
+}
+
+function getPokemonImage(images) {
+  let sprites = flattenObj(images);
+  let index = 0;
+  sprites = Object.values(sprites).filter((sprite) => sprite !== null);
   const img = document.createElement("img");
   img.width = 256;
   img.className = "card--img";
-  img.src = image;
+  img.src = sprites[3];
   img.alt = "pokemon-image";
+  img.onclick = () => {
+    index = (index + 1) % (sprites.length - 1);
+    slidePokemonImage(img, sprites, index);
+  };
   return img;
 }
 
