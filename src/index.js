@@ -4,24 +4,30 @@
 const cardUl = document.querySelector(".cards");
 let nrClicks = 0
 
-function NextImage(card, image) {
+function NextImage(card, image)
+{
     nrClicks += 1
     let keyNamme = ''
+    let obj = {}
     
     let counter = 0
-    for (const [key, value] of Object.entries(card.sprites)) {
+    for (const [key, value] of Object.entries(card.sprites))
+    {
         counter += 1
 
-        if (counter === nrClicks) {
-            if (card.sprites[key] === null || card.sprites[key] === undefined || typeof card.sprites[key] === Object) {
+        if (counter === nrClicks)
+        {
+            if (card.sprites[key] === null || card.sprites[key] === undefined || card.sprites[key] instanceof Object)
+            {   
                 nrClicks += 1
+                console.log('TRYING ' + card.sprites[key])
                 continue
             }
             keyNamme = key
         }
+        image.setAttribute('src', card.sprites[keyNamme])
+        console.log('FOUND ' + card.sprites[keyNamme])
     }
-    
-    image.setAttribute('src', card.sprites[keyNamme])
 }
 
 function renderCards() {
