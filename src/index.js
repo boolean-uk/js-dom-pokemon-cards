@@ -55,25 +55,6 @@ function createImage(pokemon){
     return img
 }
 
-function handleMouseOver(pokemon, image){
-    let delayInseconds = 1
-    let imageSrc = [pokemon.sprites.back_default, 
-                    pokemon.sprites.back_shiny,
-                    pokemon.sprites.front_default,
-                    pokemon.sprites.front_shiny,
-                    pokemon.sprites.other.dream_world.front_default,
-                ]
-    let num = 0
-    let changeImage = function(){
-        let len = imageSrc.length;
-        image.src = imageSrc[num++]
-        console.log(image.src)
-        if(num===len){
-            num = 0
-        }
-    }
-    setInterval(changeImage, delayInseconds*1000);
-}
 
 function createCardContext(pokemon){
     const textContainer = document.createElement("ul")
