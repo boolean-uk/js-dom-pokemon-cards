@@ -5,6 +5,8 @@
 html,
 body {
   margin: 0;
+  color: white;
+  background-color: rgb(17, 50, 99);
 }
 
 body {
@@ -18,11 +20,16 @@ body {
 
 img {
   max-width: 100%;
+  border: none;
 }
 
 h1,
 h2 {
   text-align: center;
+  color: #fdea41;
+  -webkit-text-stroke-width: 1.2px;
+  -webkit-text-stroke-color: #000;
+  letter-spacing: 0.9px;
 }
 
 .cards {
@@ -40,13 +47,14 @@ h2 {
 .card {
   display: flex;
   flex-direction: column;
+  background-color: #115292;
   max-height: 500px;
   overflow: hidden;
   width: 100%;
   justify-self: center;
 
-  border: 1px solid #252525;
-  border-radius: 8px;
+  border: 3px solid #0e2f50;
+  border-radius: 0.6rem;
 
   cursor: pointer;
   transition: all 300ms;
@@ -69,6 +77,4 @@ h2 {
 .card--img {
   display: block;
   margin: 0 auto;
-
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
