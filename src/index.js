@@ -1,3 +1,5 @@
+console.log(data);
+
 const cards = document.createElement("ul");
 cards.className = "cards";
 for (let i = 0; i < data.length; i++) {
@@ -14,15 +16,25 @@ function renderCard(data) {
   title.innerText = capitalizeFirstLetter(data["name"]);
   title.setAttribute("class", "card--title");
 
+  container.appendChild(title);
+  container.appendChild(getPokemonImage(data["sprites"]["front_default"]));
+  container.appendChild(getPokemonStats(data["stats"]));
+  container.appendChild(getGamesAppearedIn(data["game_indices"]));
+  return container;
+}
+
+function getPokemonImage(image) {
   const img = document.createElement("img");
   img.width = 256;
   img.className = "card--img";
-  img.src = data["sprites"]["front_default"];
+  img.src = image;
   img.alt = "pokemon-image";
+  return img;
+}
 
+function getPokemonStats(statsData) {
   const stats = document.createElement("ul");
   stats.className = "card--text";
-  const statsData = data["stats"];
   for (let i = 0; i < statsData.length; i++) {
     const stat = statsData[i];
     const name = stat["stat"]["name"];
@@ -31,10 +43,24 @@ function renderCard(data) {
     listStat.innerText = `${name.toUpperCase()}: ${baseStat}`;
     stats.appendChild(listStat);
   }
+  return stats;
+}
 
-  container.appendChild(title);
-  container.appendChild(img);
-  container.appendChild(stats);
+function getGamesAppearedIn(games) {
+  const container = document.createElement("ul");
+  container.classList.add("card--text");
+
+  const subtitle = document.createElement("h3");
+  subtitle.innerText = "Appears in these games:";
+
+  container.appendChild(subtitle);
+
+  for (let i = 0; i < games.length; i++) {
+    const game = document.createElement("li");
+    game.innerText = capitalizeFirstLetter(games[i]["version"]["name"]);
+    container.appendChild(game);
+  }
+
   return container;
 }
 
