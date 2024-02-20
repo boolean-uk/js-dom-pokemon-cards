@@ -8,6 +8,12 @@ for (let i = 0; i < data.length; i++) {
 }
 document.body.appendChild(cards);
 
+/**
+ * Returns a card element with a title, image, pokemon stats, and
+ * the games they have appeared in.
+ * @param {Object} data
+ * @returns A card HTML element.
+ */
 function renderCard(data) {
   const container = document.createElement("li");
   container.classList.add("card");
@@ -23,10 +29,21 @@ function renderCard(data) {
   return container;
 }
 
+/**
+ * Slides through a list of pictures for a given image element.
+ * @param {HTMLImageElement} imgElement
+ * @param {Object} images
+ * @param {Number} index
+ */
 function slidePokemonImage(imgElement, images, index) {
   imgElement.src = images[index];
 }
 
+/**
+ * Get an HTMLImageElement with the specified images bound to it.
+ * @param {Object} images An object with different URLs to images.
+ * @returns An HTMLImageElement with the source set as a pokemon image.
+ */
 function getPokemonImage(images) {
   let sprites = flattenObj(images);
   let index = 0;
@@ -34,7 +51,7 @@ function getPokemonImage(images) {
   const img = document.createElement("img");
   img.width = 256;
   img.className = "card--img";
-  img.src = sprites[3];
+  img.src = sprites[2];
   img.alt = "pokemon-image";
   img.onclick = () => {
     index = (index + 1) % (sprites.length - 1);
@@ -43,6 +60,11 @@ function getPokemonImage(images) {
   return img;
 }
 
+/**
+ * Get a list of stats by the given pokemon.
+ * @param {Object} statsData
+ * @returns An HTMLUListElement with the stats of the pokemon.
+ */
 function getPokemonStats(statsData) {
   const stats = document.createElement("ul");
   stats.className = "card--text";
@@ -57,6 +79,11 @@ function getPokemonStats(statsData) {
   return stats;
 }
 
+/**
+ * Get a list of games in which the pokemon have appeared in.
+ * @param {Object} games
+ * @returns An HTMLUListElement with the games that the pokemon have appeared in.
+ */
 function getGamesAppearedIn(games) {
   const container = document.createElement("ul");
   container.classList.add("card--text");
