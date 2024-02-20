@@ -11,7 +11,7 @@ const cardTemplate = (pokemon)=>{
     });
     return `
 <li class="card">
-    <h2 class="card--title">${pokemon.name}</h2>
+    <h2 class="card--title">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
     <img
       width="256"
       class="card--img"
