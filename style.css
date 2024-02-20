@@ -39,7 +39,7 @@ h2 {
 .card {
   width: 100%;
   justify-self: center;
-
+  list-style: none;
   border: 1px solid #252525;
   border-radius: 8px;
 
