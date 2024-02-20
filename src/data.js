@@ -1,6 +1,7 @@
 const data = [
   {
     name: "bulbasaur",
+    type: "grass",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png",
@@ -420,6 +421,7 @@ const data = [
   },
   {
     name: "ivysaur",
+    type: "grass",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/2.png",
@@ -839,6 +841,7 @@ const data = [
   },
   {
     name: "venusaur",
+    type: "grass",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png",
@@ -1288,6 +1291,7 @@ const data = [
   },
   {
     name: "charmander",
+    type: "fire",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png",
@@ -1707,6 +1711,7 @@ const data = [
   },
   {
     name: "charmeleon",
+    type: "fire",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/5.png",
@@ -2126,6 +2131,7 @@ const data = [
   },
   {
     name: "charizard",
+    type: "fire",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/6.png",
@@ -2545,6 +2551,7 @@ const data = [
   },
   {
     name: "squirtle",
+    type: "water",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png",
@@ -2964,6 +2971,7 @@ const data = [
   },
   {
     name: "wartortle",
+    type: "water",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/8.png",
@@ -3383,6 +3391,7 @@ const data = [
   },
   {
     name: "blastoise",
+    type: "water",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/9.png",
@@ -3802,6 +3811,7 @@ const data = [
   },
   {
     name: "caterpie",
+    type: "bug",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10.png",
@@ -4221,6 +4231,7 @@ const data = [
   },
   {
     name: "metapod",
+    type: "bug",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/11.png",
@@ -4640,6 +4651,7 @@ const data = [
   },
   {
     name: "butterfree",
+    type: "flying",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/12.png",
@@ -5089,6 +5101,7 @@ const data = [
   },
   {
     name: "weedle",
+    type: "bug",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/13.png",
@@ -5508,6 +5521,7 @@ const data = [
   },
   {
     name: "kakuna",
+    type: "bug",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/14.png",
@@ -5927,6 +5941,7 @@ const data = [
   },
   {
     name: "beedrill",
+    type: "bug",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/15.png",
@@ -6346,6 +6361,7 @@ const data = [
   },
   {
     name: "pidgey",
+    type: "flying",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/16.png",
@@ -6765,6 +6781,7 @@ const data = [
   },
   {
     name: "pidgeotto",
+    type: "flying",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/17.png",
@@ -7184,6 +7201,7 @@ const data = [
   },
   {
     name: "pidgeot",
+    type: "flying",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/18.png",
@@ -7603,6 +7621,7 @@ const data = [
   },
   {
     name: "rattata",
+    type: "normal",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/19.png",
@@ -8052,6 +8071,7 @@ const data = [
   },
   {
     name: "raticate",
+    type: "normal",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/20.png",
