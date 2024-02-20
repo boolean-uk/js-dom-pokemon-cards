@@ -20,7 +20,7 @@ data.forEach(pokemon => {
     card.style.listStyle = 'none';
     const imageUrl = getNestedProperty(pokemon.sprites, spritePaths[0]);
     card.innerHTML = `
-        <h2 class="card--title">${pokemon.name}</h2>
+        <h2 class="card--title">${capitalize(pokemon.name)}</h2>
         <img
             width="256"
             class="card--img"
