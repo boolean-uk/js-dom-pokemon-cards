@@ -79,20 +79,19 @@ data.forEach(pokemon => {
     const imageElement = card.querySelector('.card--img');
     imageElement.addEventListener('click', () => cycleImage(imageElement));
 
-    // The card should have some horizontal parralax effect when hovered
-    // It should take into account the position of the mouse relative to the center of the card.
-    // The movement should be signifant but never over 45 degrees.
-    // It should only move in the x axis.
+    // Parralax effect on hover
     card.addEventListener('mousemove', (e) => {
         const cardBoundingRect = card.getBoundingClientRect();
         const xAxis = (cardBoundingRect.width / 2 - (e.clientX - cardBoundingRect.left)) / 20;
         const yAxis = (cardBoundingRect.height / 2 - (e.clientY - cardBoundingRect.top)) / 20;
         card.style.transform = `rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
     });
+    // Reset transform on mouseleave
     card.addEventListener('mouseleave', () => {
         card.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
 
+    // Cycle through images when clicking the image
     function cycleImage(img) {
         let nextImage;
         while(!nextImage) {
