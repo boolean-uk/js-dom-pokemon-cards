@@ -57,7 +57,10 @@ data.forEach(pokemon => {
 
 // Iterate through the array of keys to get the nested property
 function getNestedProperty(obj, keys) {
-    return keys.reduce((currentObj, key) => (currentObj && currentObj.hasOwnProperty(key)) ? currentObj[key] : null, obj);
+    keys.forEach(key => {
+        obj = obj[key];
+    });
+    return obj;
 }
 
 
