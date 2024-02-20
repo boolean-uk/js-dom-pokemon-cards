@@ -51,6 +51,9 @@ h2 {
   transform: scale(1.02);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.card.expanded {
+  grid-column: 1 / span 3;
+}
 
 .card--text {
   margin: 0.2rem;
@@ -72,8 +75,9 @@ h2 {
 }
 
 .card--game {
+  display: grid;
+  grid-template-columns: repeat(3, 125px);
   margin: 0.2rem;
-  padding: 2rem;
-
+  padding-bottom: 1rem;
   border-radius: 5px;
 }

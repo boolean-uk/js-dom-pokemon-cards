@@ -1,17 +1,38 @@
 let cards = document.querySelector(".cards")
 
+let expandedCard = null;
 data.forEach(pokemon => {
+    let id = 0;
+    id++;
     const card = document.createElement('li');
     card.style.listStyle = 'none'
     card.setAttribute('class', 'card');
+    card.setAttribute('id', id)
     card.append(createHeader(pokemon))
     card.append(createImage(pokemon))
 
     const textContainer = document.createElement("div")
     textContainer.setAttribute('class', 'card--text--container')
     textContainer.append(createCardContext(pokemon))
-    textContainer.append(addGameContext(pokemon))
+    let gameContext = addGameContext(pokemon)
+    card.addEventListener('click', () => {
+        const isExpanded = card.classList.contains('expanded');
 
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(otherCard => {
+            if (otherCard !== card) {
+                otherCard.classList.remove('expanded');
+            }
+        });
+
+        card.classList.toggle('expanded', !isExpanded);
+        if (!isExpanded) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            textContainer.append(gameContext)
+        }else {
+            textContainer.removeChild(gameContext)
+        }
+    })
 
     card.append(textContainer)
     cards.append(card)
@@ -62,13 +83,9 @@ function createCardContext(pokemon){
     textContainer.setAttribute('class', 'card--text')
     pokemon.stats.forEach(stat => {
         const listItem = document.createElement("li")
-        let statName = stat.stat.name.toUpperCase()
-        if(statName.includes("-")){
-            listItem.innerText = statName.slice(0,2).toUpperCase() + statName.slice(8,9).toUpperCase() + ":" + stat.base_stat
-        }else {
 
-            listItem.innerText = stat.stat.name.slice(0,3).toUpperCase() + ":" + stat.base_stat
-        }
+        listItem.innerText = stat.stat.name.toUpperCase() + ":" + stat.base_stat
+        
         textContainer.append(listItem)
     })
     return textContainer
@@ -77,22 +94,24 @@ function createCardContext(pokemon){
 
 function addGameContext(pokemon){
     const gameContainer = document.createElement("div")
+    gameContainer.setAttribute('class', 'card--game--container')
     gameContainer.style.listStyle = 'none'
-    gameContainer.setAttribute('class', 'card--game')
+
+    const header = document.createElement("p")
+    header.innerText = "Appeared in"
+    gameContainer.append(header)
+    
     const gameList = document.createElement("ul")
+    gameList.setAttribute('class', 'card--game')
+
     gameList.style.listStyle = 'none'
-    for(let i = 1; i < 7; i++){
+    pokemon.game_indices.forEach(game_index => {
+        console.log(game_index)
         const listItem = document.createElement("li")
-        const gameName = pokemon.game_indices[i].version.name.toUpperCase()
+        const gameName = game_index.version.name.toUpperCase()
         listItem.innerText = gameName
-        gameContainer.append(listItem)
-    }
-    // pokemon.game_indices.forEach(game_index => {
-    //     console.log(game_index)
-    //     const listItem = document.createElement("li")
-    //     const gameName = game_index.version.name.toUpperCase()
-    //     listItem.innerText = gameName
-    //     gameContainer.append(listItem)
-    // })
+        gameList.append(listItem)
+    })
+    gameContainer.append(gameList)
     return gameContainer
 }
