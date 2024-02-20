@@ -49,21 +49,21 @@ function GenerateCard(pokemon) {
         'Gen 7: Ultra-Sun/Ultra-Moon'
     ]
 
-    const listItem = document.createElement('li')
-    listItem.classList.add("card")
+    const cardElement = document.createElement('li')
+    cardElement.classList.add("card")
     
     const header = GenerateCardHeader(pokemon)
-    listItem.appendChild(header)
+    cardElement.appendChild(header)
 
     const pokemonImageContainer = GeneratePokemonImage(imagePaths, CardImageDescription)
     header.appendChild(pokemonImageContainer)
     
     const pokemonStats = GenerateStatList(pokemon)
-    listItem.appendChild(pokemonStats)
+    cardElement.appendChild(pokemonStats)
 
     const accordion = GenerateDetailsAccordion(pokemon)
-    listItem.appendChild(accordion)
-    return listItem
+    cardElement.appendChild(accordion)
+    return cardElement
 }
 
 /**
@@ -87,9 +87,10 @@ function GenerateCardHeader(pokemon) {
  * @returns A div element, containing a description (<p>) and and image (<img>)
  */
 function GeneratePokemonImage(imgPaths, imgDescs) {
-
+    let continueSlideshow = true
     // Generate the card image
     const imageContainer = document.createElement("div")
+    imageContainer.classList.add("imageContainer")
     const imageDescription = document.createElement("p")
     const image = document.createElement('img')
     image.width = "256"
@@ -97,17 +98,50 @@ function GeneratePokemonImage(imgPaths, imgDescs) {
     image.src = imgPaths[0]
     imageDescription.textContent = imgDescs[0]
     imageDescription.style.fontSize = "small"
-    image.addEventListener("click", function() {
-        let elementIndex = imgPaths.indexOf(image.src)
-        image.src = imgPaths[(elementIndex + 1) % imgPaths.length]
-        imageDescription.textContent = imgDescs[(elementIndex + 1) % imgPaths.length]
+
+    const resetButton = GenerateResetButton()
+    resetButton.addEventListener("click", () => {
+        // Hide the button when pressed
+        resetButton.style.display = "none"
+        // Continue slideshow
+        continueSlideshow = true
+    })
+
+    // First click now stop the slideshow, 2nd and onward changes image
+    image.addEventListener("click", () => {
+        // Stop slideshow when image clicked and show the reset button
+        if (continueSlideshow) {
+            continueSlideshow = false
+            resetButton.style.display = "block"
+        } else {
+            // Move to next image/description
+            let elementIndex = imgPaths.indexOf(image.src)
+            image.src = imgPaths[(elementIndex + 1) % imgPaths.length]
+            imageDescription.textContent = imgDescs[(elementIndex + 1) % imgPaths.length]
+        }
     })
     
+
+
+    const maxTime = 10000 // Maximum time 10s (10000ms)
+    const minTime = 2000 // Minimm time 2s (2000ms)
+    const UPDATE_TIME = Math.floor(Math.random() * (maxTime - minTime + 1) + minTime)
+    setInterval(() => {
+        if (continueSlideshow) {
+            let elementIndex = imgPaths.indexOf(image.src)
+            image.src = imgPaths[(elementIndex + 1) % imgPaths.length]
+            imageDescription.textContent = imgDescs[(elementIndex + 1) % imgPaths.length]
+        }
+    }, UPDATE_TIME)
+    
+
     imageContainer.appendChild(image)
+    imageContainer.appendChild(resetButton)
     imageContainer.appendChild(imageDescription)
 
     return imageContainer   
 }
+
 
 /**
  * Generat the stat list for the provided pokemon
@@ -162,4 +196,16 @@ function GenerateDetailsAccordion(pokemon) {
         accordionList.appendChild(appearance)
     })
     return accordion
+}
+
+function GenerateResetButton() {
+
+    const resetButton = document.createElement("button")
+    const resetButtonImage = document.createElement("img")
+    resetButtonImage.src = "./src/media/reset_icon.png"
+    resetButtonImage.classList.add("imageBtnImage")
+    resetButton.appendChild(resetButtonImage)
+    resetButton.classList.add("imageBtn")
+
+    return resetButton
 }
