@@ -88,6 +88,7 @@ function GenerateCardHeader(pokemon) {
  */
 function GeneratePokemonImage(imgPaths, imgDescs) {
     let continueSlideshow = true
+    let lockSlideshow = false
     // Generate the card image
     const imageContainer = document.createElement("div")
     imageContainer.classList.add("imageContainer")
@@ -105,13 +106,14 @@ function GeneratePokemonImage(imgPaths, imgDescs) {
         resetButton.style.display = "none"
         // Continue slideshow
         continueSlideshow = true
+        lockSlideshow = false
     })
 
     // First click now stop the slideshow, 2nd and onward changes image
     image.addEventListener("click", () => {
         // Stop slideshow when image clicked and show the reset button
-        if (continueSlideshow) {
-            continueSlideshow = false
+        if (!lockSlideshow) {
+            lockSlideshow = true
             resetButton.style.display = "block"
         } else {
             // Move to next image/description
@@ -120,11 +122,24 @@ function GeneratePokemonImage(imgPaths, imgDescs) {
             imageDescription.textContent = imgDescs[(elementIndex + 1) % imgPaths.length]
         }
     })
+
+    image.addEventListener("mouseover", () => {
+        continueSlideshow = false
+    })
+
+    image.addEventListener("mouseout", () => {
+        if (!lockSlideshow) {
+            continueSlideshow = true
+        }
+    })
+
+
+
     
 
 
-    const maxTime = 10000 // Maximum time 10s (10000ms)
-    const minTime = 2000 // Minimm time 2s (2000ms)
+    const maxTime = 2000 // Maximum time 10s (10000ms)
+    const minTime = 1000 // Minimm time 2s (2000ms)
     const UPDATE_TIME = Math.floor(Math.random() * (maxTime - minTime + 1) + minTime)
     setInterval(() => {
         if (continueSlideshow) {
