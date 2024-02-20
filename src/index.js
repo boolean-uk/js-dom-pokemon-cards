@@ -13,10 +13,15 @@ const generateNames = () => {
     return `<ul>${versionList.join('')}</ul>`
 }
 
+const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.splice(1)
+}
+
     const stats = {}
+
     pokemon.stats.array.forEach((s) => {
         const statName = stat.stat.name
-        viewOfCards[statName] = state.base_stat
+        stats[statName] = state.base_stat
     });
 
 const art = getArtworks(pokemon)
@@ -48,9 +53,56 @@ const art = getArtworks(pokemon)
 
     const getArtworks = (pokemon) => {
         const urls = []
-
         
+        if (pokemon.sprites) {
+            
+            if (pokemon.sprites.front_default) {
+                urls.push(pokemon.sprites.front_default);
+            }
+            if (pokemon.sprites.back_default) {
+                urls.push(pokemon.sprites.back_default);
+            }
+    
+            
+            if (pokemon.sprites.front_shiny) {
+                urls.push(pokemon.sprites.front_shiny);
+            }
+            if (pokemon.sprites.back_shiny) {
+                urls.push(pokemon.sprites.back_shiny);
+            }
+    
+           
+            if (pokemon.sprites.other) {
+                if (pokemon.sprites.other["official-artwork"] && pokemon.sprites.other["official-artwork"].front_default) {
+                    urls.push(pokemon.sprites.other["official-artwork"].front_default);
+                }
+                if (pokemon.sprites.other.dream_world && pokemon.sprites.other.dream_world.front_default) {
+                    urls.push(pokemon.sprites.other.dream_world.front_default);
+                }
+            }
+    
+            
+            if (pokemon.sprites.versions) {
+                for (const generation in pokemon.sprites.versions) {
+                    const versionObj = pokemon.sprites.versions[generation];
+                    for (const versionName in versionObj) {
+                        const versionSprites = versionObj[versionName];
+                        if (versionSprites.front_default) {
+                            urls.push(versionSprites.front_default);
+                        }
+                        if (versionSprites.back_default) {
+                            urls.push(versionSprites.back_default);
+                        }
+                        
+                    }
+                }
+            }
+        }
+    
+        return urls.filter(Boolean);
     }
+
+    
 
     const CardArray = (pokemonList) => {
         return pokemonList.map(p=>viewOfCards(p))
