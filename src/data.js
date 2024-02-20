@@ -1,6 +1,6 @@
 const data = [
   {
-    name: "bulbasaur",
+    name: "Bulbasaur",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png",
@@ -419,7 +419,7 @@ const data = [
     id: 1
   },
   {
-    name: "ivysaur",
+    name: "Ivysaur",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/2.png",
@@ -838,7 +838,7 @@ const data = [
     id: 2
   },
   {
-    name: "venusaur",
+    name: "Venusaur",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png",
@@ -1287,7 +1287,7 @@ const data = [
     id: 3
   },
   {
-    name: "charmander",
+    name: "Charmander",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png",
@@ -1706,7 +1706,7 @@ const data = [
     id: 4
   },
   {
-    name: "charmeleon",
+    name: "Charmeleon",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/5.png",
@@ -2125,7 +2125,7 @@ const data = [
     id: 5
   },
   {
-    name: "charizard",
+    name: "Charizard",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/6.png",
@@ -2544,7 +2544,7 @@ const data = [
     id: 6
   },
   {
-    name: "squirtle",
+    name: "Squirtle",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png",
@@ -2963,7 +2963,7 @@ const data = [
     id: 7
   },
   {
-    name: "wartortle",
+    name: "Wartortle",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/8.png",
@@ -3382,7 +3382,7 @@ const data = [
     id: 8
   },
   {
-    name: "blastoise",
+    name: "Blastoise",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/9.png",
@@ -3801,7 +3801,7 @@ const data = [
     id: 9
   },
   {
-    name: "caterpie",
+    name: "Caterpie",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10.png",
@@ -4220,7 +4220,7 @@ const data = [
     id: 10
   },
   {
-    name: "metapod",
+    name: "Metapod",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/11.png",
@@ -4639,7 +4639,7 @@ const data = [
     id: 11
   },
   {
-    name: "butterfree",
+    name: "Butterfree",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/12.png",
@@ -5088,7 +5088,7 @@ const data = [
     id: 12
   },
   {
-    name: "weedle",
+    name: "Weedle",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/13.png",
@@ -5507,7 +5507,7 @@ const data = [
     id: 13
   },
   {
-    name: "kakuna",
+    name: "Kakuna",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/14.png",
@@ -5926,7 +5926,7 @@ const data = [
     id: 14
   },
   {
-    name: "beedrill",
+    name: "Beedrill",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/15.png",
@@ -6345,7 +6345,7 @@ const data = [
     id: 15
   },
   {
-    name: "pidgey",
+    name: "Pidgey",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/16.png",
@@ -6764,7 +6764,7 @@ const data = [
     id: 16
   },
   {
-    name: "pidgeotto",
+    name: "Pidgeotto",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/17.png",
@@ -7183,7 +7183,7 @@ const data = [
     id: 17
   },
   {
-    name: "pidgeot",
+    name: "Pidgeot",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/18.png",
@@ -7602,7 +7602,7 @@ const data = [
     id: 18
   },
   {
-    name: "rattata",
+    name: "Rattata",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/19.png",
@@ -8051,7 +8051,7 @@ const data = [
     id: 19
   },
   {
-    name: "raticate",
+    name: "Raticate",
     sprites: {
       back_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/20.png",
