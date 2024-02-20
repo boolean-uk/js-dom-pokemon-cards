@@ -47,15 +47,56 @@ const cardTemplate = (pokemon)=>{
         <button class="toggle-image-btn">Toggle Image</button>
     </li>`
 }
-const getArtworks = (pokemon) => [
-    pokemon.sprites.other["official-artwork"].front_default,
-    pokemon.sprites.front_default,
-    pokemon.sprites.back_default,
-    pokemon.sprites.front_shiny,
-    pokemon.sprites.back_shiny,
-    pokemon.sprites.other.dream_world.front_default
-    
-].filter(Boolean);
+const getArtworks = (pokemon) => {
+    const artworkUrls = [];
+
+    if (pokemon.sprites) {
+        // Add default sprites
+        if (pokemon.sprites.front_default) {
+            artworkUrls.push(pokemon.sprites.front_default);
+        }
+        if (pokemon.sprites.back_default) {
+            artworkUrls.push(pokemon.sprites.back_default);
+        }
+
+        // Add shiny sprites
+        if (pokemon.sprites.front_shiny) {
+            artworkUrls.push(pokemon.sprites.front_shiny);
+        }
+        if (pokemon.sprites.back_shiny) {
+            artworkUrls.push(pokemon.sprites.back_shiny);
+        }
+
+        // Add other sprites if available
+        if (pokemon.sprites.other) {
+            if (pokemon.sprites.other["official-artwork"] && pokemon.sprites.other["official-artwork"].front_default) {
+                artworkUrls.push(pokemon.sprites.other["official-artwork"].front_default);
+            }
+            if (pokemon.sprites.other.dream_world && pokemon.sprites.other.dream_world.front_default) {
+                artworkUrls.push(pokemon.sprites.other.dream_world.front_default);
+            }
+        }
+
+        // Add version-specific sprites
+        if (pokemon.sprites.versions) {
+            for (const generation in pokemon.sprites.versions) {
+                const versionObj = pokemon.sprites.versions[generation];
+                for (const versionName in versionObj) {
+                    const versionSprites = versionObj[versionName];
+                    if (versionSprites.front_default) {
+                        artworkUrls.push(versionSprites.front_default);
+                    }
+                    if (versionSprites.back_default) {
+                        artworkUrls.push(versionSprites.back_default);
+                    }
+                    // Add more conditions if necessary
+                }
+            }
+        }
+    }
+
+    return artworkUrls.filter(Boolean);
+};
 
 //Map every pokemon into the cardTemplate
 const CardArray = (pokemonList) => {
@@ -67,17 +108,15 @@ document.getElementsByClassName('cards')[0].innerHTML = CardArray(data).join('')
 // Event listener for toggling artworks
 const cardElements = document.querySelectorAll('.card');
 cardElements.forEach(cardElement => {
-    const toggleBtn = cardElement.querySelector('.toggle-image-btn');
     const imgElement = cardElement.querySelector('.card--img');
-    
-    toggleBtn.addEventListener('click', () => {
-        
+
+    imgElement.addEventListener('click', () => {
         const pokemonName = cardElement.getAttribute('data-pokemon-name');
         const pokemon = data.find(p => p.name === pokemonName);
-        const artworks = getArtworks(pokemon)
         const currentArtworkIndex = parseInt(cardElement.getAttribute('data-current-artwork'), 10);
+        const artworks = getArtworks(pokemon);
         const nextArtworkIndex = (currentArtworkIndex + 1) % artworks.length;
-        console.log(artworks[currentArtworkIndex])
+
         imgElement.setAttribute('src', artworks[nextArtworkIndex]);
         cardElement.setAttribute('data-current-artwork', nextArtworkIndex.toString());
     });
