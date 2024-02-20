@@ -1,16 +1,12 @@
 // Wait for DOM to finish loading before generating the cards
 document.addEventListener('DOMContentLoaded', function() {
+    // Find the parent elemnt each generated element will be appended to
     const parent = document.querySelector('.cards');
-    //console.log(data);
-
-    //You can start simple and just render a single 
-    //pokemon card from the first element
-    // console.log(data);
     GeneratePokemonCards(data, parent)
 });
 
 function GeneratePokemonCards(pokemonData, parentElement) {
-    
+    // Iterate through each pokemon in the database
     pokemonData.forEach((pokemon) => {
         const pokemonCard = GenerateCard(pokemon)
         parentElement.appendChild(pokemonCard)
@@ -133,13 +129,8 @@ function GeneratePokemonImage(imgPaths, imgDescs) {
         }
     })
 
-
-
-    
-
-
-    const maxTime = 2000 // Maximum time 10s (10000ms)
-    const minTime = 1000 // Minimm time 2s (2000ms)
+    const maxTime = 10000 // Maximum time 10s (10000ms)
+    const minTime = 2000 // Minimm time 2s (2000ms)
     const UPDATE_TIME = Math.floor(Math.random() * (maxTime - minTime + 1) + minTime)
     setInterval(() => {
         if (continueSlideshow) {
@@ -149,7 +140,6 @@ function GeneratePokemonImage(imgPaths, imgDescs) {
         }
     }, UPDATE_TIME)
     
-
     imageContainer.appendChild(image)
     imageContainer.appendChild(resetButton)
     imageContainer.appendChild(imageDescription)
@@ -214,7 +204,6 @@ function GenerateDetailsAccordion(pokemon) {
 }
 
 function GenerateResetButton() {
-
     const resetButton = document.createElement("button")
     const resetButtonImage = document.createElement("img")
     resetButtonImage.src = "./src/media/reset_icon.png"
