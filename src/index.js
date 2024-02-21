@@ -34,6 +34,7 @@ function loadCard(pokemon) {
     // Create and add the stats
     // Create the surrounding unordered list
     let cardUL = document.createElement("ul")
+    cardUL.setAttribute('class', 'card--text')
     for (const i in pokemon.stats) { // Iterate through the stats
         let cardLi = document.createElement("li")
         const str = pokemon.stats[i].stat.name.toUpperCase() + ': ' + pokemon.stats[i].base_stat
@@ -41,6 +42,18 @@ function loadCard(pokemon) {
         cardUL.appendChild(cardLi)
     }
     cardLi.appendChild(cardUL)
+
+    let gameH3 = document.createElement("h3")
+    gameH3.innerHTML = "Game appearences"
+    cardLi.appendChild(gameH3)
+
+    let gameUL = document.createElement("ul")
+    for (let i in pokemon.game_indices) {
+        let gameLi = document.createElement("li")
+        gameLi.innerHTML = pokemon.game_indices[i].version.name
+        gameUL.appendChild(gameLi)
+    }
+    cardLi.appendChild(gameUL)
 
     return cardLi
 }
