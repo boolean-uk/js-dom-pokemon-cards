@@ -31,7 +31,6 @@ h2 {
   gap: 15px;
   justify-content: center;
   justify-items: center;
-
   padding: 2rem 0;
   margin-bottom: 2rem;
 }
@@ -53,7 +52,7 @@ h2 {
 }
 
 .card--text {
-  margin: 0.2rem;
+  margin: 0 auto;
   padding: 1rem;
 
   border-radius: 5px;
