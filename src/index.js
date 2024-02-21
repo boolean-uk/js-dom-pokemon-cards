@@ -29,7 +29,8 @@ window.onload = function() {
         // Create the stats paragraphs
         for(let i = 0; i < pokemon.stats.length; i++){
             const stats = document.createElement('p');
-            stats.textContent = `${pokemon.stats[i].stat.name}: ${pokemon.stats[i].base_stat}`;
+            stats.textContent = `${pokemon.stats[i].stat.name.toUpperCase()}: ${pokemon.stats[i].base_stat}`;
+
             stats.className = 'card--text';
             card.appendChild(stats);
         }
