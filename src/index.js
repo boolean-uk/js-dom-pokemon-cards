@@ -17,8 +17,8 @@ for (const currentData of data) {
     cardLi.appendChild(statsUl)
 
     // Append the li element to the ul element
-    cardLi.style.listStyleType = 'none'
     cardsUl.appendChild(cardLi);
+
 }
 
 function renderHeader(cardData) {
@@ -43,9 +43,49 @@ function renderStats(cardData) {
     for (const stat of cardData.stats) {
         const statLi = document.createElement('li');
         statLi.textContent = `${stat.stat.name.toUpperCase()}: ${stat.base_stat}`;
-        statLi.style.listStyleType = 'none'
         statsUl.appendChild(statLi);
     }
+
+    const gameLi = document.createElement('li');
+    gameLi.innerHTML = 'GAMES ▼'
+    // gameLi.setAttribute('id', `expand ${cardData.name}`)
+    const div = document.createElement('div')
+    div.classList.add('expandable')
+    div.setAttribute('id', `gameList ${cardData.name}`)
+    const gameUl = renderGames(cardData)
+
+
+        gameLi.addEventListener("click", function () {
+          this.classList.toggle("active");
+          var gameList = document.getElementById("gameList " + cardData.name);
+
+
+          if (gameList.style.display === "block") {
+            gameList.style.display = "none";
+       //     this.textContent = 'GAMES ▼'
+          } else {
+            gameList.style.display = "block";
+         //   this.innerHTML = 'GAMES ▲'
+          }
+        });
+      
+
+    div.appendChild(gameUl)
+    gameLi.appendChild(div)
+    statsUl.appendChild(gameLi)
+
     return statsUl;
 }
 
+function renderGames(cardData) {
+    const gamesUl = document.createElement('ul');
+    gamesUl.classList.add('card--text')
+
+    for (const game of cardData.game_indices) {
+        const gameLi = document.createElement('li');
+        gameLi.textContent = game.version.name;
+        gameLi.style.listStyleType = 'none'
+        gamesUl.appendChild(gameLi);
+    }
+    return gamesUl;
+}
