@@ -6,8 +6,11 @@ console.log(data);
 
 const createPoke = (poke) => {
 
+let pokeName = poke.name
+pokeName = pokeName.charAt(0).toUpperCase() + pokeName.slice(1)
+
 return `<li class="card">
-    <h2 class="card--title">${poke.name}</h2>
+    <h2 class="card--title">${pokeName}</h2>
     <img
       width="256"
       class="card--img"
