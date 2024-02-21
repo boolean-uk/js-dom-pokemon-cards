@@ -47,11 +47,11 @@ function GenerateCard(pokemon) {
 
     const cardElement = document.createElement('li')
     cardElement.classList.add("card")
-    
+
     const header = GenerateCardHeader(pokemon)
     cardElement.appendChild(header)
 
-    const pokemonImageContainer = GeneratePokemonImage(imagePaths, CardImageDescription)
+    const pokemonImageContainer = GeneratePokemonImage(pokemon, imagePaths, CardImageDescription)
     header.appendChild(pokemonImageContainer)
     
     const pokemonStats = GenerateStatList(pokemon)
@@ -82,7 +82,7 @@ function GenerateCardHeader(pokemon) {
  * @param {string[]} imgDescs String of description for each possible pokemon image
  * @returns A div element, containing a description (<p>) and and image (<img>)
  */
-function GeneratePokemonImage(imgPaths, imgDescs) {
+function GeneratePokemonImage(pokemon, imgPaths, imgDescs) {
     let continueSlideshow = true
     let lockSlideshow = false
     // Generate the card image
@@ -91,10 +91,13 @@ function GeneratePokemonImage(imgPaths, imgDescs) {
     const imageDescription = document.createElement("p")
     const image = document.createElement('img')
     image.width = "256"
+    AppendTypeClass(image, pokemon)
     image.classList.add("card--img")
     image.src = imgPaths[0]
     imageDescription.textContent = imgDescs[0]
     imageDescription.style.fontSize = "small"
+
+    console.log(imageContainer)
 
     const resetButton = GenerateResetButton()
     resetButton.addEventListener("click", () => {
@@ -147,6 +150,33 @@ function GeneratePokemonImage(imgPaths, imgDescs) {
     return imageContainer   
 }
 
+function AppendTypeClass(HTMLElement, pokemon) {
+    switch(pokemon.type) {
+        case "grass":
+            HTMLElement.style.background = "rgb(2,0,36)"
+            HTMLElement.style.background = "radial-gradient(circle, rgba(2,0,36,1) 6%, rgba(63,151,74,1) 44%, rgba(159,160,58,1) 82%)"
+            break;
+        case "fire":
+            HTMLElement.style.background = "rgb(131,58,180)"
+            HTMLElement.style.background = "linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)"
+            break;
+        case "water":
+            HTMLElement.style.background = "rgb(34,44,195)"
+            HTMLElement.style.background = "linear-gradient(0deg, rgba(34,44,195,1) 0%, rgba(102,45,253,1) 46%, rgba(40,135,224,1) 95%)"
+            break;
+        case "bug":
+            HTMLElement.style.background = "rgb(70,252,160)"
+            HTMLElement.style.background = "radial-gradient(circle, rgba(70,252,160,1) 0%, rgba(140,63,251,1) 90%)"
+            break;
+        case "normal":
+            HTMLElement.style.background = "rgb(194,208,40)"
+            HTMLElement.style.background = "linear-gradient(0deg, rgba(194,208,40,1) 5%, rgba(40,224,183,1) 100%)"
+            break;
+        case "flying":
+            HTMLElement.style.background = "rgb(237,252,70)"
+            HTMLElement.style.background = "radial-gradient(circle, rgba(237,252,70,0.8505602924763656) 0%, rgba(230,148,187,0.6180672952774859) 47%, rgba(63,201,251,1) 90%)"
+    }
+}
 
 /**
  * Generat the stat list for the provided pokemon

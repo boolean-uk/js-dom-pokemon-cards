@@ -42,9 +42,11 @@ h2 {
   list-style: none;
   border: 1px solid #252525;
   border-radius: 8px;
-
   cursor: pointer;
   transition: all 300ms;
+
+  background: rgb(60,90,166);
+  background: linear-gradient(-60deg, rgba(60,90,166,1) 0%, rgba(199,160,8,1) 25%, rgba(42,117,187,0.6404762588629201) 62%, rgba(255,203,5,0.8925770991990546) 97%);
 }
 
 .card:hover {
@@ -83,7 +85,7 @@ transition: 0.3s;
 }
 
 .active, .accordion:hover {
-  background-color:#0ddd64;
+  background-color:#2a75bb;
 }
 
 /* Style the accordion panel. Note: hidden by default */
@@ -119,4 +121,9 @@ overflow: scroll;
   background-color: blanchedalmond;
   border-style: dotted;
   border-radius: 45%;
+}
+
+.grass-type {
+  background: rgb(2,0,36);
+  background: radial-gradient(circle, rgba(2,0,36,1) 6%, rgba(63,151,74,1) 44%, rgba(159,160,58,1) 82%); 
 }
