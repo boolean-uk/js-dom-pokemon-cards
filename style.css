@@ -53,10 +53,15 @@ h2 {
 }
 
 .card--text {
+  list-style-type: none;
   margin: 0.2rem;
   padding: 1rem;
 
   border-radius: 5px;
+}
+
+.card--title {
+  list-style-type: none;
 }
 
 .card--img {
