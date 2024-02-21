@@ -7,6 +7,7 @@ console.log(data);
 //pokemon card from the first element
 console.log(data[0]);
 
+// Capitalize the first letter of the names
 function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1, str.length)
 }
@@ -22,6 +23,7 @@ function loadCard(pokemon) {
     cardTitle.innerHTML = capitalize(pokemon.name)
     cardLi.appendChild(cardTitle)
 
+    // Create and add the images
     let cardImg = document.createElement("img")
     cardImg.setAttribute('width', '256')
     cardImg.setAttribute('class', 'card--img')
@@ -29,11 +31,12 @@ function loadCard(pokemon) {
     console.log(pokemon.sprites.other['official-artwork'].front_default)
     cardLi.appendChild(cardImg)
 
+    // Create and add the stats
+    // Create the surrounding unordered list
     let cardUL = document.createElement("ul")
-    for (const stat in pokemon.stats) {
+    for (const i in pokemon.stats) { // Iterate through the stats
         let cardLi = document.createElement("li")
-        const str = pokemon.stats[stat].stat.name.toUpperCase() + ': ' + pokemon.stats[stat].base_stat
-        console.log(str)
+        const str = pokemon.stats[i].stat.name.toUpperCase() + ': ' + pokemon.stats[i].base_stat
         cardLi.innerHTML = str
         cardUL.appendChild(cardLi)
     }
