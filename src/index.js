@@ -19,6 +19,9 @@ data.forEach(pokemon => {
     card.classList.add('card');
     const imageUrl = getNestedProperty(pokemon.sprites, spritePaths[0]);
     card.innerHTML = `
+        <div class="card-glow-effect"></div>
+        <div class="card-shiny-overlay"></div>
+        <div class="card-shiny-texture"></div>
         <h2 class="card--title">${capitalize(pokemon.name)}</h2>
         <img
             width="256"
@@ -42,25 +45,41 @@ data.forEach(pokemon => {
         </div>
     `;
     // Color code cards based on type
-    if (currentImageIndex < 3){
+    const overlay = card.querySelector('.card-shiny-overlay');
+    if (currentImageIndex < 3) {
         card.style.backgroundColor = "#a5ce96";
         card.style.borderColor = "#359e4a";
+        if (Math.random() > 0) {
+            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
+        }
     }
-    else if (currentImageIndex < 6){
+    else if (currentImageIndex < 6) {
         card.style.backgroundColor = "#f08069";
         card.style.borderColor = "#d15136";
+        if (Math.random() > 0.8) {
+            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
+        }
     }
-    else if (currentImageIndex < 9){
+    else if (currentImageIndex < 9) {
         card.style.backgroundColor = "#51beef";
         card.style.borderColor = "#05649a";
+        if (Math.random() > 0.8) {
+            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
+        }
     }
-    else if (currentImageIndex < 15){
+    else if (currentImageIndex < 15) {
         card.style.backgroundColor = "#bad247";
         card.style.borderColor = "#fed758";
+        if (Math.random() > 0.8) {
+            overlay.style.backgroundImage = "linear-gradient(-45deg, #FE58D2, #587FFE)"
+        }
     }
-    else{
+    else {
         card.style.backgroundColor = "darkgrey";
         card.style.borderColor = "#fed758";
+        if (Math.random() > 0.8) {
+            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
+        }
     }
 
     currentImageIndex++;
@@ -74,7 +93,7 @@ data.forEach(pokemon => {
         appearedIn.style.display = appearedIn.style.display === 'none' ? 'block' : 'none';
         button.textContent = appearedIn.style.display === 'none' ? 'Show more info' : 'Hide info';
     });
-    
+
     // Cycle through images with click
     const imageElement = card.querySelector('.card--img');
     imageElement.addEventListener('click', () => cycleImage(imageElement));
@@ -82,8 +101,13 @@ data.forEach(pokemon => {
     // Parralax effect on hover
     card.addEventListener('mousemove', (e) => {
         const cardBoundingRect = card.getBoundingClientRect();
-        const xAxis = (cardBoundingRect.width / 2 - (e.clientX - cardBoundingRect.left)) / 20;
-        const yAxis = (cardBoundingRect.height / 2 - (e.clientY - cardBoundingRect.top)) / 20;
+        const relativeX = (e.clientX - cardBoundingRect.left)
+        const relativeY = (e.clientY - cardBoundingRect.top)
+        card.style.setProperty('--x', relativeX + 'px');
+        card.style.setProperty('--y', relativeY + 'px');
+
+        const xAxis = (cardBoundingRect.width / 2 - relativeX) / 20;
+        const yAxis = (cardBoundingRect.height / 2 - relativeY) / 20;
         card.style.transform = `rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
     });
     // Reset transform on mouseleave
@@ -94,7 +118,7 @@ data.forEach(pokemon => {
     // Cycle through images when clicking the image
     function cycleImage(img) {
         let nextImage;
-        while(!nextImage) {
+        while (!nextImage) {
             currentImageIndex++;
             currentImageIndex = (currentImageIndex) % spritePaths.length; // Increment the index and cycle back to 0 if it exceeds the array length
             nextImage = getNestedProperty(pokemon.sprites, spritePaths[currentImageIndex]);
