@@ -20,7 +20,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
         }
@@ -439,7 +439,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
         }
@@ -862,7 +862,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
         }
@@ -1307,7 +1307,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
         }
@@ -1726,7 +1726,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/5.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png"
         }
@@ -2145,7 +2145,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
         }
@@ -2564,7 +2564,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/7.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
         }
@@ -2983,7 +2983,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/8.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png"
         }
@@ -3402,7 +3402,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/9.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png"
         }
@@ -3821,7 +3821,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/10.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10.png"
         }
@@ -4240,7 +4240,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/11.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png"
         }
@@ -4663,7 +4663,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/12.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png"
         }
@@ -5108,7 +5108,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/13.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/13.png"
         }
@@ -5527,7 +5527,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/14.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/14.png"
         }
@@ -5946,7 +5946,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/15.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png"
         }
@@ -6365,7 +6365,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/16.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/16.png"
         }
@@ -6784,7 +6784,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/17.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png"
         }
@@ -7203,7 +7203,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/18.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/18.png"
         }
@@ -7626,7 +7626,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/19.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/19.png"
         }
@@ -8075,7 +8075,7 @@ const data = [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/20.svg",
           front_female: null
         },
-        "official-artwork": {
+        official_artwork: {
           front_default:
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/20.png"
         }

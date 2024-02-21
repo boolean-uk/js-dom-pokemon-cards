@@ -62,6 +62,27 @@ h2 {
 .card--img {
   display: block;
   margin: 0 auto;
-
+  width: 100%;
+  height: auto;
+  object-fit: scale-down;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
+
+@keyframes squish {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes expand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
