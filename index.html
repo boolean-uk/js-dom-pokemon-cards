@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JS</title>
+    <title>Pokemon Trading Cards</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
-    <script defer src="/src/data.js"></script>
-    <script defer src="/src/index.js"></script>
+    <script defer src="./src/data.js"></script>
+    <script defer src="./src/index.js"></script>
   </head>
   <body>
     <h1>Pokemon Trading Cards</h1>
-    <ul class="cards">
-      <!-- Look at /templates/card.html for the template of a card -->
-    </ul>
+    <div class="main-page">
+      <ul class="cards"></ul>
+      <aside class="sidebar">
+        <h2 class="sidebar--title"></h2>
+        <img width="256" class="sidebar--img"/>
+        <h3>Stats:</h3>
+        <ul class="sidebar--text" id="sidebar--stats"></ul>
+        <h3>Appears in:</h3>
+        <p class="sidebar--text" id="sidebar--games"></p>
+        </ul>
+      </aside>
+    </div>
   </body>
 </html>
