@@ -18,9 +18,9 @@ const cardTemplate = (pokemon)=>{
   pokemon.stats.forEach((stat) => {
       const statName = stat.stat.name
       pokemonStats[statName] = stat.base_stat
-  })
-  
-  const artworks = fetchArtwork(pokemon)
+    })
+    
+    const artworks = fetchArtwork(pokemon)
 
   return `
   <li class="card" data-pokemon-name="${pokemon.name}" data-current-artwork="0">
