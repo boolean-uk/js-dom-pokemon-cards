@@ -7,9 +7,27 @@ console.log(data);
 //pokemon card from the first element
 console.log(data[0]);
 
-// Capitalize the first letter of the names
-function capitalize(str) {
-    return str[0].toUpperCase() + str.slice(1, str.length)
+// Update data
+
+function togglePokemonImg(pokemon, img) {
+    pokemon.cardImg = img;
+    renderCards()
+}
+
+// Loading data
+
+function loadImages(pokemon) {
+    let images = []
+    for (const i in pokemon.sprites) {
+        if (pokemon.sprites[i] != null) {
+            let img = {};
+            img.title = i
+            img.url = pokemon.sprites[i]
+            images.push(img)
+        }
+    }
+
+    return images
 }
 
 function loadCard(pokemon) {
@@ -24,12 +42,24 @@ function loadCard(pokemon) {
     cardLi.appendChild(cardTitle)
 
     // Create and add the images
+    //const imageArray = loadImages(pokemon)
     let cardImg = document.createElement("img")
     cardImg.setAttribute('width', '256')
     cardImg.setAttribute('class', 'card--img')
     cardImg.setAttribute('src', pokemon.sprites.other['official-artwork'].front_default)
     console.log(pokemon.sprites.other['official-artwork'].front_default)
     cardLi.appendChild(cardImg)
+
+    let dropdown = document.createElement("select")
+    const imgArray = loadImages(pokemon)
+    for (const i in imgArray) {
+        let option = document.createElement("option")
+
+        option.setAttribute('value', imgArray[i].url)
+        option.innerHTML = imgArray[i].title
+        dropdown.appendChild(option)
+    }
+    cardLi.appendChild(dropdown)
 
     // Create and add the stats
     // Create the surrounding unordered list
@@ -64,6 +94,13 @@ function renderCards() {
     for (let i = 0; i < data.length; i++) {
         cardList.appendChild(loadCard(data[i]))
     }
+}
+
+// Extra helper functions
+
+// Capitalize the first letter of the names
+function capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1, str.length)
 }
 
 
