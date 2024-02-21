@@ -7,13 +7,19 @@ console.log(data);
 //pokemon card from the first element
 console.log(data[0]);
 
+function capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1, str.length)
+}
+
 function loadCard(pokemon) {
+    // Create the surrounding list item
     const cardLi = document.createElement("li")
     cardLi.setAttribute('class', 'card')
 
+    // Create and add the title
     let cardTitle = document.createElement("h2")
     cardTitle.setAttribute('class', 'card--title')
-    cardTitle.innerHTML = pokemon.name
+    cardTitle.innerHTML = capitalize(pokemon.name)
     cardLi.appendChild(cardTitle)
 
     let cardImg = document.createElement("img")
