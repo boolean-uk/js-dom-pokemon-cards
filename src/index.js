@@ -13,13 +13,15 @@ function renderCards() {
     // Reset all of the cards
     cardListUL.innerHTML = ""
     // Loop through the data create a new li element for each
-    //for(let i = 0; i < data.length; i++) {
+    for(let i = 0; i < data.length; i++) {
         // Get the current card
-        const card = data[0]
+        const card = data[i]
+
         // Create a <li></li> for the card
         const cardLi = document.createElement('li')
         // Set attribute for card
         cardLi.setAttribute('class', 'card')
+
         // Create h2 pokemon name
         const name = document.createElement('h2')
         // Set attribute for H2
@@ -28,14 +30,16 @@ function renderCards() {
         name.innerText = card.name
         // Append name to card
         cardLi.appendChild(name)
+
         // Create image
         const image = document.createElement('img')
         // Set attributes for image
         image.setAttribute('width', 256)
         image.setAttribute('class', 'card--img')
-        image.setAttribute('src', data[0].sprites.other.dream_world.front_default)
+        image.setAttribute('src', data[i].sprites.other.dream_world.front_default)
         // Append image to card
         cardLi.appendChild(image)
+
         // Create list with card details
         const detailList = document.createElement('ul')
         // Set attribute for detailList
@@ -85,9 +89,10 @@ function renderCards() {
 
         // Append detailList to cardLi
         cardLi.appendChild(detailList)
+
         // Add the list element to the cardListUL
         cardListUL.appendChild(cardLi)
-    //}
+    }
 }
 // Intial Render
 function main() {
