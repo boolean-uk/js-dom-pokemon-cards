@@ -34,6 +34,18 @@ window.onload = function() {
             stats.className = 'card--text';
             card.appendChild(stats);
         }
+
+        // Extra section
+        const extra = document.createElement('p');
+        const extra2 = document.createElement('p');
+        extra.textContent = `Games featured in: `;
+        for(let i = 0; i < pokemon.game_indices.length; i++){
+            extra2.textContent += ` ${pokemon.game_indices[i].version.name},`;
+        }
+        extra.className = 'card--text';
+        extra2.className = 'card--text';
+        card.appendChild(extra);
+        card.appendChild(extra2);
         document.body.appendChild(card);
         cardsContainer.appendChild(card);
 
