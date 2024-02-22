@@ -28,10 +28,22 @@ function renderPokemons() {
             liStat.textContent = `${stat.stat.name.toUpperCase()}: ${stat.base_stat}`
             ul.appendChild(liStat)
         }
+
+        const ul2 = document.createElement('ul')
+        ul2.classList.add('card--game')
+        const games = pokemon.game_indices
+        ul2.textContent = 'GAMES:'
         
+        for (const game of games){
+            const liGame = document.createElement('li')
+            liGame.textContent = `Pokemon ${game.version.name.charAt(0).toUpperCase() + game.version.name.slice(1)}`
+            ul2.appendChild(liGame)
+        }
+
         pokemonLi.appendChild(h2)
         pokemonLi.appendChild(img)
         pokemonLi.appendChild(ul)
+        pokemonLi.appendChild(ul2)
         
         pokemonListUL.appendChild(pokemonLi)
     }
@@ -42,3 +54,4 @@ function main() {
 }
 
 main();
+
