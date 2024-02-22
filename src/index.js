@@ -21,7 +21,7 @@ function createPokemonCard() {
         const pokemonIMG = document.createElement('img')
         pokemonIMG.setAttribute("width", "256")
         pokemonIMG.setAttribute("class", "card--img")
-        pokemonIMG.setAttribute("src", pokemon.sprites.front_default)
+        pokemonIMG.setAttribute("src", pokemon.sprites.other["official-artwork"].front_default)
 
         const pokemonInnerUL = document.createElement('ul')
         pokemonInnerUL.setAttribute("class", "card--text")
@@ -94,6 +94,8 @@ function createPokemonCard() {
         
     }
 }
+
+
 
       
       async function main() {        
