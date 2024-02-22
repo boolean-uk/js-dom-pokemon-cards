@@ -16,11 +16,11 @@ function handleSelect(pokemon, imgUrl) {
 
 // Update data
 // Janky :/
-function togglePokemonImg(pokemon, img) {
+function togglePokemonImg(pokemon, imgUrl) {
     for (const i in pokemons) {
         if (pokemons[i].name === pokemon.name) 
         {
-            pokemons[i].img = img
+            pokemons[i].img = imgUrl
         }
     }
 
@@ -33,10 +33,12 @@ function loadImages(pokemon) {
     let images = []
     for (const i in pokemon.sprites) {
         if (pokemon.sprites[i] != null) {
-            let img = {};
-            img.title = i
-            img.url = pokemon.sprites[i]
-            images.push(img)
+            if (typeof pokemon.sprites[i] === 'string') {
+                let img = {};
+                img.title = i
+                img.url = pokemon.sprites[i]
+                images.push(img)
+            } 
         }
     }
 
@@ -63,13 +65,14 @@ function loadCard(pokemon) {
     cardLi.appendChild(cardImg)
 
     let dropdown = document.createElement("select")
+    dropdown.setAttribute('id', 'image-menu--dropdown')
     const imgArray = pokemon.imgArr
 
     for (const i in imgArray) {
         let option = document.createElement("option")
 
         option.setAttribute('value', imgArray[i].url)
-        option.innerHTML = imgArray[i].title
+        option.innerHTML = imgArray[i].title.replaceAll('_', ' ')
         dropdown.appendChild(option)
         option.addEventListener('change', console.log('Changed'))
         option.addEventListener('click',(event) => handleSelect(pokemon, imgArray[i].url))
@@ -88,14 +91,15 @@ function loadCard(pokemon) {
     }
     cardLi.appendChild(cardUL)
 
-    let gameH3 = document.createElement("h3")
+    const gameH3 = document.createElement("h3")
+    gameH3.setAttribute('id', 'game-appearences--title')
     gameH3.innerHTML = "Game appearences"
     cardLi.appendChild(gameH3)
 
     let gameUL = document.createElement("ul")
     gameUL.setAttribute('class', 'card--text')
-    // Probably should'nt put style here, but just for now. Adding scroll so the cards aren't super long
-    gameUL.setAttribute('style', 'height: 30px; overflow:scroll;')
+    gameUL.setAttribute('id', 'game-appearences--list')
+
     for (let i in pokemon.gameApp) {
         let gameLi = document.createElement("li")
         gameLi.innerHTML = pokemon.gameApp[i].gameTitle
@@ -130,7 +134,9 @@ function loadPokemons() {
             })
         }
         pokemons[i].imgArr = loadImages(data[i])
-        pokemons[i].imgArr.push({img: {title: 'default', url:data[i].sprites.other['official-artwork'].front_default}})
+        console.log("imuguharr ", pokemons[i].imgArr[0])
+        console.log("why ", {img: {title: 'default', url:data[i].sprites.other['official-artwork'].front_default}})
+        pokemons[i].imgArr.push({title: 'default', url:data[i].sprites.other['official-artwork'].front_default})
     }
 
 }

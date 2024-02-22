@@ -69,3 +69,34 @@ h2 {
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
+
+/*
+  Extension
+*/
+
+#game-appearences--title {
+  margin-top: -10px;
+  margin-left: 10px;
+}
+
+#game-appearences--list {
+  height: 60px; 
+  overflow: scroll;
+
+  margin-top: -15px;
+
+  border-style: solid;
+  border-width: 1px;
+
+  background-color:white;
+}
+
+#image-menu--dropdown {
+  margin: 3% auto auto 30%;
+  background-color: white;
+
+  border-style: solid;
+  border-width: 1px; 
+  border-color: black;
+  border-radius: 5px;
+}
