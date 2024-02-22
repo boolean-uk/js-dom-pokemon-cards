@@ -49,6 +49,20 @@ function renderCard(num) {
     }
     card.appendChild(cardStats)
 
+    // Games
+    const cardGames = document.createElement('li')
+    cardGames.classList = 'card--text'
+    let text = "Games: \n"
+    for (let i = 0; i < pokemon.game_indices.length-1; i++) {
+        let name = pokemon.game_indices[i].version.name
+        text += `${name},  `
+    }
+    let name = pokemon.game_indices[pokemon.game_indices.length-1].version.name
+    text += `${name}.`
+    cardGames.textContent = text
+
+    card.appendChild(cardGames)
+
     return card
 }
 
