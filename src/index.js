@@ -1,5 +1,6 @@
 const cardList = document.querySelector(".cards")
-
+let imgDefault = true
+const pokemons = [{}]
 
 console.log(data);
 
@@ -7,10 +8,22 @@ console.log(data);
 //pokemon card from the first element
 console.log(data[0]);
 
-// Update data
+// Handle user input
 
+function handleSelect(pokemon, imgUrl) {
+    togglePokemonImg(pokemon, imgUrl)
+}
+
+// Update data
+// Janky :/
 function togglePokemonImg(pokemon, img) {
-    pokemon.cardImg = img;
+    for (const i in pokemons) {
+        if (pokemons[i].name === pokemon.name) 
+        {
+            pokemons[i].img = img
+        }
+    }
+
     renderCards()
 }
 
@@ -38,7 +51,7 @@ function loadCard(pokemon) {
     // Create and add the title
     let cardTitle = document.createElement("h2")
     cardTitle.setAttribute('class', 'card--title')
-    cardTitle.innerHTML = capitalize(pokemon.name)
+    cardTitle.innerHTML = pokemon.name
     cardLi.appendChild(cardTitle)
 
     // Create and add the images
@@ -46,18 +59,20 @@ function loadCard(pokemon) {
     let cardImg = document.createElement("img")
     cardImg.setAttribute('width', '256')
     cardImg.setAttribute('class', 'card--img')
-    cardImg.setAttribute('src', pokemon.sprites.other['official-artwork'].front_default)
-    console.log(pokemon.sprites.other['official-artwork'].front_default)
+    cardImg.setAttribute('src', pokemon.img)
     cardLi.appendChild(cardImg)
 
     let dropdown = document.createElement("select")
-    const imgArray = loadImages(pokemon)
+    const imgArray = pokemon.imgArr
+
     for (const i in imgArray) {
         let option = document.createElement("option")
 
         option.setAttribute('value', imgArray[i].url)
         option.innerHTML = imgArray[i].title
         dropdown.appendChild(option)
+        option.addEventListener('change', console.log('Changed'))
+        option.addEventListener('click',(event) => handleSelect(pokemon, imgArray[i].url))
     }
     cardLi.appendChild(dropdown)
 
@@ -67,7 +82,7 @@ function loadCard(pokemon) {
     cardUL.setAttribute('class', 'card--text')
     for (const i in pokemon.stats) { // Iterate through the stats
         let cardLi = document.createElement("li")
-        const str = pokemon.stats[i].stat.name.toUpperCase() + ': ' + pokemon.stats[i].base_stat
+        const str = pokemon.stats[i].stat + ': ' + pokemon.stats[i].val
         cardLi.innerHTML = str
         cardUL.appendChild(cardLi)
     }
@@ -78,9 +93,12 @@ function loadCard(pokemon) {
     cardLi.appendChild(gameH3)
 
     let gameUL = document.createElement("ul")
-    for (let i in pokemon.game_indices) {
+    gameUL.setAttribute('class', 'card--text')
+    // Probably should'nt put style here, but just for now. Adding scroll so the cards aren't super long
+    gameUL.setAttribute('style', 'height: 30px; overflow:scroll;')
+    for (let i in pokemon.gameApp) {
         let gameLi = document.createElement("li")
-        gameLi.innerHTML = pokemon.game_indices[i].version.name
+        gameLi.innerHTML = pokemon.gameApp[i].gameTitle
         gameUL.appendChild(gameLi)
     }
     cardLi.appendChild(gameUL)
@@ -88,11 +106,42 @@ function loadCard(pokemon) {
     return cardLi
 }
 
+/**
+ * TODO: Toggle images on pokemon. Check the data loaded here, and use these objects to populate html
+ * Then, change images that way?? idk. We'll see :)
+ */
+function loadPokemons() {
+    for (let i = 0; i < data.length; i++) {
+        pokemons[i] = {
+            name: capitalize(data[i].name),
+            img: data[i].sprites.other['official-artwork'].front_default,
+            imgArr: [],
+            stats: [],
+            gameApp: []
+        }
+        for (let j = 0; j < data[i].stats.length; j++) {
+            pokemons[i].stats.push({stat: data[i].stats[j].stat.name.toUpperCase(), 
+            val: data[i].stats[j].base_stat})
+        }
+        for (let k = 0; k < data[i].game_indices.length; k++) {
+            pokemons[i].gameApp.push({
+                gameTitle: 
+                "Pokemon " + capitalize(data[i].game_indices[k].version.name)
+            })
+        }
+        pokemons[i].imgArr = loadImages(data[i])
+        pokemons[i].imgArr.push({img: {title: 'default', url:data[i].sprites.other['official-artwork'].front_default}})
+    }
+
+}
+
+
 // Render the cards
 function renderCards() {
+    cardList.innerHTML = ""
     const cards = []
     for (let i = 0; i < data.length; i++) {
-        cardList.appendChild(loadCard(data[i]))
+        cardList.appendChild(loadCard(pokemons[i]))
     }
 }
 
@@ -105,6 +154,7 @@ function capitalize(str) {
 
 
 function main() {
+    loadPokemons()
     renderCards()
 }
 
