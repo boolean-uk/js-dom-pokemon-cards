@@ -30,7 +30,7 @@ for (let n = 0; n < data.length; n++) {
     cardImg.class = "card--img"
     cardImg.src = data[n].sprites.other["official-artwork"].front_default
     cardImg.onclick = () => {
-        index = (index + 1) % (spritesList.length - 1);
+        index = (index + 1) % (spritesList.length - 2);
         cardImg.src = spritesList[index]
     }
 
