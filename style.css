@@ -17,13 +17,18 @@ body {
 }
 
 img {
-  max-width: 100%;
+  max-width: 100%;  
 }
 
 h1,
-h2 {
+h2,h4 {
   text-align: center;
 }
+
+ul{
+  list-style-type:none;
+}
+
 
 .cards {
   display: grid;
@@ -39,6 +44,8 @@ h2 {
 .card {
   width: 100%;
   justify-self: center;
+  justify-items: center;
+  padding-bottom: 2rem;
 
   border: 1px solid #252525;
   border-radius: 8px;
@@ -54,7 +61,7 @@ h2 {
 
 .card--text {
   margin: 0.2rem;
-  padding: 1rem;
+  padding: 2rem;
 
   border-radius: 5px;
 }
@@ -64,4 +71,8 @@ h2 {
   margin: 0 auto;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.hide{
+ display: none;
 }
