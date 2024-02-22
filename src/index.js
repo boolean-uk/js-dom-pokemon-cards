@@ -26,6 +26,8 @@ for (let n = 0; n < data.length; n++) {
 
     let spritesList = Object.values(data[n].sprites).filter((sprite) => sprite !== null);
 
+    spritesList.unshift(data[n].sprites.other["official-artwork"].front_default)
+    console.log(spritesList)
     cardImg.width = 256
     cardImg.class = "card--img"
     cardImg.src = data[n].sprites.other["official-artwork"].front_default
