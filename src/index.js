@@ -36,67 +36,77 @@ function createToggleButton(gamesSection) {
 // Selected Root Elements
 const pokemonListUL = document.querySelector(".cards");
 
-// Functions for building the interface
+// Function to create a Pokemon list item
+function createPokemonListItem(pokemon) {
+    const pokemonLi = document.createElement('li');
+    pokemonLi.classList.add('card');
+
+    const pokemonName = document.createElement('h2');
+    pokemonName.classList.add('card--title');
+    pokemonName.innerText = capitalizeFirstLetter(pokemon.name);
+    pokemonLi.appendChild(pokemonName);
+
+    const pokemonImg = createPokemonImage(pokemon.id);
+    pokemonLi.appendChild(pokemonImg);
+
+    const statsUl = createStatsList(pokemon.stats);
+    pokemonLi.appendChild(statsUl);
+
+    const gamesSection = createGamesSection(pokemon.game_indices);
+    pokemonLi.appendChild(gamesSection);
+
+    const toggleButton = createToggleButton(gamesSection);
+    pokemonLi.appendChild(toggleButton);
+
+    return pokemonLi;
+}
+
+// Function to create a Pokemon image element
+function createPokemonImage(pokemonId) {
+    const pokemonImg = document.createElement('img');
+    pokemonImg.classList.add('card--img');
+    pokemonImg.setAttribute('src', `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`);
+    pokemonImg.setAttribute('width', '256');
+    pokemonImg.addEventListener('click', () => {
+        togglePokemonImage(pokemonImg, pokemonId);
+    });
+    return pokemonImg;
+}
+
+// Function to create a list of stats for a Pokemon
+function createStatsList(stats) {
+    const statsUl = document.createElement('ul');
+    statsUl.classList.add('card--text');
+    stats.forEach(stat => {
+        const statLi = document.createElement('li');
+        statLi.innerText = `${stat.stat.name.toUpperCase()}: ${stat.base_stat}`;
+        statsUl.appendChild(statLi);
+    });
+    return statsUl;
+}
+
+// Function to create a section for the games of a Pokemon
+function createGamesSection(gameIndices) {
+    const gamesSection = document.createElement('section');
+    gamesSection.classList.add('card--games');
+    gamesSection.style.display = 'none'; // Hide the games section initially
+    const gamesUl = document.createElement('ul');
+    gameIndices.forEach(game => {
+        const gameLi = document.createElement('li');
+        gameLi.innerText = game.version.name;
+        gamesUl.appendChild(gameLi);
+    });
+    gamesSection.appendChild(gamesUl);
+    return gamesSection;
+}
+
+// Function to render the list of Pokemons
 function renderPokemons() {
-    // Reset all Pokemon
     pokemonListUL.innerHTML = "";
-    // Loop through the data array of Pokemon to create new li element for each
-    for (let i = 0; i < data.length; i++) {
-        // Get the current Pokemon
-        const pokemon = data[i];
-        // Create a <li></li>
-        const pokemonLi = document.createElement('li');
-        pokemonLi.classList.add('card');
-        // Create a <h2> element for the Pokemon name
-        const pokemonName = document.createElement('h2');
-        pokemonName.classList.add('card--title');
-        pokemonName.innerText = capitalizeFirstLetter(pokemon.name)
-        pokemonLi.appendChild(pokemonName);
-        // Create an <img> element for the Pokemon image
-        const pokemonImg = document.createElement('img');
-        pokemonImg.classList.add('card--img');
-        pokemonImg.setAttribute('src', `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`);
-        pokemonImg.setAttribute('width', '256');
-        // Add event listener to swap image source
-        pokemonImg.addEventListener('click', () => {
-            togglePokemonImage(pokemonImg, pokemon.id);
-        });
-        // Append the Pokemon Image to the Pokemons
-        pokemonLi.appendChild(pokemonImg);
-        // Create a <ul> element for the stats
-        const statsUl = document.createElement('ul');
-        statsUl.classList.add('card--text');
-        // Add each stat as a <li> element
-        pokemon.stats.forEach(stat => {
-            const statLi = document.createElement('li');
-            statLi.innerText = `${stat.stat.name.toUpperCase()}: ${stat.base_stat}`;
-            statsUl.appendChild(statLi);
-        });
-        // Append the stats <ul> to the Pokemon <li>
-        pokemonLi.appendChild(statsUl);
-        // Create a <section> element for the games
-        const gamesSection = document.createElement('section');
-        gamesSection.classList.add('card--games');
-        // Hide the games section initially
-        gamesSection.style.display = 'none'; 
-        // Create a <ul> element for the games
-        const gamesUl = document.createElement('ul');
-        // Add each game as a <li> element
-        pokemon.game_indices.forEach(game => {
-            const gameLi = document.createElement('li');
-            gameLi.innerText = game.version.name;
-            gamesUl.appendChild(gameLi);
-        });
-        // Append the games <ul> to the games section
-        gamesSection.appendChild(gamesUl);
-        // Append the games section to the Pokemon <li>
-        pokemonLi.appendChild(gamesSection);
-        // Create a toggle button and append it to the Pokemon <li>
-        const toggleButton = createToggleButton(gamesSection);
-        pokemonLi.appendChild(toggleButton);
-        // Add the list element Pokemon to the pokemonListUL
+    data.forEach(pokemon => {
+        const pokemonLi = createPokemonListItem(pokemon);
         pokemonListUL.appendChild(pokemonLi);
-    }
+    });
 }
 
 // Render
@@ -104,4 +114,4 @@ function main() {
     renderPokemons();
 }
 
-main()
+main();
