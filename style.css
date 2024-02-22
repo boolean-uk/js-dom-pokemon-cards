@@ -8,10 +8,8 @@ body {
 }
 
 body {
-  display: grid;
-  grid-template-columns: minmax(300px, 1200px);
+  grid-template-columns: minmax(300px, 400px);
   justify-content: center;
-
   height: 100vh;
   font-family: sans-serif;
 }
@@ -27,11 +25,11 @@ h2 {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 375px);
+  list-style-type: none;
+  grid-template-columns: repeat(auto-fill, 325px);
   gap: 15px;
   justify-content: center;
   justify-items: center;
-
   padding: 2rem 0;
   margin-bottom: 2rem;
 }
@@ -53,10 +51,15 @@ h2 {
 }
 
 .card--text {
+  list-style-type: none;
   margin: 0.2rem;
   padding: 1rem;
 
   border-radius: 5px;
+}
+
+.card--title{
+  list-style-type: none;
 }
 
 .card--img {
