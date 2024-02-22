@@ -55,7 +55,8 @@ h2 {
 .card--text {
   margin: 0.2rem;
   padding: 1rem;
-
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 900;
   border-radius: 5px;
 }
 
@@ -64,4 +65,8 @@ h2 {
   margin: 0 auto;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.no-list-style {
+  list-style: none;
 }
