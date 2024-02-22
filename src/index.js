@@ -16,7 +16,7 @@ function renderPokemons() {
         
         const img = document.createElement('img')
         img.classList.add('card--img')
-        img.setAttribute('src', pokemon.sprites.front_default)
+        img.setAttribute('src', pokemon.sprites.other['official-artwork'].front_default)
         img.setAttribute('width', '256')
         
         const ul = document.createElement('ul')

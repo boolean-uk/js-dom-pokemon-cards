@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+ul {
+  list-style-type: none;
+}
+
 body {
   display: grid;
   grid-template-columns: minmax(300px, 1200px);
@@ -53,15 +57,10 @@ h2 {
 }
 
 .card--text {
-  list-style-type: none;
   margin: 0.2rem;
   padding: 1rem;
 
   border-radius: 5px;
-}
-
-.card--title {
-  list-style-type: none;
 }
 
 .card--img {
