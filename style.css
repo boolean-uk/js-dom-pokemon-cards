@@ -44,6 +44,11 @@ h2 {
   border: 1px solid #252525;
   border-radius: 8px;
 
+  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/246/225/small_2x/beautiful-comic-halftone-background.jpg"), url("https://tse1.mm.bing.net/th/id/OIP.mKOqLWWmAaA7VSN9RL3FGQAAAA?rs=1&pid=ImgDetMain");
+  background-blend-mode: multiply;
+
+  color: white;
+  -webkit-text-stroke: 1px #404041;
   cursor: pointer;
   transition: all 300ms;
 
@@ -56,10 +61,14 @@ h2 {
 }
 
 .card--text {
-  margin: 0.2rem;
+  margin: 2.2rem;
   padding: 1rem;
 
-  border-radius: 5px;
+  font-size: large;
+  font-weight: bold;
+  color: white;
+  -webkit-text-stroke: 1.0px #404041;
+  border-radius: 0.3px;
 }
 
 .card--img {

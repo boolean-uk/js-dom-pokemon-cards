@@ -4,9 +4,13 @@ console.log(data);
 //pokemon card from the first element
 console.log(data[0]);
 
+function capitalLetter(data){
+    return `${data.name.at(0).toUpperCase() + data.name.slice(1)}`
+}
+
 function createCard(data) {
     return `<li class="card">
-    <h2 class="card--title">${data.name}</h2>
+    <h2 class="card--title">${capitalLetter(data)}</h2>
     <img
       width="256"
       class="card--img"
