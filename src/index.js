@@ -32,13 +32,15 @@ function createCards(index){
     cardImg.setAttribute('src',card.sprites.other["official-artwork"].front_default)
     //Create card text
     const statsList = createCardText(card)
+    //Create games 
+    const gameList = addGames(card)
     //Add content to card
     cardLi.appendChild(cardTitle)
     cardLi.appendChild(cardImg)
     cardLi.appendChild(statsList)
+    cardLi.appendChild(gameList)
     cardListUL.appendChild(cardLi)
     
-
 }
 
 function createCardText(card){
@@ -59,6 +61,21 @@ function createCardText(card){
         cardUL.appendChild(statsLi)
     }
     return cardUL
+}
+
+function addGames(card){
+    const cardGamesUL = document.createElement('ul')
+    
+    for(let i = 0; i < card.game_indices.length; i++){
+        //<li> tag
+        const gameLi = document.createElement('li')
+        //Get the name of the game and set to uppercase
+        const gameText = card.game_indices[i].version.name.toUpperCase()
+        //Add the text to the list tag
+        gameLi.innerText = gameText
+        cardGamesUL.appendChild(gameLi)
+    }
+    return cardGamesUL
 }
 
 function renderAllCards(){
