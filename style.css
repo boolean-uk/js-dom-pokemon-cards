@@ -26,6 +26,7 @@ h2 {
 }
 
 .cards {
+  list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, 375px);
   gap: 15px;
@@ -37,6 +38,7 @@ h2 {
 }
 
 .card {
+  background-color: #d7d7d7;
   width: 100%;
   justify-self: center;
 
@@ -49,6 +51,8 @@ h2 {
 
 .card:hover {
   transform: scale(1.02);
+  transform: rotate(0.5deg);
+  background-color: #eaeaea;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
