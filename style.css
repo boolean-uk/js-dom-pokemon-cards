@@ -25,6 +25,10 @@ h2 {
   text-align: center;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, 375px);
@@ -55,8 +59,8 @@ h2 {
 .card--text {
   margin: 0.2rem;
   padding: 1rem;
-
   border-radius: 5px;
+  
 }
 
 .card--img {
@@ -64,4 +68,11 @@ h2 {
   margin: 0 auto;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  width: 256px;
+}
+
+.card--games-dropdown {
+  height: 25px; /
+  
+
 }
