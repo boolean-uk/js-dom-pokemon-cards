@@ -13,7 +13,6 @@ function makeAllCards(pokemonDataList) {
     
 
     for(const pokemon of pokemonDataList) {
-        console.log(pokemon.name)
         createCard(pokemon)
     }
 }
@@ -28,8 +27,14 @@ function createCard(pokemonDataObject) {
     cardHeading.textContent = pokemonDataObject.name.charAt(0).toUpperCase() + pokemonDataObject.name.slice(1)
 
     const cardImage = document.createElement('img')
+    cardImage.setAttribute('src', pokemonDataObject.sprites.front_default)
     cardImage.classList.add('card--img')
-    cardImage.setAttribute('src', pokemonDataObject.sprites.other["official-artwork"].front_default)
+    cardImage.addEventListener('mouseenter', function() {
+        cardImage.setAttribute('src', pokemonDataObject.sprites.front_shiny)
+    })
+    cardImage.addEventListener('mouseleave', function() {
+        cardImage.setAttribute('src', pokemonDataObject.sprites.front_default)
+    })
     
 
     const cardStatList = document.createElement('ul')
@@ -39,9 +44,18 @@ function createCard(pokemonDataObject) {
         statListItem.textContent =  stat.stat.name.toUpperCase() + ": " + stat.base_stat
         cardStatList.appendChild(statListItem)
     }
+
+    const cardAppearedInP = document.createElement('p')
+    cardAppearedInP.classList.add('card--text', 'no-list-style')
+
+    for(const appearance of pokemonDataObject.game_indices) {
+        cardAppearedInP.textContent += `${appearance.version.name}, `
+    }
+
     newCard.appendChild(cardHeading)
     newCard.appendChild(cardImage)
     newCard.appendChild(cardStatList)
+    newCard.appendChild(cardAppearedInP)
 
     pokemonListUL.appendChild(newCard)
 }
