@@ -65,3 +65,13 @@ h2 {
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
+
+.expandable {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+}
+
+li {
+  list-style-type: none;
+}
