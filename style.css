@@ -15,7 +15,7 @@ body {
   height: 100vh;
   font-family: sans-serif;
 
-  background-color: hsl(220, 7%, 24%);
+  background-color: hsl(217, 28%, 13%);
   color: white;
 }
 
@@ -98,7 +98,7 @@ h2 {
   filter: drop-shadow(0px 20px 10px rgba(2, 2, 0, 0.2));
   transform-origin: center;
   transform-style: preserve-3d;
-  transition: transform 1s ease-out;
+  transition: transform 1s ease-out, filter 0.1s ease;
 }
 
 .image--container {
@@ -198,6 +198,56 @@ h2 {
   z-index: -1;
 }
 
-.saus {
-  background: linear-gradient(-45deg, #b381a5, #6b7aac)
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -70px;
+}
+
+.pagination>* {
+  padding: 10px;
+  margin: 0 4px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination>*:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  filter: drop-shadow(0px 0px 10px white);
+  transition: all linear 0.4s;
+}
+
+.pagination-active {
+  background-color: #ffd9d8 !important;
+}
+
+.page-number {
+  background-color: rgb(52, 97, 155);
+}
+
+.page-number:hover {
+  filter: drop-shadow(0px 0px 10px rgb(52, 97, 155));
+}
+
+.loading-div {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.loading-icon {
+  animation: spin 2s linear 0s infinite reverse;
+  -moz-animation: 2s linear 0s reverse none infinite spin;
+  -webkit-animation: spin 2s linear 0s infinite reverse;
+  -webkit-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  animation-play-state: paused;
 }
