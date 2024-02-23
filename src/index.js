@@ -12,6 +12,35 @@ const spritePaths = [
     ['front_shiny'],
     ['front_shiny_female']
 ]
+
+const defaultStyles = {
+    backgroundColor: "darkgrey",
+    borderColor: "#fed758",
+    overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)"
+};
+
+const typeStyles = {
+    bug: { backgroundColor: "#bad247", borderColor: "#fed758", overlayBackground: "linear-gradient(-45deg, #b381a5, #6b7aac)" },
+    fire: { backgroundColor: "#f08069", borderColor: "#d15136", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    water: { backgroundColor: "#51beef", borderColor: "#05649a", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    grass: { backgroundColor: "#a5ce96", borderColor: "#359e4a", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    normal: { backgroundColor: "darkgrey", borderColor: "#fed758", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    poison: { backgroundColor: "#b155bd", borderColor: "#8e3e8f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    electric: { backgroundColor: "#fff261", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    ground: { backgroundColor: "#c9a438", borderColor: "#d3b55f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    fairy: { backgroundColor: "#f0a9c9", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    fighting: { backgroundColor: "#d3b55f", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    psychic: { backgroundColor: "#f0a9c9", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    rock: { backgroundColor: "#c9a438", borderColor: "#d3b55f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    ghost: { backgroundColor: "#6b7aac", borderColor: "#b381a5", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    ice: { backgroundColor: "#51beef", borderColor: "#05649a", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    dragon: { backgroundColor: "#6b7aac", borderColor: "#b381a5", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    dark: { backgroundColor: "#6b7aac", borderColor: "#b381a5", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    steel: { backgroundColor: "#d3b55f", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    flying: { backgroundColor: "#b155bd", borderColor: "#8e3e8f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+};
+
+
 let currentImageIndex = 0;
 let currentPage = 0;
 const perPage = 9;
@@ -62,103 +91,11 @@ async function renderCard(pokemon) {
         `;
     // Color code cards based on type
     const overlay = card.querySelector('.card-shiny-overlay');
-    switch (pokemon.types[0].type.name) {
-        case 'bug':
-            card.style.backgroundColor = "#bad247";
-            card.style.borderColor = "#fed758";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #b381a5, #6b7aac)"
-            break;
-        case 'fire':
-            card.style.backgroundColor = "#f08069";
-            card.style.borderColor = "#d15136";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'water':
-            card.style.backgroundColor = "#51beef";
-            card.style.borderColor = "#05649a";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'grass':
-            card.style.backgroundColor = "#a5ce96";
-            card.style.borderColor = "#359e4a";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'normal':
-            card.style.backgroundColor = "darkgrey";
-            card.style.borderColor = "#fed758";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'poison':
-            card.style.backgroundColor = "#b155bd";
-            card.style.borderColor = "#8e3e8f";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'electric':
-            card.style.backgroundColor = "#fff261";
-            card.style.borderColor = "#f2cb55";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'ground':
-            card.style.backgroundColor = "#c9a438";
-            card.style.borderColor = "#d3b55f";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'fairy':
-            card.style.backgroundColor = "#f0a9c9";
-            card.style.borderColor = "#f2cb55";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'fighting':
-            card.style.backgroundColor = "#d3b55f";
-            card.style.borderColor = "#f2cb55";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'psychic':
-            card.style.backgroundColor = "#f0a9c9";
-            card.style.borderColor = "#f2cb55";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'rock':
-            card.style.backgroundColor = "#c9a438";
-            card.style.borderColor = "#d3b55f";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'ghost':
-            card.style.backgroundColor = "#6b7aac";
-            card.style.borderColor = "#b381a5";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'ice':
-            card.style.backgroundColor = "#51beef";
-            card.style.borderColor = "#05649a";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'dragon':
-            card.style.backgroundColor = "#6b7aac";
-            card.style.borderColor = "#b381a5";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'dark':
-            card.style.backgroundColor = "#6b7aac";
-            card.style.borderColor = "#b381a5";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'steel':
-            card.style.backgroundColor = "#d3b55f";
-            card.style.borderColor = "#f2cb55";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        case 'flying':
-            card.style.backgroundColor = "#b155bd";
-            card.style.borderColor = "#8e3e8f";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-        default:
-            card.style.backgroundColor = "darkgrey";
-            card.style.borderColor = "#fed758";
-            overlay.style.backgroundImage = "linear-gradient(-45deg, #ff5781, #5bbe9d)"
-            break;
-    }
+    const type = pokemon.types[0]?.type.name || 'default';
+    const { backgroundColor, borderColor, overlayBackground } = typeStyles[type] || defaultStyles;
+    card.style.backgroundColor = backgroundColor;
+    card.style.borderColor = borderColor;
+    overlay.style.backgroundImage = overlayBackground;
 
     const appearedIn = card.querySelector('.appeared-in');
     appearedIn.style.display = 'none';

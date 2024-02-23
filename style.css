@@ -52,6 +52,7 @@ h2 {
   border-radius: 8px;
   max-height: 550px;
   overflow-y: scroll;
+  overflow-x: hidden;
   list-style: none;
   padding: 10px;
   margin: 10px;
