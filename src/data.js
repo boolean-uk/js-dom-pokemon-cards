@@ -272,6 +272,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "grass",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -689,6 +697,14 @@ const data = [
         effort: 0,
         stat: {
           name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
+      },
+      {
+        type: "grass",
+        effort: 0,
+        stat: {
+          name: "type",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
       }
@@ -1140,6 +1156,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "grass",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -1557,6 +1581,14 @@ const data = [
         effort: 1,
         stat: {
           name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
+      },
+      {
+        type: "fire",
+        effort: 0,
+        stat: {
+          name: "type",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
       }
@@ -1978,6 +2010,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "fire",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -2395,6 +2435,14 @@ const data = [
         effort: 0,
         stat: {
           name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
+      },
+      {
+        type: "fire",
+        effort: 0,
+        stat: {
+          name: "type",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
       }
@@ -2816,6 +2864,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "water",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -3233,6 +3289,14 @@ const data = [
         effort: 0,
         stat: {
           name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
+      },
+      {
+        type: "water",
+        effort: 0,
+        stat: {
+          name: "type",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
       }
@@ -3654,6 +3718,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "water",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -4073,6 +4145,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "bug",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -4490,6 +4570,14 @@ const data = [
         effort: 0,
         stat: {
           name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
+      },
+      {
+        type: "bug",
+        effort: 0,
+        stat: {
+          name: "type",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
       }
@@ -4941,6 +5029,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "bug",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -5358,6 +5454,14 @@ const data = [
         effort: 1,
         stat: {
           name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
+      },
+      {
+        type: "bug",
+        effort: 0,
+        stat: {
+          name: "type",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
       }
@@ -5779,6 +5883,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "bug",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -6196,6 +6308,14 @@ const data = [
         effort: 0,
         stat: {
           name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
+      },
+      {
+        type: "bug",
+        effort: 0,
+        stat: {
+          name: "type",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
       }
@@ -6617,6 +6737,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "normal",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -7036,6 +7164,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "normal",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -7453,6 +7589,14 @@ const data = [
         effort: 3,
         stat: {
           name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
+      },
+      {
+        type: "normal",
+        effort: 0,
+        stat: {
+          name: "type",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
       }
@@ -7904,6 +8048,14 @@ const data = [
           name: "speed",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
+      },
+      {
+        type: "normal",
+        effort: 0,
+        stat: {
+          name: "type",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
       }
     ],
     game_indices: [
@@ -8351,6 +8503,14 @@ const data = [
         effort: 2,
         stat: {
           name: "speed",
+          url: "https://pokeapi.co/api/v2/stat/6/"
+        }
+      },
+      {
+        type: "normal",
+        effort: 0,
+        stat: {
+          name: "type",
           url: "https://pokeapi.co/api/v2/stat/6/"
         }
       }
