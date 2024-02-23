@@ -74,16 +74,16 @@ async function renderCard(pokemon) {
                 />
             </div>
             <ul class="card--text">
-                <li>HP: ${pokemon.stats[0].base_stat}</li>
-                <li>ATTACK: ${pokemon.stats[1].base_stat}</li>
-                <li>DEFENSE: ${pokemon.stats[2].base_stat}</li>
-                <li>SPECIAL-ATTACK: ${pokemon.stats[3].base_stat}</li>
-                <li>SPECIAL-DEFENSE: ${pokemon.stats[4].base_stat}</li>
-                <li>SPEED: ${pokemon.stats[5].base_stat}</li>
+                <li><b class="hp">HP</b> ${pokemon.stats[0].base_stat}</li>
+                <li><b class="atk">ATTACK</b> ${pokemon.stats[1].base_stat}</li>
+                <li><b class="def">DEFENSE</b> ${pokemon.stats[2].base_stat}</li>
+                <li><b class="spa">SPECIAL-ATTACK</b> ${pokemon.stats[3].base_stat}</li>
+                <li><b class="spd">SPECIAL-DEFENSE</b> ${pokemon.stats[4].base_stat}</li>
+                <li><b class="spe">SPEED</b> ${pokemon.stats[5].base_stat}</li>
             </ul>
             <button class="toggle-appeared-in-button">Show more info</button>
             <div class="appeared-in">
-                <h3>Appeared in:</h3>
+                <h3>Appeared in</h3>
                 <ul">
                     ${pokemon.game_indices.map(game => `<li><a href=${game.version.url}>Pokemon ${capitalize(game.version.name)}</a></li>`).join('')}
                 </ul>
