@@ -29,7 +29,7 @@ h2 {
   display: grid;
   list-style: none;
   grid-template-columns: repeat(auto-fill, 375px);
-  gap: 15px;
+  gap: 35px;
   justify-content: center;
   justify-items: center;
   
@@ -41,11 +41,14 @@ h2 {
   width: 100%;
   justify-self: center;
 
-  border: 1px solid #252525;
+  border: 1px solid #121000;
   border-radius: 8px;
+  outline: 16px solid rgb(255, 228, 72);
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 10px 0px inset;
+  background-color: rgb(241, 212, 119);
 
-  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/246/225/small_2x/beautiful-comic-halftone-background.jpg"), url("https://tse1.mm.bing.net/th/id/OIP.mKOqLWWmAaA7VSN9RL3FGQAAAA?rs=1&pid=ImgDetMain");
-  background-blend-mode: multiply;
+  background-image: url("https://th.bing.com/th/id/R.8e2ff0b02a15c3df7818c3eb4821126d?rik=C1CKXjxAbIMARA&riu=http%3a%2f%2fvgboxart.com%2fresources%2frender%2f13697_pokeball-prev.png&ehk=xRMJNrTSrpMZzQx3GDW7YzzALUMw%2fv2VPtDymL3vCWg%3d&risl=&pid=ImgRaw&r=0");
+  background-repeat: no-repeat;
 
   color: white;
   -webkit-text-stroke: 1px #404041;
@@ -58,16 +61,21 @@ h2 {
 .card:hover {
   transform: scale(1.02);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 10px 0px inset;
 }
 
 .card--text {
   margin: 2.2rem;
-  padding: 1rem;
+  padding-left: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 
-  font-size: large;
+  font-size: larger;
   font-weight: bold;
-  color: white;
-  -webkit-text-stroke: 1.0px #404041;
+  color: rgb(255, 255, 255);
+  background-color: rgba(22, 22, 22, 0.582);
+  
   border-radius: 0.3px;
 }
 
@@ -76,4 +84,8 @@ h2 {
   margin: 0 auto;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  border: 2px solid rgb(255, 228, 72);
+  border-radius: 8px;
+
+  background-color: rgba(0, 0, 0, 0.2);
 }
