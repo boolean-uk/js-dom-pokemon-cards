@@ -106,6 +106,7 @@ async function renderCard(pokemon) {
     button.addEventListener('click', () => {
         appearedIn.style.display = appearedIn.style.display === 'none' ? 'block' : 'none';
         button.textContent = appearedIn.style.display === 'none' ? 'Show more info' : 'Hide info';
+        card.style.overflowY = appearedIn.style.display === 'none' ? 'hidden' : 'scroll';
     });
 
     // Cycle through images with click

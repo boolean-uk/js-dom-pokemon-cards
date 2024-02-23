@@ -51,7 +51,7 @@ h2 {
   border-image: linear-gradient(-45deg, rgba(255, 196, 196, 0.356), rgba(4, 226, 255, 0.329)) 1;
   border-radius: 8px;
   max-height: 550px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   list-style: none;
   padding: 10px;
