@@ -13,7 +13,7 @@ const spritePaths = [
     ['front_shiny_female']
 ]
 let currentImageIndex = 0;
-let currentPage = 14;
+let currentPage = 0;
 const perPage = 9;
 async function getPokemonData() {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${perPage}&offset=${currentPage * perPage}`);
