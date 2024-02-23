@@ -25,6 +25,10 @@ h2 {
   text-align: center;
 }
 
+h3 {
+  margin: -50px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, 375px);
@@ -53,12 +57,21 @@ h2 {
 }
 
 .card--text {
-  margin: 0.2rem;
+  margin: 0.0rem;
   padding: 4.5rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 0rem;
+  padding-bottom: 1rem;
 
   border-radius: 5px;
+}
+
+.card--smallertext {
+  margin: 0.2rem;
+  padding: 4rem;
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+
+  border-radius: 1px;
 }
 
 .card--img {
