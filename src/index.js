@@ -36,7 +36,7 @@ function renderCards() {
         // Set attributes for image
         image.setAttribute('width', 256)
         image.setAttribute('class', 'card--img')
-        image.setAttribute('src', data[i].sprites.other.dream_world.front_default)
+        image.setAttribute('src', data[i].sprites.other["official-artwork"].front_default)
         // Append image to card
         cardLi.appendChild(image)
 
@@ -86,6 +86,9 @@ function renderCards() {
         speed.innerText = 'SPEED: ' + card.stats[5].base_stat
         // Append SPEED to detailList
         detailList.appendChild(speed)
+
+        // Create info about games each pokemon appeared in
+        card.versions
 
         // Append detailList to cardLi
         cardLi.appendChild(detailList)
