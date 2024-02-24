@@ -83,34 +83,13 @@ function renderCards() {
     detailList.appendChild(speed);
 
     // Create info about games each pokemon appeared in
-    // Create list with card details
     const gameList = document.createElement("ul");
 
-    const genI = card.sprites.versions["generation-i"];
-    const genII = card.sprites.versions["generation-ii"];
-    const genIII = card.sprites.versions["generation-iii"];
-    const genIV = card.sprites.versions["generation-iv"];
-    const genV = card.sprites.versions["generation-v"];
-    const genVI = card.sprites.versions["generation-vi"];
-    const genVII = card.sprites.versions["generation-vii"];
-    const genVIII = card.sprites.versions["generation-viii"];
-
-    addByGeneration(gameList, genI)
-    addByGeneration(gameList, genII)
-    addByGeneration(gameList, genIII)
-    addByGeneration(gameList, genIV)
-    addByGeneration(gameList, genV)
-    addByGeneration(gameList, genVI)
-    addByGeneration(gameList, genVII)
-    addByGeneration(gameList, genVIII)
-
-    /** 
     for (const generation in card.sprites.versions) {
-        console.log(generation)
-        addByGeneration(gameList, generation)
+        const generationObject = card.sprites.versions[generation];
+        addByGeneration(gameList, generationObject)
     }
-    */
-
+    
     // Append detailList to cardLi
     cardLi.appendChild(detailList);
 
@@ -128,7 +107,7 @@ function addByGeneration(gameList, gen) {
         const game = document.createElement("li");
         // Set game
         game.innerText = key;
-        // Append game to genIList
+        // Append game to gameList
         gameList.appendChild(game);
       }
 }
