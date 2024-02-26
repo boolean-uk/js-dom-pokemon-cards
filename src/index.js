@@ -195,11 +195,12 @@ function capitalize(string) {
 function renderPagination() {
     const nextPage = document.querySelector('.next-page');
     const lastPage = document.querySelector('.last-page');
+    const minusten = document.querySelector('.minus-ten');
+    const plusten = document.querySelector('.plus-ten');
     const prevPage = document.querySelector('.previous-page');
     const firstPage = document.querySelector('.first-page');
     const pageNumber = document.querySelector('.page-number');
-    const minusten = document.querySelector('.minus-ten');
-    const plusten = document.querySelector('.plus-ten');
+
     pageNumber.textContent = currentPage + 1;
     nextPage.addEventListener('click', () => {
         if (currentPage < totalPages - 1) {
@@ -226,6 +227,7 @@ function renderPagination() {
         getAndDisplayPokemon();
     });
 
+
     minusten.addEventListener('click', () => {
         if (currentPage > 9) {
             currentPage -= 10;
@@ -243,11 +245,30 @@ function renderPagination() {
     });
 }
 
+function updatePaginationButtons() {
+    const minusten = document.querySelector('.minus-ten');
+    const plusten = document.querySelector('.plus-ten');
+    if (currentPage < 10) {
+        minusten.style.display = 'none';
+    }
+    else {
+        minusten.style.display = 'block';
+    }
+
+    if (currentPage > totalPages - 11) {
+        plusten.style.display = 'none';
+    }
+    else {
+        plusten.style.display = 'block';
+    }
+}
+
 async function getAndDisplayPokemon() {
     loadingData();
     const data = await getPokemonData()
     cards.innerHTML = '';
     data.forEach(pokemon => renderCard(pokemon));
+    updatePaginationButtons();
 }
 
 function loadingData() {
