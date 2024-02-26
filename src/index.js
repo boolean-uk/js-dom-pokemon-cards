@@ -13,6 +13,8 @@ const spritePaths = [
     ['front_shiny_female']
 ]
 
+const fallBackImage = 'https://www.invoicera.com/wp-content/uploads/2023/11/default-image.jpg';
+
 const defaultStyles = {
     backgroundColor: "darkgrey",
     borderColor: "#fed758",
@@ -44,9 +46,12 @@ const typeStyles = {
 let currentImageIndex = 0;
 let currentPage = 0;
 const perPage = 9;
+let totalPages = 1;
+
 async function getPokemonData() {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${perPage}&offset=${currentPage * perPage}`);
     const data = await response.json();
+    totalPages = Math.ceil(data.count / perPage);
     const fullData = await Promise.all(data.results.map(async pokemon => {
         const response = await fetch(pokemon.url);
         const data = await response.json();
@@ -70,7 +75,7 @@ async function renderCard(pokemon) {
                 <img
                     width="256"
                     class="card--img"
-                    src="${imageUrl}"
+                    src="${imageUrl ?? fallBackImage}"
                 />
             </div>
             <ul class="card--text">
@@ -162,11 +167,17 @@ async function renderCard(pokemon) {
 
     // Cycle through images when clicking the image
     function cycleImage(img) {
+        let count = 0;
         let nextImage;
         while (!nextImage) {
+            count++
             currentImageIndex++;
             currentImageIndex = (currentImageIndex) % spritePaths.length; // Increment the index and cycle back to 0 if it exceeds the array length
             nextImage = getNestedProperty(pokemon.sprites, spritePaths[currentImageIndex]);
+            if (count > spritePaths.length) {
+                nextImage = fallBackImage;
+                break;
+            }
         }
         img.src = nextImage;
     }
@@ -183,11 +194,20 @@ function capitalize(string) {
 
 function renderPagination() {
     const nextPage = document.querySelector('.next-page');
+    const lastPage = document.querySelector('.last-page');
     const prevPage = document.querySelector('.previous-page');
+    const firstPage = document.querySelector('.first-page');
     const pageNumber = document.querySelector('.page-number');
     pageNumber.textContent = currentPage + 1;
     nextPage.addEventListener('click', () => {
-        currentPage++;
+        if (currentPage < totalPages - 1) {
+            currentPage++;
+            pageNumber.textContent = currentPage + 1;
+            getAndDisplayPokemon();
+        }
+    });
+    lastPage.addEventListener('click', () => {
+        currentPage = totalPages - 1;
         pageNumber.textContent = currentPage + 1;
         getAndDisplayPokemon();
     });
@@ -197,6 +217,11 @@ function renderPagination() {
             pageNumber.textContent = currentPage + 1;
             getAndDisplayPokemon();
         }
+    });
+    firstPage.addEventListener('click', () => {
+        currentPage = 0;
+        pageNumber.textContent = currentPage + 1;
+        getAndDisplayPokemon();
     });
 }
 
