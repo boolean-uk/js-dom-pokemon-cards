@@ -198,6 +198,8 @@ function renderPagination() {
     const prevPage = document.querySelector('.previous-page');
     const firstPage = document.querySelector('.first-page');
     const pageNumber = document.querySelector('.page-number');
+    const minusten = document.querySelector('.minus-ten');
+    const plusten = document.querySelector('.plus-ten');
     pageNumber.textContent = currentPage + 1;
     nextPage.addEventListener('click', () => {
         if (currentPage < totalPages - 1) {
@@ -222,6 +224,22 @@ function renderPagination() {
         currentPage = 0;
         pageNumber.textContent = currentPage + 1;
         getAndDisplayPokemon();
+    });
+
+    minusten.addEventListener('click', () => {
+        if (currentPage > 9) {
+            currentPage -= 10;
+            pageNumber.textContent = currentPage + 1;
+            getAndDisplayPokemon();
+        }
+    });
+
+    plusten.addEventListener('click', () => {
+        if (currentPage < totalPages - 10) {
+            currentPage += 10;
+            pageNumber.textContent = currentPage + 1;
+            getAndDisplayPokemon();
+        }
     });
 }
 
