@@ -268,3 +268,29 @@ h2 {
   -moz-animation-play-state: paused;
   animation-play-state: paused;
 }
+
+.toggle-gradient-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -20px;
+}
+
+.toggle-gradient {
+  --gradient: linear-gradient(-45deg, rgb(48, 92, 134), rgb(112, 83, 150));
+  width: 120px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: transparent;
+  background-image: var(--gradient);
+  filter: drop-shadow(0px 0px 10px rgb(25, 54, 82));
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-gradient:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}

@@ -47,6 +47,7 @@ let currentImageIndex = 0;
 let currentPage = 0;
 const perPage = 9;
 let totalPages = 1;
+let shouldHaveGradient = true;
 
 async function getPokemonData() {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${perPage}&offset=${currentPage * perPage}`);
@@ -100,7 +101,7 @@ async function renderCard(pokemon) {
     const { backgroundColor, overlayBackground } = typeStyles[type] || defaultStyles;
     card.style.backgroundColor = backgroundColor;
     card.style.setProperty('--main-color', backgroundColor)
-    overlay.style.backgroundImage = overlayBackground;
+    overlay.style.backgroundImage = shouldHaveGradient ? overlayBackground : 'none';
 
     const appearedIn = card.querySelector('.appeared-in');
     appearedIn.style.display = 'none';
@@ -242,6 +243,15 @@ function renderPagination() {
             pageNumber.textContent = currentPage + 1;
             getAndDisplayPokemon();
         }
+    });
+
+    const toggleGradientButton = document.querySelector('.toggle-gradient');
+    toggleGradientButton.addEventListener('click', () => {
+        shouldHaveGradient = !shouldHaveGradient;
+        const gradient = shouldHaveGradient ? 'linear-gradient(-45deg, rgb(48, 92, 134), rgb(112, 83, 150))' : 'none';
+        toggleGradientButton.textContent = shouldHaveGradient ? 'Gradient ON' : 'Gradient OFF';
+        toggleGradientButton.style.backgroundImage = gradient;
+        getAndDisplayPokemon();
     });
 }
 
