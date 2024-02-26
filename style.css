@@ -180,7 +180,6 @@ h2 {
   z-index: 2;
 }
 
-
 .card-shiny-texture {
   pointer-events: none;
   position: absolute;
@@ -273,13 +272,12 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: -20px;
 }
 
 .toggle-gradient {
   --gradient: linear-gradient(-45deg, rgb(48, 92, 134), rgb(112, 83, 150));
-  width: 120px;
-  height: 50px;
+  width: 100px;
+  height: 40px;
   border-radius: 8px;
   background-color: transparent;
   background-image: var(--gradient);
@@ -292,5 +290,53 @@ h2 {
 
 .toggle-gradient:hover {
   transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
+.searchbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: -20px;
+}
+
+.searchbar {
+  width: 300px;
+  height: 40px;
+  border-radius: 8px 0px 0px 8px;
+  border: 1px solid white;
+  padding: 10px;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.search-button {
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-left: none;
+  padding: 10px;
+  border-radius: 0px 8px 8px 0px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.title-clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.title-clickable:hover {
+  color: #ffd9d8;
   transition: all 0.2s ease;
 }

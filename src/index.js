@@ -48,9 +48,19 @@ let currentPage = 0;
 const perPage = 9;
 let totalPages = 1;
 let shouldHaveGradient = true;
+let searchTerm = '';
+let fullDataCache = [];
+let pdata = [];
+
+async function getFullPokemonData() {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=1302`);
+    const data = await response.json();
+    return data.results;
+
+}
 
 async function getPokemonData() {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${perPage}&offset=${currentPage * perPage}`);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${perPage}&offset=${currentPage * perPage}`);
     const data = await response.json();
     totalPages = Math.ceil(data.count / perPage);
     const fullData = await Promise.all(data.results.map(async pokemon => {
@@ -201,6 +211,14 @@ function renderPagination() {
     const prevPage = document.querySelector('.previous-page');
     const firstPage = document.querySelector('.first-page');
     const pageNumber = document.querySelector('.page-number');
+    const title = document.querySelector('.title-clickable');
+
+    title.addEventListener('click', () => {
+        currentPage = 0;
+        searchTerm = '';
+        pageNumber.textContent = currentPage + 1;
+        getAndDisplayPokemon();
+    });
 
     pageNumber.textContent = currentPage + 1;
     nextPage.addEventListener('click', () => {
@@ -251,8 +269,36 @@ function renderPagination() {
         const gradient = shouldHaveGradient ? 'linear-gradient(-45deg, rgb(48, 92, 134), rgb(112, 83, 150))' : 'none';
         toggleGradientButton.textContent = shouldHaveGradient ? 'Gradient ON' : 'Gradient OFF';
         toggleGradientButton.style.backgroundImage = gradient;
-        getAndDisplayPokemon();
+        displayPokemon(pdata);
     });
+
+    const searchBar = document.querySelector('.searchbar');
+    searchBar.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            const searchValue = searchBar.value;
+            searchHandler(searchValue);
+        }
+    });
+
+    const searchButton = document.querySelector('.search-button');
+    searchButton.addEventListener('click', () => {
+        const searchValue = searchBar.value;
+        searchHandler(searchValue);
+    });
+
+}
+
+function searchHandler(searchValue) {
+    if (searchValue && searchValue.length > 3 && searchValue !== searchTerm) {
+        searchTerm = searchValue;
+        currentPage = 0;
+        filterPokemon();
+    }
+    else {
+        searchTerm = '';
+        currentPage = 0;
+        getAndDisplayPokemon();
+    }
 }
 
 function updatePaginationButtons() {
@@ -275,14 +321,64 @@ function updatePaginationButtons() {
 
 async function getAndDisplayPokemon() {
     loadingData();
-    const data = await getPokemonData()
+    pdata = await getPokemonData()
+    displayPokemon(pdata);
+    showPagination();
+    showAfterLoading();
+}
+
+async function filterPokemon() {
+    const filteredData = fullDataCache.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    pdata = await Promise.all(filteredData.map(async pokemon => {
+        const response = await fetch(pokemon.url);
+        const data = await response.json();
+        return data;
+    }));
+    displayPokemon(pdata);
+}
+
+function displayPokemon() {
     cards.innerHTML = '';
-    data.forEach(pokemon => renderCard(pokemon));
-    updatePaginationButtons();
+    pdata.forEach(pokemon => renderCard(pokemon));
+    if (!searchTerm) {
+        showPagination();
+        updatePaginationButtons();
+    }
+    else {
+        hidePagination();
+    }
+}
+
+function hidePagination() {
+    const pagination = document.querySelector('.pagination');
+    pagination.style.display = 'none';
+}
+function showPagination() {
+    const pagination = document.querySelector('.pagination');
+    pagination.style.display = 'flex';
+}
+
+function hideWhileLoading() {
+    const toggleGradientButton = document.querySelector('.toggle-gradient');
+    toggleGradientButton.style.display = 'none';
+    const searchBar = document.querySelector('.searchbar');
+    const searchButton = document.querySelector('.search-button');
+    searchBar.style.display = 'none';
+    searchButton.style.display = 'none';
+}
+function showAfterLoading() {
+    const toggleGradientButton = document.querySelector('.toggle-gradient');
+    toggleGradientButton.style.display = 'block';
+    const searchBar = document.querySelector('.searchbar');
+    const searchButton = document.querySelector('.search-button');
+    searchBar.style.display = 'block';
+    searchButton.style.display = 'block';
 }
 
 function loadingData() {
     cards.innerHTML = '';
+    hidePagination();
+    hideWhileLoading();
     const loadingDiv = document.createElement('div');
     const loadingIcon = document.createElement('h1');
     loadingIcon.innerHTML = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
@@ -294,7 +390,8 @@ function loadingData() {
     cards.appendChild(loadingDiv);
 }
 
-function main() {
+async function main() {
+    fullDataCache = await getFullPokemonData();
     getAndDisplayPokemon();
     renderPagination();
 }
