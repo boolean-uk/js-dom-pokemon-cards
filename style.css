@@ -41,11 +41,12 @@ h2 {
 }
 
 .card {
+  --main-color: rgb(250, 222, 196);
   position: relative;
   width: 100%;
   justify-self: center;
 
-  background-color: rgb(250, 222, 196);
+  background-color: rgb(var(--main-color));
   border-width: 14px;
   border-style: solid;
   border-image: linear-gradient(-45deg, rgba(255, 196, 196, 0.356), rgba(4, 226, 255, 0.329)) 1;
@@ -69,8 +70,9 @@ h2 {
 
   transform-origin: center;
   transform-style: preserve-3d;
-  transition: transform 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }
+
 
 .appeared-in {
   display: none;
@@ -80,6 +82,8 @@ h2 {
 .card:hover {
   transform: scale(1.02);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  filter: drop-shadow(0px 00px 30px rgba(var(--main-color), 0.4));
+  transition: all 0.2s ease-out;
 }
 
 .card--text {
@@ -205,9 +209,9 @@ h2 {
   width: 100%;
   height: 100%;
   background-image: url("https://as1.ftcdn.net/v2/jpg/01/41/67/08/1000_F_141670813_Sp7Jo4cGYIB4tbl3n2M9FJqZinMe2h8K.jpg");
-  mix-blend-mode: overlay;
+  mix-blend-mode: screen;
   filter: contrast(1.2) brightness(1) saturate(1.5);
-  opacity: .3;
+  opacity: .25;
   z-index: -1;
 }
 

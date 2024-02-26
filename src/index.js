@@ -16,30 +16,31 @@ const spritePaths = [
 const fallBackImage = 'https://www.invoicera.com/wp-content/uploads/2023/11/default-image.jpg';
 
 const defaultStyles = {
-    backgroundColor: "darkgrey",
+    backgroundColor: "169, 169, 169",
     borderColor: "#fed758",
     overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)"
 };
 
 const typeStyles = {
-    bug: { backgroundColor: "#bad247", borderColor: "#fed758", overlayBackground: "linear-gradient(-45deg, #b381a5, #6b7aac)" },
-    fire: { backgroundColor: "#f08069", borderColor: "#d15136", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    water: { backgroundColor: "#51beef", borderColor: "#05649a", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    grass: { backgroundColor: "#a5ce96", borderColor: "#359e4a", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    normal: { backgroundColor: "darkgrey", borderColor: "#fed758", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    poison: { backgroundColor: "#b155bd", borderColor: "#8e3e8f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    electric: { backgroundColor: "#fff261", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    ground: { backgroundColor: "#c9a438", borderColor: "#d3b55f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    fairy: { backgroundColor: "#f0a9c9", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    fighting: { backgroundColor: "#d3b55f", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    psychic: { backgroundColor: "#f0a9c9", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    rock: { backgroundColor: "#c9a438", borderColor: "#d3b55f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    ghost: { backgroundColor: "#6b7aac", borderColor: "#b381a5", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    ice: { backgroundColor: "#51beef", borderColor: "#05649a", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    dragon: { backgroundColor: "#6b7aac", borderColor: "#b381a5", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    dark: { backgroundColor: "#6b7aac", borderColor: "#b381a5", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    steel: { backgroundColor: "#d3b55f", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
-    flying: { backgroundColor: "#b155bd", borderColor: "#8e3e8f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    bug: { backgroundColor: "168,184,32", borderColor: "#fed758", overlayBackground: "linear-gradient(-45deg, #b381a5, #6b7aac)" },
+    fire: { backgroundColor: "240,128,48", borderColor: "#d15136", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    water: { backgroundColor: "104,144,240", borderColor: "#05649a", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    grass: { backgroundColor: "120,200,80", borderColor: "#359e4a", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    normal: { backgroundColor: "168,168,120", borderColor: "#fed758", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    poison: { backgroundColor: "160,64,160", borderColor: "#8e3e8f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    electric: { backgroundColor: "248,208,48", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    ground: { backgroundColor: "224,192,104", borderColor: "#d3b55f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    fairy: { backgroundColor: "238,153,172", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    fighting: { backgroundColor: "192,48,40", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    psychic: { backgroundColor: "248,88,136", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    rock: { backgroundColor: "184,160,56", borderColor: "#d3b55f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    ghost: { backgroundColor: "112,88,152", borderColor: "#b381a5", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    ice: { backgroundColor: "152,216,216", borderColor: "#05649a", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    dragon: { backgroundColor: "112,56,248", borderColor: "#b381a5", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    dark: { backgroundColor: "112,88,72", borderColor: "#b381a5", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    steel: { backgroundColor: "184,184,208", borderColor: "#f2cb55", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    flying: { backgroundColor: "168,144,240", borderColor: "#8e3e8f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
+    stellar: { backgroundColor: "124,199,178", borderColor: "#8e3e8f", overlayBackground: "linear-gradient(-45deg, #ff5781, #5bbe9d)" },
 };
 
 
@@ -99,6 +100,7 @@ async function renderCard(pokemon) {
     const type = pokemon.types[0]?.type.name || 'default';
     const { backgroundColor, borderColor, overlayBackground } = typeStyles[type] || defaultStyles;
     card.style.backgroundColor = backgroundColor;
+    card.style.setProperty('--main-color', backgroundColor)
     card.style.borderColor = borderColor;
     overlay.style.backgroundImage = overlayBackground;
 
