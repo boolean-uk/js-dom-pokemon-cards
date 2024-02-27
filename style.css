@@ -41,6 +41,8 @@ h2 {
 }
 
 .card {
+  scroll-behavior: smooth;
+
   --main-color: rgb(250, 222, 196);
   position: relative;
   width: 100%;
@@ -317,6 +319,15 @@ h2 {
   text-align: center;
 }
 
+.searchbar:invalid {
+  filter: drop-shadow(0px 0px 4px red);
+  border: 1px solid red;
+}
+
+.search-info{
+}
+
+
 .search-button {
   height: 40px;
   background-color: transparent;
@@ -333,6 +344,7 @@ h2 {
   background-color: rgba(255, 255, 255, 0.2);
   transition: all 0.2s ease;
 }
+
 
 .title-clickable {
   cursor: pointer;
