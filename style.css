@@ -268,6 +268,7 @@ h2 {
   animation-play-state: paused;
 }
 
+
 .toggle-gradient-container {
   display: flex;
   justify-content: center;
@@ -279,19 +280,21 @@ h2 {
   width: 100px;
   height: 40px;
   border-radius: 8px;
-  background-color: transparent;
-  background-image: var(--gradient);
+  background: var(--gradient);
   filter: drop-shadow(0px 0px 10px rgb(25, 54, 82));
   border: 1px solid white;
   color: white;
   cursor: pointer;
   transition: all 0.2s ease;
+  animation: gradient 15s ease infinite;
 }
 
 .toggle-gradient:hover {
   transform: scale(1.1);
   transition: all 0.2s ease;
 }
+
+
 
 .searchbar-container {
   display: flex;
@@ -389,4 +392,18 @@ h2 {
   position: relative;
   height: 160px;
   justify-self: center;
+}
+
+.play-audio {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  width: 30px;
+  height: 30px;
+  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(330deg) brightness(101%) contrast(101%);
+}
+
+.play-audio:hover {
+  filter: none;
+  transition: all 0.2s ease;
 }

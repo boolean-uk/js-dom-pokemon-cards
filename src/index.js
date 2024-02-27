@@ -78,6 +78,11 @@ async function renderCard(pokemon) {
     card.classList.add('card');
     const imageUrl = getNestedProperty(pokemon.sprites, spritePaths[0]);
     card.innerHTML = `
+            ${pokemon.cries ? `
+            <audio controls class="pokemon-cry">
+                <source src="${pokemon.cries.latest}" type="audio/ogg">
+            </audio>`
+            : ''}
             <div class="card-glow-effect"></div>
             <div class="card-shiny-overlay"></div>
             <div class="card-shiny-texture"></div>
@@ -100,6 +105,7 @@ async function renderCard(pokemon) {
                 <li><b class="spd">SPECIAL-DEFENSE</b> ${pokemon.stats[4].base_stat}</li>
                 <li><b class="spe">SPEED</b> ${pokemon.stats[5].base_stat}</li>
             </ul>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg" class="play-audio"></img>
             <button class="toggle-appeared-in-button">Show more info</button>
             <div class="appeared-in">
                 <h3>Appeared in</h3>
@@ -133,6 +139,12 @@ async function renderCard(pokemon) {
         }
     });
 
+    // Audio
+    const audio = card.querySelector('.pokemon-cry');
+    const playAudioButton = card.querySelector('.play-audio');
+    playAudioButton.addEventListener('click', () => {
+        audio.play();
+    });
 
     // Toggle appeared-in list with button click
     const button = card.querySelector('.toggle-appeared-in-button');
@@ -144,7 +156,9 @@ async function renderCard(pokemon) {
 
     // Cycle through images with click
     const imageElement = card.querySelector('.card--img');
-    imageElement.addEventListener('click', () => cycleImage(imageElement));
+    imageElement.addEventListener('click', () => {
+        cycleImage(imageElement)
+    });
 
 
     // Shiny texture
