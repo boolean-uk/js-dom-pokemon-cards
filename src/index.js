@@ -51,6 +51,8 @@ let shouldHaveGradient = true;
 let searchTerm = '';
 let fullDataCache = [];
 let pdata = [];
+let favouritePokemon = [];
+let filterByFavourites = false;
 
 async function getFullPokemonData() {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=1302`);
@@ -81,6 +83,7 @@ async function renderCard(pokemon) {
             <div class="card-shiny-texture"></div>
             <div class="card-base-shiny-texture"></div>
             <h2 class="card--title">${capitalize(pokemon.name)}</h2>
+            <button class="favourite-button">${favouritePokemon.some(p => p.name === pokemon.name) ? "★" : "☆"}</button>
             <div class="image--container">
                 <div class="card--img--background"> </div>
                 <img
@@ -116,6 +119,20 @@ async function renderCard(pokemon) {
     const appearedIn = card.querySelector('.appeared-in');
     appearedIn.style.display = 'none';
     cards.appendChild(card);
+
+    // Favourite button
+    const favouriteButton = card.querySelector('.favourite-button');
+    favouriteButton.addEventListener('click', () => {
+        if (favouritePokemon.some(p => p.name === pokemon.name)) {
+            favouritePokemon = favouritePokemon.filter(p => p.name !== pokemon.name);
+            favouriteButton.textContent = "☆";
+        }
+        else {
+            favouritePokemon.push(pokemon);
+            favouriteButton.textContent = "★";
+        }
+    });
+
 
     // Toggle appeared-in list with button click
     const button = card.querySelector('.toggle-appeared-in-button');
@@ -203,7 +220,7 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function renderPagination() {
+function renderUI() {
     const nextPage = document.querySelector('.next-page');
     const lastPage = document.querySelector('.last-page');
     const minusten = document.querySelector('.minus-ten');
@@ -212,6 +229,7 @@ function renderPagination() {
     const firstPage = document.querySelector('.first-page');
     const pageNumber = document.querySelector('.page-number');
     const title = document.querySelector('.title-clickable');
+    const favourites = document.querySelector('.favourites');
 
     title.addEventListener('click', () => {
         currentPage = 0;
@@ -286,6 +304,21 @@ function renderPagination() {
         searchHandler(searchValue);
     });
 
+    favourites.addEventListener('click', () => {
+        if (filterByFavourites) {
+            filterByFavourites = false;
+            currentPage = 0;
+            getAndDisplayPokemon();
+        }
+        else {
+            filterByFavourites = true;
+            currentPage = 0;
+            pdata = favouritePokemon;
+            displayPokemon(pdata);
+            hidePagination();
+        }
+    });
+
 }
 
 function searchHandler(searchValue) {
@@ -355,7 +388,9 @@ function hidePagination() {
 }
 function showPagination() {
     const pagination = document.querySelector('.pagination');
+    const pageNum = document.querySelector('.page-number');
     pagination.style.display = 'flex';
+    pageNum.textContent = currentPage + 1;
 }
 
 function hideWhileLoading() {
@@ -393,7 +428,7 @@ function loadingData() {
 async function main() {
     fullDataCache = await getFullPokemonData();
     getAndDisplayPokemon();
-    renderPagination();
+    renderUI();
 }
 
 main();

@@ -340,3 +340,53 @@ h2 {
   color: #ffd9d8;
   transition: all 0.2s ease;
 }
+
+.favourite-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background: none;
+  border: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 40px;
+  color: rgba(235, 255, 121, 0.466);
+}
+
+.favourite-button:hover {
+  color: #ebcc1c;
+  filter: drop-shadow(0px 0px 10px #ebcc1c);
+  transition: all 0.2s ease;
+}
+
+.favourites {
+  margin-left: 10px;
+  text-align: center;
+  justify-self: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.favourites:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.favourites-active {
+  background-color: #ffd9d8 !important;
+}
+
+
+.top-bar {
+  position: relative;
+  height: 160px;
+  justify-self: center;
+}
