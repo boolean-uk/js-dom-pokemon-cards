@@ -79,7 +79,7 @@ async function renderCard(pokemon) {
     const imageUrl = getNestedProperty(pokemon.sprites, spritePaths[0]);
     card.innerHTML = `
             ${pokemon.cries ? `
-            <audio controls class="pokemon-cry">
+            <audio class="pokemon-cry">
                 <source src="${pokemon.cries.latest}" type="audio/ogg">
             </audio>`
             : ''}
