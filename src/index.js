@@ -1,7 +1,5 @@
 
 
-//console.log(data);
-
 // Selected Root Element
 const cardListUL = document.querySelector(".cards")
 
@@ -20,6 +18,8 @@ function renderAllCards() {
         createImageElement(cardLi, card)
 
         createAllStats(cardLi, card)
+
+        createGamesAppearedIn(cardLi, card)
 
         cardListUL.appendChild(cardLi)
     }
@@ -70,11 +70,17 @@ function createAllStats(cardLi, card) {
     cardLi.appendChild(cardUL)
 }
 
-/*function createGamesAppearedIn(cardLi, card) {
-    const cardUL = document.createElement('ul')
-    cardUL.setAttribute('class', 'card--games')
-
-}*/
+function createGamesAppearedIn(cardLi, card) {
+  const cardUL = document.createElement("ul");
+  cardUL.setAttribute("class", "card--games");
+  for (let i = 0; i < card.game_indices.length; i++) {
+    const gameLI = document.createElement("li");
+    const gameName = card.game_indices[i].version.name;
+    gameLI.innerText = gameName
+    cardUL.appendChild(gameLI);
+  }
+  cardLi.appendChild(cardUL);
+}
 
 function main() {
     //renderOneCard()
