@@ -366,6 +366,7 @@ function searchHandler(searchValue) {
     if (searchValue && searchValue.length > 2 && searchValue !== searchTerm) {
         searchTerm = searchValue;
         currentPage = 0;
+        filterByFavourites = false;
         filterPokemon();
     }
     else {
@@ -394,6 +395,7 @@ function updatePaginationButtons() {
 }
 
 async function getAndDisplayPokemon() {
+    filterByFavourites = false;
     loadingData();
     pdata = await getPokemonData()
     displayPokemon(pdata);
