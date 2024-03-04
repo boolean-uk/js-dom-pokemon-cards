@@ -132,7 +132,6 @@ async function renderCard(pokemon) {
         if (favourites.some(p => p.name === pokemon.name)) {
             localStorage.setItem('favourites', JSON.stringify(favourites.filter(p => p.name !== pokemon.name)));
             favouriteButton.textContent = "☆";
-            console.log(filterByFavourites)
             if (filterByFavourites) {
                 pdata = getFavourites();
                 displayPokemon(pdata);
