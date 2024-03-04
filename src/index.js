@@ -141,6 +141,7 @@ async function renderCard(pokemon) {
 
     // Audio
     const audio = card.querySelector('.pokemon-cry');
+    audio.volume = 0.2;
     const playAudioButton = card.querySelector('.play-audio');
     playAudioButton.addEventListener('click', () => {
         audio.play();
