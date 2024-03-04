@@ -344,7 +344,7 @@ function renderUI() {
 }
 
 function searchHandler(searchValue) {
-    if (searchValue && searchValue.length > 3 && searchValue !== searchTerm) {
+    if (searchValue && searchValue.length > 2 && searchValue !== searchTerm) {
         searchTerm = searchValue;
         currentPage = 0;
         filterPokemon();
