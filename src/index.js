@@ -344,6 +344,8 @@ function renderUI() {
 }
 
 function searchHandler(searchValue) {
+    const searchbar = document.querySelector('.searchbar');
+    searchbar.value = '';
     if (searchValue && searchValue.length > 2 && searchValue !== searchTerm) {
         searchTerm = searchValue;
         currentPage = 0;
