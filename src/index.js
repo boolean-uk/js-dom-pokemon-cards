@@ -51,7 +51,6 @@ let shouldHaveGradient = true;
 let searchTerm = '';
 let fullDataCache = [];
 let pdata = [];
-let favouritePokemon = [];
 let filterByFavourites = false;
 
 async function getFullPokemonData() {
@@ -88,7 +87,7 @@ async function renderCard(pokemon) {
             <div class="card-shiny-texture"></div>
             <div class="card-base-shiny-texture"></div>
             <h2 class="card--title">${capitalize(pokemon.name)}</h2>
-            <button class="favourite-button">${favouritePokemon.some(p => p.name === pokemon.name) ? "★" : "☆"}</button>
+            <button class="favourite-button">${favouriteIncludes(pokemon) ? "★" : "☆"}</button>
             <div class="image--container">
                 <div class="card--img--background"> </div>
                 <img
@@ -129,12 +128,13 @@ async function renderCard(pokemon) {
     // Favourite button
     const favouriteButton = card.querySelector('.favourite-button');
     favouriteButton.addEventListener('click', () => {
-        if (favouritePokemon.some(p => p.name === pokemon.name)) {
-            favouritePokemon = favouritePokemon.filter(p => p.name !== pokemon.name);
+        const favourites = getFavourites();
+        if (favourites.some(p => p.name === pokemon.name)) {
+            localStorage.setItem('favourites', JSON.stringify(favourites.filter(p => p.name !== pokemon.name)));
             favouriteButton.textContent = "☆";
         }
         else {
-            favouritePokemon.push(pokemon);
+            addToFavourites(pokemon);
             favouriteButton.textContent = "★";
         }
     });
@@ -231,6 +231,22 @@ async function renderCard(pokemon) {
         }
         img.src = nextImage;
     }
+}
+
+// Check if pokemon is in favourites
+function favouriteIncludes(pokemon) {
+    const favourites = JSON.parse(localStorage.getItem('favourites'));
+    return favourites.some(p => p.name === pokemon.name);
+}
+
+// Get favourites
+function getFavourites() {
+    return JSON.parse(localStorage.getItem('favourites'));
+}
+
+function addToFavourites(pokemon) {
+    const favourites = JSON.parse(localStorage.getItem('favourites'));
+    localStorage.setItem('favourites', JSON.stringify([...favourites, pokemon]));
 }
 
 // Iterate through the array of keys to get the nested property
@@ -333,9 +349,10 @@ function renderUI() {
             getAndDisplayPokemon();
         }
         else {
+            const favourites = getFavourites()
             filterByFavourites = true;
             currentPage = 0;
-            pdata = favouritePokemon;
+            pdata = favourites;
             displayPokemon(pdata);
             hidePagination();
         }
@@ -450,6 +467,10 @@ function loadingData() {
 }
 
 async function main() {
+    const favourites = localStorage.getItem('favourites');
+    if (!favourites) {
+        localStorage.setItem('favourites', JSON.stringify([]));
+    }
     fullDataCache = await getFullPokemonData();
     getAndDisplayPokemon();
     renderUI();
