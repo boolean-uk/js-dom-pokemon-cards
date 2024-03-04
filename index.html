@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JS</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
-    <script defer src="/src/data.js"></script>
-    <script defer src="/src/index.js"></script>
-  </head>
-  <body>
-    <h1>Pokemon Trading Cards</h1>
-    <ul class="cards">
-      <!-- Look at /templates/card.html for the template of a card -->
-    </ul>
-  </body>
+
+<head>
+  <title>Pokemon Cards</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="spin.css" />
+  <script defer src="./src/data.js"></script>
+  <script defer src="./src/index.js"></script>
+</head>
+
+<body>
+  <div class="top-bar">
+    <h1 class="title-clickable">Pokemon Trading Cards</h1>
+    <div class="toggle-gradient-container">
+      <button class="toggle-gradient">Gradient ON</button>
+    </div>
+    <div class="searchbar-container">
+      <input type="text" class="searchbar" placeholder="Search for a Pokemon (min: 3 letters)" minlength="3" />
+      <button class="search-button">Search</button>
+      <button class="favourites">★</button>
+    </div>
+  </div>
+  <ul class="cards">
+    <!-- Look at /templates/card.html for the template of a card -->
+  </ul>
+  <div class="pagination">
+    <button class="first-page">
+      << </button>
+        <button class="previous-page">
+          < </button>
+            <button class="minus-ten">- 10</button>
+            <p class="page-number">-</p>
+            <button class="plus-ten">+ 10</button>
+            <button class="next-page">></button>
+            <button class="last-page">>></button>
+  </div>
+</body>
+
 </html>
