@@ -33,7 +33,11 @@ function RenderCards() {
     //setAttribute class on image
     cardImg.setAttribute("class", "card--img");
     //setAttribute source on immage
-    cardImg.setAttribute("src", pokemon.sprites.front_default);
+    cardImg.setAttribute(
+      "src",
+      pokemon.sprites.versions["generation-v"]["black-white"].animated
+        .front_default
+    );
     //add image to list item
     cardLi.appendChild(cardImg);
 
@@ -54,6 +58,10 @@ function RenderCards() {
       //add li to ul
       cardUl.appendChild(cardStatsLi);
     }
+
+    const cardVersion = document.createElement("li");
+    cardVersion.innerText = `VERSION: ${pokemon.game_indices[0].version.name} `;
+    cardUl.appendChild(cardVersion);
 
     cardsUL.appendChild(cardLi);
   }
