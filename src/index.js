@@ -15,13 +15,15 @@ function cardCreate(index, container) {
   const card = document.createElement("li")
   card.className = "card"
 
+  dataReference = structuredClone(data[index])
+
   const pokemonName = document.createElement("h2")
   pokemonName.className = "card--title"
-  nameFix = capitlisation(data[index].name)
+  nameFix = capitlisation(dataReference.name)
   pokemonName.innerHTML = nameFix
 
   const image = document.createElement("img")
-  image.src = data[index].sprites.other["official-artwork"].front_default
+  image.src = dataReference.sprites.other["official-artwork"].front_default
   image.className = "card--img"
   image.width = "256"
 
@@ -30,9 +32,9 @@ function cardCreate(index, container) {
   for (let i = 0; i < 6; i++) {
     const stat = document.createElement("li")
     stat.innerHTML =
-      data[index].stats[i].stat.name.toUpperCase() +
+      dataReference.stats[i].stat.name.toUpperCase() +
       ": " +
-      data[index].stats[i].base_stat
+      dataReference.stats[i].base_stat
     cardText.appendChild(stat)
   }
 
@@ -42,7 +44,7 @@ function cardCreate(index, container) {
 
   const generations = document.createElement("ul")
   generations.className = "card--text"
-  const generationArr = Object.keys(data[index].sprites.versions)
+  const generationArr = Object.keys(dataReference.sprites.versions)
 
   for (let i = 0; i < generationArr.length; i++) {
     const gen = document.createElement("li")
