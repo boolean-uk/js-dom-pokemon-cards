@@ -26,6 +26,7 @@ h2 {
 }
 
 .cards {
+  list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, 375px);
   gap: 15px;
@@ -53,6 +54,7 @@ h2 {
 }
 
 .card--text {
+  list-style: none;
   margin: 0.2rem;
   padding: 1rem;
 
