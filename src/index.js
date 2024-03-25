@@ -11,25 +11,29 @@ function capitlisation(inputString) {
   return outputString
 }
 
-function cardCreate(index, container) {
-  const card = document.createElement("li")
-  card.className = "card"
-
-  dataReference = structuredClone(data[index])
-
+function createName(dataReference) {
   const pokemonName = document.createElement("h2")
   pokemonName.className = "card--title"
   nameFix = capitlisation(dataReference.name)
   pokemonName.innerHTML = nameFix
+  return pokemonName
+}
 
+function createImg(dataReference) {
   const image = document.createElement("img")
-  image.src = dataReference.sprites.other["official-artwork"].front_default
+  image.setAttribute(
+    "src",
+    dataReference.sprites.other["official-artwork"].front_default
+  )
+  image.setAttribute("width", 256)
   image.className = "card--img"
-  image.width = "256"
+  return image
+}
 
-  const cardText = document.createElement("ul")
+function createText(dataReference) {
+  cardText = document.createElement("ul")
   cardText.className = "card--text"
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < dataReference.stats.length; i++) {
     const stat = document.createElement("li")
     stat.innerHTML =
       dataReference.stats[i].stat.name.toUpperCase() +
@@ -37,27 +41,48 @@ function cardCreate(index, container) {
       dataReference.stats[i].base_stat
     cardText.appendChild(stat)
   }
+  return cardText
+}
+
+function createGameList(dataReference) {
+  const games = document.createElement("ul")
+  games.className = "card--text"
+
+  const gamesArr = dataReference.game_indices
+  for (let i = 0; i < gamesArr.length; i++) {
+    const game = document.createElement("li")
+    game.innerHTML = capitlisation(gamesArr[i].version.name)
+    games.appendChild(game)
+  }
+
+
+  return games
+}
+
+function cardCreate(index, container) {
+  const card = document.createElement("li")
+  card.className = "card"
+
+  const dataReference = structuredClone(data[index])
+
+  const pokemonName = createName(dataReference)
+
+  const image = createImg(dataReference)
+
+  const cardText = createText(dataReference)
 
   const appearsIn = document.createElement("h2")
   appearsIn.className = "card--title"
   appearsIn.innerHTML = "APPEARS IN"
 
-  const generations = document.createElement("ul")
-  generations.className = "card--text"
-  const generationArr = Object.keys(dataReference.sprites.versions)
+  games = createGameList(dataReference)
 
-  for (let i = 0; i < generationArr.length; i++) {
-    const gen = document.createElement("li")
-    gen.innerHTML = "Generation " + generationArr[i].split("-")[1].toUpperCase()
-    generations.appendChild(gen)
-  }
-
-  container.appendChild(card)
   card.appendChild(pokemonName)
   card.appendChild(image)
   card.appendChild(cardText)
   card.appendChild(appearsIn)
-  card.appendChild(generations)
+  card.appendChild(games)
+  container.appendChild(card)
 }
 
 function imageSwap() {
@@ -77,7 +102,7 @@ for (let i = 0; i < data.length; i++) {
   cardCreate(i, cardsContainer)
 }
 
-heading = document.getElementById("heading")
+heading = document.querySelector("#heading")
 
 heading.addEventListener("click", () => {
   imageSwap()
