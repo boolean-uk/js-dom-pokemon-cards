@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JS</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
-    <script defer src="/src/data.js"></script>
-    <script defer src="/src/index.js"></script>
-  </head>
-  <body>
-    <h1>Pokemon Trading Cards</h1>
-    <ul class="cards">
-      <!-- Look at /templates/card.html for the template of a card -->
-    </ul>
-  </body>
+	<head>
+		<title>JS</title>
+		<meta charset="UTF-8" />
+		<link
+			rel="stylesheet"
+			href="style.css" />
+		<script
+			defer
+			src="/src/data.js"></script>
+		<script
+			defer
+			src="/src/index.js"></script>
+	</head>
+	<body onload="loadCards()">
+		<h1>Pokemon Trading Cards</h1>
+		<ul class="cards"></ul>
+	</body>
+	<script>
+		const container = document.querySelector(".cards");
+
+		function loadCards() {
+			data.forEach((el) => {
+				container.innerHTML += `<li class="card">
+      <h2 class="card--title">${el.name}</h2>
+      <img
+        width="256"
+        class="card--img"
+        src="${el.sprites.front_default}"
+      />
+      <ul class="card--text">
+        <li>HP: ${el.stats[0].base_stat}</li>
+        <li>ATTACK: ${el.stats[1].base_stat}</li>
+        <li>DEFENSE: ${el.stats[2].base_stat}</li>
+        <li>SPECIAL-ATTACK: ${el.stats[3].base_stat}</li>
+        <li>SPECIAL-DEFENSE: ${el.stats[4].base_stat}</li>
+        <li>SPEED: ${el.stats[5].base_stat}</li>
+      </ul>
+    </li>`;
+			});
+		}
+	</script>
 </html>
