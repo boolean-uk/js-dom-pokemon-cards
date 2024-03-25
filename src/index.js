@@ -61,25 +61,10 @@ function newCard() {
 
                     newImage.setAttribute('src', spritesList[Object.keys(spritesList)[indexNumber]])
                 }
-
-                
-
-                
             }
-            
             })
     }
-    
 }
-
-console.log(Object.keys(data[0].sprites))
-
-
-console.log(data[0].sprites['back_shiny'])
-console.log(data[0].sprites[Object.keys(data[0].sprites)[2]])
-console.log(data[0])
-
-
 
 function addNewLi() {
     const newLi = document.createElement('li')
