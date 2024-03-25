@@ -20,9 +20,22 @@ img {
   max-width: 100%;
 }
 
-h1:hover{
+#heading:hover{
   cursor: pointer;
 }
+
+#heading{
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+ 
+    /*
+      Introduced in IE 10.
+      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+    -ms-user-select: none;
+    user-select: none;
+ }
 
 h1,
 h2 {

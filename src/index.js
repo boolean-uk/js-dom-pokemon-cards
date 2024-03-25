@@ -80,4 +80,4 @@ for (let i = 0; i < data.length; i++) {
 
 heading = document.getElementById("heading")
 
-heading.addEventListener("click", () => [imageSwap()])
+heading.addEventListener("click", () => {imageSwap()})
