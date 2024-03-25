@@ -11,7 +11,7 @@ function capitlisation(inputString) {
   return outputString
 }
 
-function cardCreate(index) {
+function cardCreate(index, container) {
   const card = document.createElement("li")
   card.className = "card"
 
@@ -43,22 +43,39 @@ function cardCreate(index) {
   const generations = document.createElement("ul")
   generations.className = "card--text"
   const generationArr = Object.keys(data[index].sprites.versions)
-  
+
   for (let i = 0; i < generationArr.length; i++) {
     const gen = document.createElement("li")
     gen.innerHTML = "Generation " + generationArr[i].split("-")[1].toUpperCase()
     generations.appendChild(gen)
   }
 
-  cardsContainer.appendChild(card)
+  container.appendChild(card)
   card.appendChild(pokemonName)
   card.appendChild(image)
   card.appendChild(cardText)
   card.appendChild(appearsIn)
   card.appendChild(generations)
 }
+
+function imageSwap() {
+  allCards = document.querySelectorAll(".card--img")
+  console.log(allCards)
+  for (let i = 0; i < allCards.length; i++) {
+    allCards[i].src =
+      allCards[i].src ===
+      data[i].sprites.other["official-artwork"].front_default
+        ? data[i].sprites.front_default
+        : data[i].sprites.other["official-artwork"].front_default
+  }
+}
+
 cardsContainer = document.querySelector(".cards")
 
 for (let i = 0; i < data.length; i++) {
-  cardCreate(i)
+  cardCreate(i, cardsContainer)
 }
+
+heading = document.getElementById("heading")
+
+heading.addEventListener("click", () => [imageSwap()])

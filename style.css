@@ -20,6 +20,10 @@ img {
   max-width: 100%;
 }
 
+h1:hover{
+  cursor: pointer;
+}
+
 h1,
 h2 {
   text-align: center;
