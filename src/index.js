@@ -62,7 +62,6 @@ function cardCreate(index, container) {
 
 function imageSwap() {
   allCards = document.querySelectorAll(".card--img")
-  console.log(allCards)
   for (let i = 0; i < allCards.length; i++) {
     allCards[i].src =
       allCards[i].src ===
@@ -80,4 +79,6 @@ for (let i = 0; i < data.length; i++) {
 
 heading = document.getElementById("heading")
 
-heading.addEventListener("click", () => {imageSwap()})
+heading.addEventListener("click", () => {
+  imageSwap()
+})
