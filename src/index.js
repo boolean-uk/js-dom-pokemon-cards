@@ -1,30 +1,18 @@
-
-console.log(data);
-
-//You can start simple and just render a single 
-//pokemon card from the first element
-console.log(data[0].sprites);
-
 function newCard() {
     for (let i = 0; i < data.length; i++) {
         const cards = document.getElementsByClassName('cards')
 
-        const newLi = document.createElement('li')
-        newLi.classList.add('card')
+        const newLi = addNewLi()
 
-        const newHeader = document.createElement('h2')
+        const newHeader = addNewHeader()
         newHeader.innerText = data[i].name
-        newHeader.classList.add('card--title')
         newLi.append(newHeader)
 
-        const newImage = document.createElement('img')
-        newImage.classList.add('card--img')
-        newImage.style.width = '256px'
-        newImage.setAttribute('src', data[i].sprites.other["official-artwork"].front_default) 
+        const newImage = addImage()
+        newImage.src = data[i].sprites.other["official-artwork"].front_default 
         newLi.append(newImage)
 
-        const newUl = document.createElement('ul')
-        newUl.classList.add('card--text')
+        const newUl = addNewUl()
         newLi.append(newUl)
         
         for (let j = 0; j < data[i].stats.length; j++) {
@@ -33,12 +21,10 @@ function newCard() {
             newUl.append(statsLi)
         }
 
-        const h3 = document.createElement('h3')
-        h3.innerText = 'Games'
+        const h3 = addGamesHeader()
         newLi.append(h3)
 
-        const gamesUl = document.createElement('ul')
-        gamesUl.classList.add('games')
+        const gamesUl = addGames()
         newLi.append(gamesUl)
 
         for (let k = 0; k < data[i].game_indices.length; k++) {
@@ -49,17 +35,93 @@ function newCard() {
 
         cards[0].append(newLi)
 
+        let indexNumber = -1
+        const spritesList = JSON.parse(JSON.stringify(data[i].sprites))
+        delete spritesList.versions
+        delete spritesList.other
+        console.log(spritesList)
         newLi.addEventListener('click', () => {
-            newImage.setAttribute('src', data[i].sprites.back_default)
+            indexNumber += 1
+            console.log(indexNumber)
+            console.log(Object.keys(spritesList)[indexNumber])
+            
+            if (spritesList[Object.keys(spritesList)[indexNumber]] !== null) {
+                newImage.setAttribute('src', spritesList[Object.keys(spritesList)[indexNumber]])
+
+                if (indexNumber > Object.keys(spritesList).length) {
+                    newImage.setAttribute('src', data[i].sprites.other["official-artwork"].front_default)
+                    indexNumber = -1
+                }
+            } else {
+                if (indexNumber > Object.keys(spritesList).length) {
+                    newImage.setAttribute('src', data[i].sprites.other["official-artwork"].front_default)
+                    indexNumber = -1
+                } else {
+                    indexNumber += 1
+
+                    newImage.setAttribute('src', spritesList[Object.keys(spritesList)[indexNumber]])
+                }
+
+                
+
+                
+            }
+            
             })
     }
     
 }
 
-newCard()
+console.log(Object.keys(data[0].sprites))
 
-// function togglePicture(card) {
-//     card.addEventListener('click', () => {
-//         alert('something')
-//     })
-// }
+
+console.log(data[0].sprites['back_shiny'])
+console.log(data[0].sprites[Object.keys(data[0].sprites)[2]])
+console.log(data[0])
+
+
+
+function addNewLi() {
+    const newLi = document.createElement('li')
+    newLi.classList.add('card')
+
+    return newLi
+}
+
+function addNewHeader() {
+    const newHeader = document.createElement('h2')
+    newHeader.classList.add('card--title')
+
+    return newHeader
+}
+
+function addImage() {
+    const newImage = document.createElement('img')
+    newImage.classList.add('card--img')
+    newImage.style.width = '256px'
+
+    return newImage
+}
+
+function addNewUl() {
+    const newUl = document.createElement('ul')
+    newUl.classList.add('card--text')
+
+    return newUl
+}
+
+function addGamesHeader() {
+    const h3 = document.createElement('h3')
+    h3.innerText = 'Games'
+
+    return h3
+}
+
+function addGames() {
+    const gamesUl = document.createElement('ul')
+    gamesUl.classList.add('games')
+
+    return gamesUl
+}
+
+newCard()
