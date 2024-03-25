@@ -34,6 +34,8 @@ h2 {
 
   padding: 2rem 0;
   margin-bottom: 2rem;
+
+  list-style: none;
 }
 
 .card {
@@ -64,4 +66,8 @@ h2 {
   margin: 0 auto;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.card--text {
+  list-style: none;
 }
