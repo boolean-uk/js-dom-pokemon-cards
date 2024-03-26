@@ -26,56 +26,83 @@
 // </html>
 
 const pokemon = data
-const card = document.createElement("li")
-const deck = document.querySelector(".cards")
 
-const title = (pokemon) => {
-	const pName = document.createElement("h2")
-	pName.classList.add("card--title")
-	pName.innerText = pokemon.name
-	return pName
-}
+const inGames = (pokemon) => {
+	const games = document.createElement("ul")
+	games.classList.add = "card--text"
 
-const image = (pokemon) => {
-	const pic = document.createElement("img")
-	pic.classList.add("card--img")
-	pic.setAttribute(
-		"src",
-		pokemon.sprites.other["official-artwork"].front_default
-	)
-	pic.setAttribute("width", 256)
-	return pic
-}
-
-const pokStats = (pokemon) => {
-	const stats = document.createElement("ul")
-	stats.classList.add("card--text")
-	for (let i = 0; i < pokemon.stats.length; i++) {
-		const stat = document.createElement("li")
-		stat.innerText = `${pokemon.stats[i].stat.name} : ${pokemon.stats[i].base_stat}`
-		stats.append(stat)
+	const inGamesArr = pokemon.game_indices
+	for (let i = 0; i < inGamesArr.length; i++) {
+		const game = document.createElement("li")
+		game.innerHTML = inGamesArr[i].version.name
+		games.append(game)
 	}
-	return stats
+
+	return games
 }
 
-
-
-const makeCards = (pokemon) => {
-	card.classList.add("card")
-	const name = title(pokemon)
-	const picture = image(pokemon)
-	const info = pokStats(pokemon)
-
-	card.append(name)
-	card.append(picture)
-	card.append(info)
-}
-
-
-const main = (pokemon) => {
+const pokemonCards = (pokemon) => {
 	for (let i = 0; i < pokemon.length; i++) {
-		makeCards(pokemon[i])
+		const pokemon = data[i]
+
+		//create and style the card
+		const card = document.createElement("li")
+		card.classList.add("card")
+		card.style.listStyle = "none"
+		card.style.backgroundColor = "darkgray"
+
+		// create title
+		const title = document.createElement("h2")
+		title.classList.add("card--title")
+		title.innerText = pokemon.name
+
+		// append the title to the <li>
+		card.append(title)
+
+		//create the image
+		const image = document.createElement("img")
+		image.classList.add("card--img")
+
+		image.setAttribute("width", 256)
+		image.setAttribute(
+			"src",
+			pokemon.sprites.other["official-artwork"].front_default
+		)
+
+		// append the image to the <li>
+		card.append(image)
+
+		//create stats text
+		const stats = document.createElement("ul")
+		stats.classList.add("card--text")
+		for (let i = 0; i < pokemon.stats.length; i++) {
+			const stat = document.createElement("li")
+			stat.innerText = `${pokemon.stats[i].stat.name}: ${pokemon.stats[i].base_stat}`
+			stats.append(stat)
+		}
+		// append stats
+		stats.style.listStyle = "none"
+		card.append(stats)
+
+		//extension 1 (Not sure if this is what is asked since I have no idea what are the games)
+
+		const gamesAppearance = document.createElement("h3")
+		gamesAppearance.className = "card--title"
+		gamesAppearance.innerHTML = "Appearances"
+
+		card.append(gamesAppearance)
+
+		games = inGames(pokemon)
+		games.style.listStyle = "square"
+
+		card.append(games)
+
+		// access the ul
+		const deck = document.querySelector(".cards")
+
+		// append the <li>(card) in the <ul>(deck)
 		deck.append(card)
 	}
 }
-main(pokemon)
+
+pokemonCards(pokemon)
