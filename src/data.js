@@ -8501,3 +8501,4 @@ const data = [
   }
 ];
 
+window.data = data;
