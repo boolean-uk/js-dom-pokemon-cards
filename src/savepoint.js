@@ -21,7 +21,6 @@ for (let i = 0; i < data.length; i++) {
     addName()
     
     // adding img
-    
     const addImg = () => {
         newPokemon.currentIMG = newPokemon.sprites.other["official-artwork"].front_default;
         const newIMG = document.createElement("img");

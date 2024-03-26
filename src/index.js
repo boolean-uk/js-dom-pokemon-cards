@@ -1,15 +1,51 @@
-for (let i = 0; i < data.length; i++) {
-const cardsList = document.querySelector(".cards");
 
-const newPokemon = data[i];
-const newLI = document.createElement("li");
+for (let i = 0; i < data.length; i++) {
+    const newPokemon = data[i];
+    createCard(data[i])
+}
+
+const createCard = (currentPoke) => {
+    currentPoke = currentPoke
+    const cardsList = document.querySelector(".cards");
+    const newLI = document.createElement("li");
+
+    const liWithClass = addCardClass(newLI)
+    const liWithName = addName(liWithClass)
+    const liWithImg = addImg(liWithName)
+    const liWithStats = createStatsList(liWithImg, currentPoke)
+    const finalLi = createGamesList(liWithStats, currentPoke)
+}
+
+
+
+
+
+// Adding games 
+const createGamesList = (listWithStats, currentPoke) => {
+    const newUL = document.createElement("ul")
+    newUL.classList.add("games")
+    newUL.innerText = 'Appears In:'
+    for (let i = 0; i < currentPoke.game_indices.length; i++) {
+        const newLI = document.createElement("li")
+        newLI.innerText = currentPoke.game_indices[i].version.name
+        newLI.addEventListener('click', () => updateIMG(`${newLI.innerText}`, currentPoke.name))
+        newUL.appendChild(newLI)
+    }
+    newLI.appendChild(newUL)
+}
+
+createGamesList()
+
+cardsList.appendChild(newLI);
+
+
+
+
 
 //adding class to overall LI
-const addCardClass = () => {
-newLI.classList.add("card");
-newLI.setAttribute('id', `${data[i].name}`)
+const addCardClass = (LI) => {
+    LI.classList.add("card");
 }
-addCardClass()
 
 //adding name h2
 const addName = () => {
@@ -18,50 +54,27 @@ const addName = () => {
     newH2.classList.add("card--title");
     newLI.appendChild(newH2);
 }
-addName()
 
 // adding img
-
-const addImg = () => {
+const addImg = (liWithName) => {
     newPokemon.currentIMG = newPokemon.sprites.other["official-artwork"].front_default;
     const newIMG = document.createElement("img");
     newIMG.src = newPokemon.currentIMG
     newIMG.classList.add("card--img");
     newIMG.setAttribute("width", 256);
-    newLI.appendChild(newIMG);
+    liWithName.appendChild(newIMG);
 }
-addImg()
+
 
 // Adding new stats list
-const createStatsList = () => {
+const createStatsList = (li, currentPoke) => {
     const newUL = document.createElement("ul")
     newUL.classList.add("card--text")
 
-    for (let j = 0; j < 6; j++) {
+    for (let i = 0; i < 6; i++) {
     const newLI = document.createElement("li")
-    newLI.innerText = `${data[i].stats[j].stat.name}: ${data[i].stats[j].base_stat}`
+    newLI.innerText = `${currentPoke.stats[i].stat.name}: ${currentPoke.stats[i].base_stat}`
     newUL.appendChild(newLI)
     }
-    newLI.appendChild(newUL)
+    li.appendChild(newUL)
 }
-createStatsList()
-
-// Adding games 
-const createGamesList = () => {
-    const newUL = document.createElement("ul")
-    newUL.classList.add("games")
-    newUL.innerText = 'Appears In:'
-    for (let k = 0; k < data[i].game_indices.length; k++) {
-        const newLI = document.createElement("li")
-        newLI.innerText = data[i].game_indices[k].version.name
-        newLI.addEventListener('click', () => updateIMG(`${newLI.innerText}`, data[i].name))
-        newUL.appendChild(newLI)
-    }
-    newLI.appendChild(newUL)
-}
-createGamesList()
-
-cardsList.appendChild(newLI);
-}
-
-
