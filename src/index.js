@@ -3,6 +3,10 @@ for (let i = 0; i < data.length; i++){
 
   const pokemonImage = pokemon.sprites.other['official-artwork'].front_default;
   const pokemonStats = pokemon.stats
+  const theGameIndices = pokemon.game_indices 
+
+  
+ 
   
   // <li class="card">
   const listItem = document.createElement('li')
@@ -22,41 +26,36 @@ for (let i = 0; i < data.length; i++){
   image.setAttribute('src', pokemon.sprites.other['official-artwork'].front_default)
   
   listItem.append(image)
-  
-  //Declaring the stats here
-  const statsList = [
-    { name: 'HP', value: 45 },
-    { name: 'ATTACK', value: 49 },
-    { name: 'DEFENSE', value: 49 },
-    { name: 'SPECIAL-ATTACK', value: 65 },
-    { name: 'SPECIAL-DEFENSE', value: 65 },
-    { name: 'SPEED', value: 45 }
-  ];
-  
+
   // This is to call the function to display the statsi earlier declare
-  displayStats(statsList);
   
-  function displayStats(statsList) {
+  displayStats(pokemonStats)
+  
+  function displayStats(pokemonStats) {
     const ul = document.createElement('ul')
+    
   
-    //I looped to create list items
-    for (let i = 0; i < statsList.length; i++) {
+    //loop the items
+    for (let i = 0; i < pokemonStats.length; i++) {
       const li = document.createElement('li')
-      li.textContent = `${statsList[i].name}: ${statsList[i].value}`
-      ul.append(li);
+      li.classList.add('card--text')
+      li.textContent = `${pokemonStats[i].stat.name.toUpperCase()}: ${pokemonStats[i].base_stat}`
+      ul.append(li)
     }
   
     // Append the ul element to the listItem
     listItem.append(ul);
+    
   }
   
   const cardsFinalDisplay = document.querySelector('.cards')
   cardsFinalDisplay.append(listItem)
   
 
+  //trying the extension 
+
 }
 
-const pokemon = data[0]
 
 
 
