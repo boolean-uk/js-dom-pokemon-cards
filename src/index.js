@@ -1,9 +1,9 @@
 const pokemon = data
-console.log(pokemon[0].game_indices[0].version.name)
+console.log(pokemon[0].sprites.other)
 
-//game Index
-//pokemon[0].game_indices[0].game_index
 const cardsList = document.querySelector('.cards')
+
+
 
 function render() {
   pokemon.forEach((key) => {
@@ -19,7 +19,18 @@ function render() {
     image.setAttribute('width',256)
     image.setAttribute('src',key.sprites.other["official-artwork"].front_default)
     image.classList.add('card--img')
-
+    let togglePicture = true
+    image.addEventListener('click', (event) =>{
+      
+      if(togglePicture) {
+        image.setAttribute('src',key.sprites.other.dream_world.front_default)
+        togglePicture = false
+      }else {
+        image.setAttribute('src',key.sprites.other["official-artwork"].front_default)
+        togglePicture = true
+      }
+      
+    })
     const ul = document.createElement('ul')
     ul.classList.add('card--text')
     
@@ -34,7 +45,6 @@ function render() {
     section.classList.add('card--text')
     const gamesInfoTitle = document.createElement('h3')
     key.game_indices.forEach((games) => {
-      console.log(games.version.name)
       const liText = document.createElement('li')
       liText.style.listStyleType = 'none'
       liText.innerText =` '${games.version.name}' played in '${games.game_index}' games.`
