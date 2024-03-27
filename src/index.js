@@ -5,6 +5,7 @@ const cardsList = document.querySelector('.cards')
 function render() {
   pokemon.forEach((key) => {
     const listElement = document.createElement('li')
+    listElement.style.listStyleType = 'none'
     listElement.classList.add('card')
 
     const h2 = document.createElement('h2')
@@ -18,10 +19,11 @@ function render() {
 
     const ul = document.createElement('ul')
     ul.classList.add('card--text')
-
+    
     key.stats.forEach((attr) => {
       const liText = document.createElement('li')
-      liText.innerText = `${attr.stat.name}:${attr.base_stat}`
+      liText.style.listStyleType = 'none'
+      liText.innerText = `${attr.stat.name}: ${attr.base_stat}`
       ul.append(liText)
     })
     
@@ -30,6 +32,5 @@ function render() {
     listElement.append(ul)
     cardsList.append(listElement)
   }) 
-  console.log(cardsList)
 }
 render()
