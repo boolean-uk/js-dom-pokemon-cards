@@ -1,5 +1,8 @@
 const pokemon = data
+console.log(pokemon[0].game_indices[0].version.name)
 
+//game Index
+//pokemon[0].game_indices[0].game_index
 const cardsList = document.querySelector('.cards')
 
 function render() {
@@ -26,10 +29,23 @@ function render() {
       liText.innerText = `${attr.stat.name}: ${attr.base_stat}`
       ul.append(liText)
     })
+
+    const section = document.createElement('section')
+    section.classList.add('card--text')
+    const gamesInfoTitle = document.createElement('h3')
+    key.game_indices.forEach((games) => {
+      console.log(games.version.name)
+      const liText = document.createElement('li')
+      liText.style.listStyleType = 'none'
+      liText.innerText =` '${games.version.name}' played in '${games.game_index}' games.`
+      section.append(liText)
+    })
+    
     
     listElement.append(h2)
     listElement.append(image)
     listElement.append(ul)
+    listElement.append(section)
     cardsList.append(listElement)
   }) 
 }
