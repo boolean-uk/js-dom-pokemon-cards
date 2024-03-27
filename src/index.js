@@ -1,37 +1,35 @@
-const pokemon = data[0]
+const pokemon = data
 
-// image Address
-// console.log(pokemon.sprites.other['official-artwork'].front_default)
+const cardsList = document.querySelector('.cards')
 
-const listItem = document.createElement('li')
-listItem.classList.add('cards')
+function render() {
+  pokemon.forEach((key) => {
+    const listElement = document.createElement('li')
+    listElement.classList.add('card')
 
-const h2 = document.createElement('h2')
-h2.classList.add('card--title')
-h2.innerText = pokemon.name
+    const h2 = document.createElement('h2')
+    h2.classList.add('card--title')
+    h2.innerText = key.name
 
-listItem.append(h2)
+    const image = document.createElement('img')
+    image.setAttribute('width',256)
+    image.setAttribute('src',key.sprites.other["official-artwork"].front_default)
+    image.classList.add('card--img')
 
-const image = document.createElement('img')
-image.classList.add('card--img')
-image.setAttribute('width', 256)
-image.setAttribute('src', pokemon.sprites.other['official-artwork'].front_default)
-listItem.append(image)
+    const ul = document.createElement('ul')
+    ul.classList.add('card--text')
 
-{/* <ul class="card--text">
-    <li>HP: 45</li>
-    <li>ATTACK: 49</li>
-    <li>DEFENSE: 49</li>
-    <li>SPECIAL-ATTACK: 65</li>
-    <li>SPECIAL-DEFENSE: 65</li>
-    <li>SPEED: 45</li>
-  </ul> */}
-// const hp = pokemon.stats
-
-//   const infoList = {
-
-//   }
-
-const ul = document.querySelector('ul')
-ul.append(listItem)
-console.log(ul)
+    key.stats.forEach((attr) => {
+      const liText = document.createElement('li')
+      liText.innerText = `${attr.stat.name}:${attr.base_stat}`
+      ul.append(liText)
+    })
+    
+    listElement.append(h2)
+    listElement.append(image)
+    listElement.append(ul)
+    cardsList.append(listElement)
+  }) 
+  console.log(cardsList)
+}
+render()
