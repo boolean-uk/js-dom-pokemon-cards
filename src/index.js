@@ -1,5 +1,5 @@
 const pokemon = data
-console.log(pokemon[0].sprites.other)
+// console.log(pokemon[0].sprites.other)
 
 const cardsList = document.querySelector('.cards')
 
@@ -17,16 +17,19 @@ function render() {
 
     const image = document.createElement('img')
     image.setAttribute('width',256)
-    image.setAttribute('src',key.sprites.other["official-artwork"].front_default)
+    let currentImage = key.sprites.other["official-artwork"].front_default
     image.classList.add('card--img')
     let togglePicture = true
+
+    image.setAttribute('src',currentImage)
+
     image.addEventListener('click', (event) =>{
-      
       if(togglePicture) {
+        
         image.setAttribute('src',key.sprites.other.dream_world.front_default)
         togglePicture = false
       }else {
-        image.setAttribute('src',key.sprites.other["official-artwork"].front_default)
+        image.setAttribute('src',currentImage)
         togglePicture = true
       }
       
@@ -57,6 +60,8 @@ function render() {
     listElement.append(ul)
     listElement.append(section)
     cardsList.append(listElement)
+
+    console.log(cardsList)
   }) 
 }
 render()
